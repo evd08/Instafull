@@ -2,95 +2,159 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// .outer-div {
+//     display: flex;
+//     align-items: center;
+// }
+
+// .logo-print {
+//     font-family: fantasy;
+//     font-size: 50px;
+//     margin: 10px;
+//     font-weight: 100;
+// }
+
+// .div1 {
+//    // align-content: space-between;
+//    margin: 30px;
+//    display: flex;
+//    align-items: center;
+//  }
+
+// .form-div {
+//    //  align-content: space-between;
+//     // left: 50%;
+//     // right: 50%;
+//     bottom: 500px;
+//     display: flex;
+//     width: 300px;
+//     position: relative;
+//     top: 100px;
+// }
+
+//  .phones {
+//     display: flex;
+//     position: relative;
+//     top: 50px;
+//     right: 20px;
+//  }
+
+//  img {
+//     // display: flex;
+//     flex-direction: row;
+//  }
+
+//  .login-link {
+//      display: flex;
+//      color: #3897f0;
+//  }
+
+
 .outer-div {
-    display: flex;
-    align-items: center;
+   display: grid;
+   padding: 10px;
+   // background-color: rgb(252, 252, 252);
 }
+
+.main-div {
+   display: flex;
+   justify-content: center;
+
+}
+
+.img-div {
+
+}
+
+.forms-div {
+   // justify-content: center;
+   flex-direction: column;
+   align-items: center;
+}
+
+.form-div {
+   display: flex;
+   justify-content: center;
+}
+
+.option-div {
+   // flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border: 1px solid #e6e6e6;
+   display: flex;
+   margin: 10px;
+   padding: 10px;
+   width: 300px;
+   height: 30px;
+}
+
+.option-div a {
+   color: blue
+}
+
+.footer-div {
+
+}
+
+
 
 .logo-print {
-    font-family: fantasy;
-    font-size: 50px;
-    margin: 10px;
-    font-weight: 100;
+   font-family: fantasy;
+   font-size: 50px;
+   margin: 10px;
+   font-weight: 100;
 }
 
+.msg1 {
+   color: #999;
+   text-align: center;
+   font-weight: 600;
+   line-height: 20px;
+   font-size: 17px;
+   margin: 0 40px 10px;
+ }
 
-.auth-box {
-    // align-content: flex-end;
-    // left: 50%;
-    // right: 50%;
-    bottom: 500px;
-    display: flex;
-    width: 300px;
-    position: relative;
-    top: 100px;
-}
-
- .auth-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #e6e6e6;
-    margin: 10px;
-    padding: 10px;
-    background-color: #fff;
-    width: 300px;
+.form-field {
+   display: inline-block;
+   height: 25px;
+   width: 90%;
+   margin: 5px;
+   background-color: #fafafa80;
+   padding-left: 3px;
  }
 
  .auth-button {
-    background-color: #3897f0;
-    border: 1px solid #3897f0;
-    border-radius: 4px;
-    color: #fff;
-    position: relative;
-    margin: 10px;
-    height: 30px;
-    width: 60%;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
+   background-color: #3897f0;
+   border: 1px solid #3897f0;
+   border-radius: 4px;
+   color: #fff;
+   //  position: relative;
+   margin: 10px;
+   height: 30px;
+   width: 60%;
+   font-size: 15px;
+   font-weight: 600;
+   cursor: pointer;
  }
 
- .msg1 {
-    color: #999;
-    text-align: center;
-    font-weight: 600;
-    line-height: 20px;
-    font-size: 17px;
-    margin: 0 40px 10px;
+.auth-form {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border: 1px solid #e6e6e6;
+   margin: 10px;
+   padding: 10px;
+   background-color: #fff;
+   width: 300px;
  }
 
- .form-field {
-    display: inline-block;
-    height: 25px;
-    width: 90%;
-    margin: 5px;
-    background-color: #fafafa80;
-    padding-left: 3px;
- }
-
- .phones {
-    display: flex;
-    position: relative;
-    top: 50px;
-    right: 20px;
- }
-
- .error {
-    color: #ed4956;
-    font-size: 14px;
-    position: relative;
-    right: 40px;
-    align-items: center;
- }
-
- img {
-    // display: flex;
-    flex-direction: row;
- }
-
- .login-link {
-     display: flex;
-     color: #3897f0;
+.error {
+   color: #ed4956;
+   font-size: 14px;
+   position: relative;
+   right: 40px;
+   align-items: center;
+   display: relative;
  }

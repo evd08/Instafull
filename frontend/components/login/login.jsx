@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class LogInForm extends React.Component {
     constructor(props) {
@@ -33,40 +34,52 @@ class LogInForm extends React.Component {
     render() {
         return (
             <div className="outer-div">
-                <div>
-                    <img className="" src="/instagram.png" alt="phone image" />
+                <div className="main-div">
+
+                    <div className="img-div">
+                        <img className="" src="/instagram.png" alt="phone image" />
+                    </div>
+
+                    
+                    <div className="forms-div">
+
+                        <div className="form-div">
+                            <form onSubmit={this.handleSubmit} className="auth-form">
+                                <h3 className="logo-print">Insta</h3>
+                                <label>
+                                    <input
+                                        className="form-field"
+                                        type="text"
+                                        value={this.state.username}
+                                        placeholder="Username"
+                                        onChange={this.update('username')}
+                                    />
+                                </label>
+                                <label>
+                                    <input
+                                        className="form-field"
+                                        type="password"
+                                        value={this.state.password}
+                                        placeholder="Password"
+                                        onChange={this.update('password')}
+                                    />
+                                </label>
+
+                                <ul className="error">{this.renderErrors()}</ul>
+
+                                <input className="auth-button" type="submit" value="Log In" />
+                            </form>
+                        </div>
+
+                        <div className="option-div">
+                            <p>Don't have an account? 
+                                <a to="#/signup"><span>Sign Up</span></a>
+                            </p>
+                        </div>
+
+                    </div>
+
                 </div>
-
-                
-
-                <div className="auth-box">
-                    <form onSubmit={this.handleSubmit} className="auth-form">
-                        <h3 className="logo-print">Insta</h3>
-                        <label>
-                            <input
-                                className="form-field"
-                                type="text"
-                                value={this.state.username}
-                                placeholder="Username"
-                                onChange={this.update('username')}
-                            />
-                        </label>
-                        <label>
-                            <input
-                                className="form-field"
-                                type="password"
-                                value={this.state.password}
-                                placeholder="Password"
-                                onChange={this.update('password')}
-                            />
-                        </label>
-
-                        <ul className="error">{this.renderErrors()}</ul>
-
-                        <input className="auth-button" type="submit" value="Log In" />
-                    </form>
-                </div>
-
             </div>
         )
     }
