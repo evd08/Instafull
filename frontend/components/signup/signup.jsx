@@ -38,7 +38,8 @@ class SignUpForm extends React.Component {
                 <div className="main-div">
 
                     <div className="img-div">
-                        <img className="" src="/instagram.png" alt="phone image"/>
+                        <img className="" src={window.instagram} alt="phone image"/>
+                        {/* question */}
                     </div>
 
                     <div className="forms-div"> 

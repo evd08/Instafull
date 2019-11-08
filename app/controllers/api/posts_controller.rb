@@ -35,6 +35,7 @@ class Api::PostsController < ApplicationController
             render :show
         else
             render json: @post.errors.full_messages, status: 422
+        end
     end
 
     private
