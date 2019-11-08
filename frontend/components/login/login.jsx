@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 class LogInForm extends React.Component {
     constructor(props) {
@@ -10,6 +9,7 @@ class LogInForm extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
     }
 
     update(field) {
@@ -19,6 +19,11 @@ class LogInForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.login(this.state)
+    }
+
+    handleDemoSubmit(e) {
+        e.preventDefault();
+        this.props.login({username: 'demo', password:'Philippines'});
     }
 
     renderErrors() {
@@ -65,20 +70,37 @@ class LogInForm extends React.Component {
                                     />
                                 </label>
 
-                                <ul className="error">{this.renderErrors()}</ul>
+                                <br/>
+                                <input 
+                                    className="auth-button" 
+                                    type="submit" 
+                                    value="Log In" 
+                                />
+                                <button 
+                                    className="auth-button" 
+                                    onClick={this.handleDemoSubmit}>
+                                        Demo Log In
+                                </button>
 
-                                <input className="auth-button" type="submit" value="Log In" />
+                                <ul className="error">{this.renderErrors()}</ul>
                             </form>
                         </div>
 
                         <div className="option-div">
                             <p>Don't have an account? 
-                                <a to="#/signup"><span>Sign Up</span></a>
+                                <a href="#/signup"><span>Sign Up</span></a>
                             </p>
                         </div>
 
                     </div>
 
+                </div>
+
+                <div className="footer-div">
+                    <a href="https://github.com/evd08">About Me</a>
+                    <a href="https://github.com/evd08">Github</a>
+                    <a href="https://www.appacademy.io">App Academy</a>
+                    <a href="www.appacademy.io">FAQs</a>
                 </div>
             </div>
         )

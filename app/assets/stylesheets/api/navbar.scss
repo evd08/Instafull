@@ -1,0 +1,47 @@
+.nav-div {
+    // z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: white;
+    height: 77px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.nav-logo-div{
+    display: flex;
+    text-align: center;
+    align-items: center; 
+}
+
+.nav-profile-div {
+    display: flex;
+    flex-direction: row;
+    width: 150px;
+}
+
+.nav-options-div {
+
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-right: 15px;
+    // margin-top: 10px;
+}
+
+.nav-logo-print {
+    font-family: fantasy;
+    font-size: 20px;
+    // width: auto;
+    // height: 40px;
+    // margin-top: 22px;
+    // display: flex;
+}

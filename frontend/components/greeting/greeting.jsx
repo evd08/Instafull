@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SignUpForm from '../signup/signup_container';
 
 const Greeting = ({ currentUser, logout }) => {
     let display = currentUser ?
@@ -11,6 +12,8 @@ const Greeting = ({ currentUser, logout }) => {
         ) :
         (
             <div>
+                {/* <SignUpForm /> */}
+
                 <Link to="/signup" className="auth-button">Sign Up</Link>
                 <br/>
                 <Link to="/login" className="login-link">Log In</Link>

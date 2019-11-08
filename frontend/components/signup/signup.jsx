@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 class SignUpForm extends React.Component {
     constructor(props){
@@ -85,9 +84,10 @@ class SignUpForm extends React.Component {
                                         onChange={this.update('password')}
                                     />
                                 </label>
-                                <ul className="error">{this.renderErrors()}</ul>
+                                <p>minimum of 6 characters</p>
                                 <br/><br/>
                                 <input className="auth-button" type="submit" value="Sign Up"/>
+                                <ul className="error">{this.renderErrors()}</ul>
                             </form>
                         </div>
 
@@ -95,14 +95,16 @@ class SignUpForm extends React.Component {
                             <p>Have an account?
                                 <a href="#/login"><span>Log In</span></a>
                             </p>
-                            {/* login/signup option - link */}
                         </div>
                     </div>
 
                 </div>
 
                 <div className="footer-div">
-                    {/* footer- links */}
+                    <a href="https://github.com/evd08">About Me</a>
+                    <a href="https://github.com/evd08">Github</a>
+                    <a href="https://www.appacademy.io">App Academy</a>
+                    <a href="www.appacademy.io">FAQs</a>
                 </div>
             </div>
         )
