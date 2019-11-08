@@ -483,7 +483,7 @@ function (_React$Component) {
         className: "img-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "",
-        src: window.instagram,
+        src: window.instagramURL,
         alt: "phone image"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "forms-div"
@@ -964,7 +964,7 @@ function (_React$Component) {
         className: "img-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "",
-        src: window.instagram,
+        src: window.instagramURL,
         alt: "phone image"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "forms-div"
