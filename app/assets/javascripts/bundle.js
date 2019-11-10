@@ -269,6 +269,76 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/users_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/users_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_USER, RECEIVE_USERS, RECEIVE_SESSION_ERRORS, fetchUsers, fetchUser, updateUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USERS", function() { return RECEIVE_USERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
+/* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
+
+var RECEIVE_USER = 'RECEIVE_USER';
+var RECEIVE_USERS = 'RECEIVE_USERS';
+var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+
+var receiveUsers = function receiveUsers(users) {
+  return {
+    type: RECEIVE_USERS,
+    users: users
+  };
+};
+
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_SESSION_ERRORS,
+    errors: errors
+  };
+};
+
+var fetchUsers = function fetchUsers() {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUsers"]().then(function (users) {
+      return dispatch(receiveUsers(users));
+    });
+  };
+};
+var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+var updateUser = function updateUser(user) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (user) {
+      return dispatch(receiveUser(user));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+}; // export const updateUserAvatar = (id, data) => (dispatch) => {
+//     return UserApiUtil.updateUserAvatar(id, data).then((user) => dispatch(receiveUser(user)));
+// };
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -971,11 +1041,8 @@ function (_React$Component) {
 
       if (this.state.photoFile) {
         formData.append('post[photo]', this.state.photoFile);
-      } // debugger 
-      // formData.append('post[user_id]', this.state.currentUser.id);
+      }
 
-
-      debugger;
       this.props.createPost(formData);
       this.props.history.push('/');
     }
@@ -1057,13 +1124,12 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // debugger
-      this.props.fetchPosts();
+      this.props.fetchPosts(); // this.props.fetchUser(); //what user id?
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
+      // debugger
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1076,7 +1142,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           className: "post-user-button",
           href: "/#/users/page"
-        }, _this.props.users[post.user_id]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }, post.user_id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           className: "option-button",
           href: ""
         }, "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1108,16 +1174,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_index */ "./frontend/components/posts/post_index.jsx");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
+/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
+
 
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
+  // debugger
   return {
     posts: Object.values(state.entities.posts),
-    users: state.entities.users,
-    currentUser: state.entities.users[state.session.id].username
+    currentUser: state.entities.users[state.session.id].username,
+    users: state.entities.users
   };
 };
 
@@ -1125,7 +1193,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: function fetchPosts() {
       return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPosts"])());
-    }
+    } // fetchUser: (userId) => dispatch(fetchUser(userId))
+
   };
 };
 
@@ -1712,7 +1781,9 @@ var sessionReducer = function sessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/users_actions */ "./frontend/actions/users_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1726,6 +1797,9 @@ var usersReducer = function usersReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       nextState = Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
       return nextState;
+
+    case _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USERS"]:
+      return action.users;
 
     default:
       return state;
@@ -1916,6 +1990,52 @@ var logout = function logout() {
     url: '/api/session'
   });
 };
+
+/***/ }),
+
+/***/ "./frontend/util/user_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/user_api_util.js ***!
+  \****************************************/
+/*! exports provided: fetchUsers, fetchUser, updateUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
+var fetchUsers = function fetchUsers() {
+  return $.ajax({
+    url: "api/users/",
+    method: 'GET' // error: (err) => console.log(err)
+
+  });
+};
+var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    url: "api/users/".concat(userId),
+    method: 'GET' // error: (err) => console.log(err)
+
+  });
+};
+var updateUser = function updateUser(user) {
+  return $.ajax({
+    url: "api/users/".concat(user.id),
+    method: "PATCH",
+    data: {
+      user: user
+    }
+  });
+}; // export const updateUserAvatar = (id, data) => {
+//     return $.ajax({
+//         url: `api/users/${id}`,
+//         method: `PATCH`,
+//         data: data,
+//         contentType: false,
+//         processData: false
+//     });
+// };
 
 /***/ }),
 

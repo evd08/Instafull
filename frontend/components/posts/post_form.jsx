@@ -51,9 +51,6 @@ class PostForm extends React.Component {
         if (this.state.photoFile) {
             formData.append('post[photo]', this.state.photoFile);
         }
-        // debugger 
-        // formData.append('post[user_id]', this.state.currentUser.id);
-        debugger
         this.props.createPost(formData);
         this.props.history.push('/');
 

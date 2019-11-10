@@ -9,9 +9,11 @@ class PostIndex extends React.Component {
     componentDidMount() {
         // debugger
         this.props.fetchPosts();
+        // this.props.fetchUser(); //what user id?
     }
 
     render(){
+        // debugger
         return(
             <div className="main-div">
                 <ul className="main-ul-div">
@@ -19,7 +21,7 @@ class PostIndex extends React.Component {
                         <li className="main-li">
                             <div>
                                 <div className="main-post-header">
-                                    <a className="post-user-button" href="/#/users/page">{this.props.users[post.user_id]}</a>
+                                    <a className="post-user-button" href="/#/users/page">{post.user_id}</a>
                                     <a className="option-button" href="">...</a>
                                 </div>
                                 <img className="main-posts" src={post.photoUrl} />
