@@ -3,6 +3,7 @@ import UserPostShow from './user_post_show';
 import { fetchPosts, fetchPost } from '../../actions/posts_actions'
 
 const mapStateToProps = (state, ownProps) => ({
+    posts: state.entities.posts,
     post: state.entities.posts[ownProps.match.params.PostId],
     currentUser: state.entities.users[state.session.id],
 })

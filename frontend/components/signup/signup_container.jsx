@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => ({
     signup: user => dispatch(signup(user)),
-    openModal: modal => dispatch(openModal(modal))
+    // openModal: modal => dispatch(openModal(modal))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

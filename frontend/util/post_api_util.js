@@ -13,11 +13,14 @@ export const fetchPost = postId => {
     })
 }
 
-export const createPost = post => {
+export const createPost = postInfo => {
+    // debugger
     return $.ajax({
         url: `/api/posts`,
         method: 'POST',
-        data: {post}
+        data: postInfo,
+        contentType: false,
+        processData: false,
     })
 }
 

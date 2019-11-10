@@ -1,4 +1,6 @@
 import React from 'react';
+import Navbar from '../navbar/navbar_container';
+import PostIndex from '../posts/post_index_container';
 
 class Main extends React.Component {
 
@@ -6,7 +8,7 @@ class Main extends React.Component {
         super(props)
         this.state = {
             posts: this.props.posts,
-            like: false
+            // like: false
         }
     }
 
@@ -47,8 +49,12 @@ class Main extends React.Component {
         )
 
         return (
-
+            <div>
+                <Navbar />
+                <PostIndex />
+            </div>
         )
     }
 }
 
+export default Main;

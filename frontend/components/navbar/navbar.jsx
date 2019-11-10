@@ -2,6 +2,7 @@ import React from 'react';
 import CreatePostFormContainer from '../posts/create_post_form_container'
 import PostShowContainer from '../posts/user_post_show_container'
 import {Link} from 'react-router-dom';
+import PostIndex from '../posts/post_index_container';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -35,6 +36,12 @@ class Navbar extends React.Component {
                 </div>
 
                 <div className="nav-options-div">
+                    <a href="/#/users/upload">
+                        <img 
+                            src="https://img.icons8.com/cute-clipart/100/000000/logout-rounded-up.png"
+                            className="icon"
+                        />
+                    </a>
                      <a href="/#/users/page">
                         <img 
                             src="https://img.icons8.com/ultraviolet/40/000000/gender-neutral-user.png"

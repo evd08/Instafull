@@ -4,7 +4,6 @@ import { fetchPosts } from '../../actions/posts_actions';
 
 const mapStateToProps = (state, ownProps) => ({
     posts: state.posts
-    
 })
 
 const mapDispatchToProps = dispatch => {

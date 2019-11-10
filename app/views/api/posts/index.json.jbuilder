@@ -1,5 +1,6 @@
 @posts.each do |post|
-    post.set! post.id do
-        post.partial! 'post', post: post
+    json.set! post.id do
+        json.partial! 'post', post: post
+         # "photo" comes from post model
     end
 end
