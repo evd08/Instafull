@@ -1,5 +1,5 @@
 .nav-div {
-    // z-index: 2;
+    z-index: 2;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -37,9 +37,15 @@
     // margin-top: 10px;
 }
 
-.nav-logo-print {
+.nav-logo-div {
     font-family: fantasy;
     font-size: 20px;
+}
+
+.nav-welcome-print {
+    font-family: fantasy;
+    font-size: 20px;
+    font-weight: bold;
     // width: auto;
     // height: 40px;
     // margin-top: 22px;

@@ -32,7 +32,7 @@ class Navbar extends React.Component {
 
                 <div className="nav-profile-div">
                     {/* <img src="" alt=""/> */}
-                    <p className="nav-logo-print">Welcome {this.props.currentUser.username}</p>
+                    <p className="nav-welcome-print">Welcome {this.props.currentUser.username}</p>
                 </div>
 
                 <div className="nav-options-div">

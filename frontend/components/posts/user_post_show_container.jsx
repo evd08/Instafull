@@ -2,11 +2,14 @@ import { connect } from 'react-redux';
 import UserPostShow from './user_post_show';
 import { fetchPosts, fetchPost } from '../../actions/posts_actions'
 
-const mapStateToProps = (state, ownProps) => ({
-    posts: state.entities.posts,
-    post: state.entities.posts[ownProps.match.params.PostId],
-    currentUser: state.entities.users[state.session.id],
-})
+const mapStateToProps = (state, ownProps) => {
+    return {
+        posts: Object.values(state.entities.posts),
+        // currentUserPosts: state.entities.posts[ownProps.match.params.postId],
+        post: state.entities.posts[ownProps.match.params.postId],
+        currentUser: state.entities.users[state.session.id],
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {

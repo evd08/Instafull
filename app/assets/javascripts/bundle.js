@@ -832,7 +832,7 @@ function (_React$Component) {
       }, "Instagram"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-profile-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "nav-logo-print"
+        className: "nav-welcome-print"
       }, "Welcome ", this.props.currentUser.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-options-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1253,13 +1253,35 @@ function (_React$Component) {
         className: "outer-show-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://img.icons8.com/officel/16/000000/user.png"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.currentUser.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "file"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "number of posts, followers, following"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-pic-div"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "profile-pic-img",
+        src: window.profilePic
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-details"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-username-div"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "profile-username-print"
+      }, this.props.currentUser.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "edit-profile-button"
+      }, "Edit Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-right-div"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "number of posts, followers, following"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "profile-name"
+      }, this.props.currentUser.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-post-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "future posts")));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "posts-ul"
+      }, this.props.posts.map(function (post) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "users-post-div"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "users-post-img",
+          src: post.photoUrl
+        })));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null))));
     }
   }]);
 
@@ -1288,8 +1310,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    posts: state.entities.posts,
-    post: state.entities.posts[ownProps.match.params.PostId],
+    posts: Object.values(state.entities.posts),
+    // currentUserPosts: state.entities.posts[ownProps.match.params.postId],
+    post: state.entities.posts[ownProps.match.params.postId],
     currentUser: state.entities.users[state.session.id]
   };
 };

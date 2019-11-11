@@ -9,32 +9,41 @@ class UserPostShow extends React.Component {
     render() {
         return(
             <div className="outer-show-div"> 
-                {/* <div className="profile-div"> */}
-                    <Navbar />
-                {/* </div> */}
+                <Navbar />
 
                 <div className="profile-div">
-                    <div>
+                    <div className="profile-pic-div">
                         {/* img profile pic */}
-                        <img src="https://img.icons8.com/officel/16/000000/user.png" />
+                        <img className="profile-pic-img" src={window.profilePic} />
                     </div>
 
-                    <div>
-                        {/* username */}
-                        <p>{this.props.currentUser.username}</p>
-                    </div>
+                    <div className="profile-details">
+                        <div className="profile-username-div">
+                            <p className="profile-username-print">{this.props.currentUser.username}</p>
+                            <button className="edit-profile-button">Edit Profile</button>
+                        </div>
 
-                    <div>
-                        {/* upload photo button */}
-                        <input type="file"/>
-                        {/* num of posts, followers, following */}
-                        <p>number of posts, followers, following</p>
+                        <div className="profile-right-div">
+                            <p>number of posts, followers, following</p>
+                            <p className="profile-name">{this.props.currentUser.name}</p>
+                        </div>
                     </div>
                 </div>
 
                 <div className="profile-post-div">
                     {/* posts */}
-                    <p>future posts</p>
+                    <ul className="posts-ul">
+                        {this.props.posts.map(post => (
+                            <li>
+                                <div className="users-post-div">
+                                    <img className="users-post-img" src={post.photoUrl} />
+                                </div>
+                            </li>
+                        ))}
+                        <li>
+                            {}
+                        </li>
+                    </ul>
                 </div>
                 
             </div>
