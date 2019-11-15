@@ -33,7 +33,7 @@ user4 = User.create( username: "australia", name: "Australia", email: "australia
 # user4.picUrl.attach(io: profilePic4, filename: '')
 
 
-user5 = User.create( username: "bali", name: "Bali", email: "bali@io.com", password: "Bali" );
+user5 = User.create( username: "bali", name: "Bali", email: "bali@io.com", password: "BaliBali" );
 profilePic5 = open('https://instaclone-seeds.s3-us-west-1.amazonaws.com/bali2.png')
 user5.picUrl.attach(io: profilePic5, filename: 'bali2.png')
 
