@@ -18,6 +18,10 @@ class EditPostForm extends React.Component {
     }
 
     render() {
+
+        let captionClass = this.props.post.caption ? 'edit-post-list' : 'hide'
+
+
         return (
             <div className="outer-show-div">
                 <Navbar />
@@ -48,7 +52,7 @@ class EditPostForm extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="edit-post-list">
+                            <div className={captionClass}>
 
                                 <div className="edit-page-caption">
                                     <div className="option-button">
@@ -59,13 +63,11 @@ class EditPostForm extends React.Component {
                                 
                                 <ul>
                                     <li>
-                                        
+                                        {/* comments here */}
                                     </li>
                                 </ul>
 
                             </div>
- 
-                            {/* list of comments */}
 
                             <div className="add-comment-div">
                                 <textarea placeholder="Add a comment..." className="add-comment"></textarea>

@@ -37,6 +37,8 @@ class Post extends React.Component {
 
         let like = this.props.post.countLikes < 2 ? "like" : "likes";
 
+        let captionClass = this.props.post.caption ? 'main-post-caption-div' : 'hide';
+
         return(
             <li className="main-li">
                 <div>
@@ -65,7 +67,7 @@ class Post extends React.Component {
                             <p>{this.props.post.countLikes} {like}</p>
                         </div>
 
-                        <div className="main-post-caption-div">
+                        <div className={captionClass}>
                             <p className="comment-text">
                                 <Link className="option-button" to={`/users/${this.props.post.user_id}`}>{this.props.post.username}</Link>
                                 {this.props.post.caption}

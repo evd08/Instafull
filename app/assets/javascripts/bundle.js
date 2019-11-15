@@ -1210,6 +1210,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var captionClass = this.props.post.caption ? 'edit-post-list' : 'hide';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "outer-show-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1239,7 +1240,7 @@ function (_React$Component) {
         className: "edit-profile-button",
         onClick: this.handleClick
       }, "Delete Post"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-post-list"
+        className: captionClass
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-page-caption"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1364,6 +1365,7 @@ function (_React$Component) {
         d: "M17.516 3c2.382 0 4.487 1.564 4.487 4.712 0 4.963-6.528 8.297-10.003 11.935-3.475-3.638-10.002-6.971-10.002-11.934 0-3.055 2.008-4.713 4.487-4.713 3.18 0 4.846 3.644 5.515 5.312.667-1.666 2.333-5.312 5.516-5.312zm0-2c-2.174 0-4.346 1.062-5.516 3.419-1.17-2.357-3.342-3.419-5.515-3.419-3.403 0-6.484 2.39-6.484 6.689 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-4.586-3.414-6.689-6.484-6.689z"
       }));
       var like = this.props.post.countLikes < 2 ? "like" : "likes";
+      var captionClass = this.props.post.caption ? 'main-post-caption-div' : 'hide';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "main-li"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1393,7 +1395,7 @@ function (_React$Component) {
       }, likeButton)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "count-likes"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.post.countLikes, " ", like)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "main-post-caption-div"
+        className: captionClass
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "comment-text"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1566,19 +1568,24 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var preview = this.state.photoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "edit-post-img",
         src: this.state.photoUrl
       }) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-div"
+        className: "edit-main-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "edit-post-div",
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-preview-div"
-      }, preview)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Upload a photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-post-img-div"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-post-img"
+      }, preview)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-div"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Upload a photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         onChange: this.handleFile
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        id: "post-body",
         placeholder: "Add a caption",
         onChange: this.handleCaption
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {

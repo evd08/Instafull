@@ -58,7 +58,7 @@ class PostForm extends React.Component {
 
     render() {
 
-        const preview = this.state.photoUrl ? <img src={this.state.photoUrl}/> : null;
+        const preview = this.state.photoUrl ? <img className="edit-post-img" src={this.state.photoUrl}/> : null;
 
         return (
             <div>
@@ -66,9 +66,7 @@ class PostForm extends React.Component {
                     <Navbar />
                 </div>
 
-                <div className="profile-div">
-
-
+                {/* <div className="profile-div">
 
                     <form onSubmit={this.handleSubmit}>
                         <div>
@@ -96,7 +94,42 @@ class PostForm extends React.Component {
                             />
                         </div>
                     </form>
+                </div> */}
+
+{/*  */}
+
+                <div className="edit-main-div">
+                {/* <div className="edit-post-div"> */}
+
+                    <form className="edit-post-div" onSubmit={this.handleSubmit}>
+                        <div className="edit-post-img-div">
+                            <div className="edit-post-img">
+                                {preview}
+                            </div>
+                        </div>
+
+                        <div className="edit-div">
+                            <p>Upload a photo</p>
+                            <input type="file" onChange={this.handleFile} />
+                            <br />
+
+                            <br />
+                            <textarea
+                                placeholder="Add a caption"
+                                onChange={this.handleCaption}
+                            />
+                            <br />
+                            <input
+                                type="submit"
+                                className="auth-button"
+                                value="Create a new post"
+                            />
+                        </div>
+
+                    </form>
+                {/* </div> */}
                 </div>
+
             </div>
         )
     }
