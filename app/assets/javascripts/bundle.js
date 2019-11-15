@@ -656,7 +656,7 @@ function (_React$Component) {
         className: "auth-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "logo-print"
-      }, "Insta"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "InstaPlaces"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-field",
         type: "text",
         value: this.state.username,
@@ -986,7 +986,7 @@ function (_React$Component) {
         className: "icon"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "nav-logo-print"
-      }, "Instagram"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Instaplaces"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-profile-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "nav-welcome-print"
@@ -1246,7 +1246,10 @@ function (_React$Component) {
         className: "edit-page-caption"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "option-button"
-      }, this.props.currentUser.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "edit-username",
+        href: "/#/users/page"
+      }, this.props.currentUser.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-text"
       }, this.props.post.caption)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "add-comment-div"
@@ -2159,7 +2162,7 @@ function (_React$Component) {
         className: "auth-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "logo-print"
-      }, "Insta"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      }, "InstaPlaces"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "msg1"
       }, "Sign up to see photos and videos from your friends"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-field",

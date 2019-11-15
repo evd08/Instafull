@@ -51,7 +51,9 @@ class EditPostForm extends React.Component {
                             <div className="edit-post-list">
 
                                 <div className="edit-page-caption">
-                                    <div className="option-button">{this.props.currentUser.username}</div>
+                                    <div className="option-button">
+                                        <a className="edit-username" href="/#/users/page">{this.props.currentUser.username}</a>
+                                    </div>
                                     <div className="comment-text">{this.props.post.caption}</div>
                                 </div>
                                 

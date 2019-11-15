@@ -26,7 +26,7 @@ class Navbar extends React.Component {
                             src="https://img.icons8.com/dusk/64/000000/globe-earth.png" 
                             className="icon" 
                         />
-                        <p className="nav-logo-print">Instagram</p>
+                        <p className="nav-logo-print">Instaplaces</p>
                     </a>
                 </div>
 

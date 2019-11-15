@@ -51,7 +51,7 @@ class LogInForm extends React.Component {
 
                         <div className="form-div">
                             <form onSubmit={this.handleSubmit} className="auth-form">
-                                <h3 className="logo-print">Insta</h3>
+                                <h3 className="logo-print">InstaPlaces</h3>
                                 <label>
                                     <input
                                         className="form-field"

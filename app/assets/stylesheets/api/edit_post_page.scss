@@ -46,7 +46,9 @@
 }
 
 .edit-username {
-
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .edit-username-div {
@@ -87,5 +89,6 @@
 }
 
 .edit-page-caption {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
 }

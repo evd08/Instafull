@@ -46,7 +46,7 @@ class SignUpForm extends React.Component {
                         <div className="form-div">
                             <form onSubmit={this.handleSubmit} className="auth-form">
 
-                                <h3 className="logo-print">Insta</h3>
+                                <h3 className="logo-print">InstaPlaces</h3>
                                 <h2 className="msg1">Sign up to see photos and videos from your friends</h2>
                                 <br/>
                                 <label>
