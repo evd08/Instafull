@@ -1,10 +1,14 @@
 import * as PostAPIUtil from '../util/post_api_util';
+import { fetchUser } from '../util/user_api_util';
 
 
-const receiveAllPosts = posts => ({
-    type: RECEIVE_ALL_POSTS,
-    posts 
-})
+const receiveAllPosts = posts => {
+    // debugger
+    return {
+        type: RECEIVE_ALL_POSTS,
+        posts 
+    }
+}
 
 const receivePost = post => ({
     type: RECEIVE_POST,
@@ -20,8 +24,9 @@ export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 
-export const fetchPosts = () => dispatch => {
-    return PostAPIUtil.fetchPosts()
+export const fetchPosts = (userId) => dispatch => {
+    // debugger
+    return PostAPIUtil.fetchPosts(userId)
         .then(posts => dispatch(receiveAllPosts(posts)))
 }
 

@@ -18,10 +18,13 @@
 }
 
 .profile-post-div {
-    display: inline-block;
-    margin-left: 7%;
-    margin-right: 7%;
+    display: flex;
+    // margin-left: 7%;
+    // margin-right: 7%;
     text-align: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .profile-pic-img {
@@ -29,6 +32,8 @@
     width: 100%;
     position: relative;
     border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
 }
 
 .profile-pic-div {
@@ -67,14 +72,17 @@
 }
 
 .users-post-img {
-    height: 300px;
-    width: 300px;
+    min-height: 240px;
+    max-height: 240px;
+    min-width: 240px;
+    max-width: 240px;
     object-fit: cover;
 }
 
 .posts-ul {
     display: flex;
     flex-wrap: wrap;
+    width: 81%;
 }
 
 .edit-profile-button {
@@ -82,4 +90,8 @@
     position: relative;
     width: 105px;
     height: 28px;
+}
+
+.hide {
+    visibility: hidden;
 }

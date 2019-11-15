@@ -17,9 +17,16 @@ class PostForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCaption = this.handleCaption.bind(this);
     }
+    
+    componentDidMount() {
+        this.props.fetchPosts();
+    }
+
+    handleCaption(e) {
+        this.setState({caption: e.currentTarget.value});
+    }
 
     handleFile(e) {
-        // debugger
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
@@ -34,14 +41,6 @@ class PostForm extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
-
-    handleCaption(e) {
-        this.setState({caption: e.currentTarget.value});
-    }
-
     handleSubmit(e) {
         e.preventDefault();
 
@@ -51,6 +50,7 @@ class PostForm extends React.Component {
         if (this.state.photoFile) {
             formData.append('post[photo]', this.state.photoFile);
         }
+
         this.props.createPost(formData);
         this.props.history.push('/');
 
@@ -67,23 +67,34 @@ class PostForm extends React.Component {
                 </div>
 
                 <div className="profile-div">
+
+
+
                     <form onSubmit={this.handleSubmit}>
-                        <p>Upload a photo</p>
-                        <input type="file" onChange={this.handleFile}/>
-                        <br/>
-                        {preview}
-                        <br/>
-                        <textarea  
-                            id="post-body" 
-                            placeholder="Add a caption"
-                            onChange={this.handleCaption}
-                        />
-                        <br/>
-                        <input 
-                            type="submit" 
-                            className="auth-button"
-                            value="Create a new post"
-                        />
+                        <div>
+                            <div className="post-preview-div">
+                                {preview}
+                            </div>
+                        </div>
+
+                        <div>
+                            <p>Upload a photo</p>
+                            <input type="file" onChange={this.handleFile}/>
+                            <br/>
+                            
+                            <br/>
+                            <textarea  
+                                id="post-body" 
+                                placeholder="Add a caption"
+                                onChange={this.handleCaption}
+                            />
+                            <br/>
+                            <input 
+                                type="submit" 
+                                className="auth-button"
+                                value="Create a new post"
+                            />
+                        </div>
                     </form>
                 </div>
             </div>

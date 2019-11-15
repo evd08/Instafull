@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
 
     def index 
-        @posts = Post.all
+        @posts = Post.where(user_id: params[:user_id])
     end
 
     def show 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PostContainer from './post_container'
 
 class PostIndex extends React.Component {
     constructor(props){
@@ -7,30 +8,17 @@ class PostIndex extends React.Component {
     }
 
     componentDidMount() {
-        // debugger
-        this.props.fetchPosts();
-        // this.props.fetchUser(); //what user id?
+        this.props.fetchPosts(this.props.currentUserId);
     }
 
     render(){
         // debugger
+
         return(
             <div className="main-div">
                 <ul className="main-ul-div">
-                    {this.props.posts.map((post, i) => (
-                        <li className="main-li">
-                            <div>
-                                <div className="main-post-header">
-                                    <a className="post-user-button" href="/#/users/page">{post.user_id}</a>
-                                    <a className="option-button" href="">...</a>
-                                </div>
-                                <img className="main-posts" src={post.photoUrl} />
-                                <br/>
-                                <div>
-                                    <p className="comment-text">{post.caption}</p>
-                                </div>
-                            </div>
-                        </li>
+                    {this.props.posts.map((post) => (
+                        <PostContainer key={post.id} post={post} currentUser={this.props.currentUser} />
                     ))
                     }
                 </ul>

@@ -8,10 +8,10 @@ class User < ApplicationRecord
     attr_reader :password
     before_validation :ensure_session_token
 
-    has_many :posts
     has_many :likes
     has_many :follower
     has_many :comments
+    has_one_attached :pic
 
     def password=(password)
         self.password_digest = BCrypt::Password.create(password)

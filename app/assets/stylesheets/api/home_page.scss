@@ -1,6 +1,10 @@
 .main-div {
     // margin-top: 500px;
     // padding-top: 196px;
+    display: flex;
+    justify-content: center;
+    margin-top: 8%;
+
 }
 
 .main-posts {
@@ -14,17 +18,21 @@
 
 .main-ul-div {
     text-align: center;
-    // margin-top: 88px;
-    // padding-top: 88px;
+    // display: flex;
+    // flex-direction: column;
+
 }
 
 .main-li {
-    margin: 100px;
+    margin: 10%;
+    text-align: center;
 }
 
 .main-post-header {
-    width: 600px;
-    height: 50px;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 50px;
+    max-height: 50px;
     display: inline-flex;
     border-style: solid;
     border-color: black;
@@ -35,25 +43,87 @@
 
 .option-button {
     padding-right: 20px;
+    padding-left: 22px;
+    font-weight: bold;
+    color: black;
+    background: none;
+    border: none;
 }
 
 .comment-text {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     line-height: 18px;
     text-align: start;
-    width: 600px;
-    border-style: solid;
-    border-color: black;
-    border-width: 0px 1px 1px 1px;
+    min-width: 600px;
+    max-width: 600px;
     display: inline-block;
-    height: 50px;
+    min-height: 35px;
+    max-height: 105px;
 }
 
 .post-user-button {
-    padding-left: 20px;
+    padding-left: 10px;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
 }
 
-// .tag-space-right {
-//     padding-right: 20px;
-// }
+.main-post-caption-div {
+    display: inline-block;
+    position: relative;
+    // border-style: solid;
+    // border-color: black;
+    // border-width: 0px 1px 1px 1px;
+}
+
+.like-comment-div {
+    // justify-content: flex-start;
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+
+.below-post-div {
+    display: inline-block;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 75px;
+    max-height: 150px;
+    position: relative;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 1px 1px 1px;
+}
+
+.like-button {
+    padding-left: 10%;
+}
+
+.count-likes {
+    display: flex;
+    height: 20px;
+    padding-left: 22px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.mini-profile-pic {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border-radius: 20%;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.mini-profile-pic-div {
+    width: 30px;
+    height: 30px;
+    padding-left: 30px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
