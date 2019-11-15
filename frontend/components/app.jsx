@@ -14,11 +14,11 @@ import Modal from '../components/modal/modal';
 
 const App = () => (
     <div>
-        <Modal />
-        <header>
+        {/* <Modal /> */}
+        {/* <header> */}
             {/* <h1>Insta</h1> */}
             {/* <GreetingContainer /> */}
-        </header>
+        {/* </header> */}
 
         {/* <NavbarContainer /> */}
 
