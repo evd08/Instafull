@@ -109,21 +109,26 @@ class PostForm extends React.Component {
                         </div>
 
                         <div className="edit-div">
-                            <p>Upload a photo</p>
-                            <input type="file" onChange={this.handleFile} />
-                            <br />
+                            <div className="upload-photo-div">
+                                <p className="upload">Upload a photo</p>
+                                <input type="file" onChange={this.handleFile} />
+                            </div>
 
-                            <br />
-                            <textarea
-                                placeholder="Add a caption"
-                                onChange={this.handleCaption}
-                            />
-                            <br />
-                            <input
-                                type="submit"
-                                className="auth-button"
-                                value="Create a new post"
-                            />
+                            <div className="add-comment-div">
+                                <textarea
+                                    className="add-caption"
+                                    placeholder="Add a caption"
+                                    onChange={this.handleCaption}
+                                />
+                            </div>
+  
+                            <div className="submit-button-div">
+                                <input
+                                    type="submit"
+                                    className="auth-button"
+                                    value="Create a new post"
+                                />
+                            </div>
                         </div>
 
                     </form>

@@ -7,7 +7,6 @@ class UserPostShow extends React.Component {
     constructor(props){
 
         super(props)
-        
         this.state = {
             photoFile: null,
             picUrl: null
@@ -66,7 +65,7 @@ class UserPostShow extends React.Component {
                         </div>
 
                         <div className="profile-right-div">
-                            <p>number of posts, followers, following</p>
+                            <p>{this.props.posts.length} Posts</p>
                             <p className="profile-name">{this.props.currentUser.name}</p>
                         </div>
                     </div>
