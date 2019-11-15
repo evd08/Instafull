@@ -9,7 +9,6 @@ class Post extends React.Component {
         this.state = {
             liked: false
         }
-        // debugger
         this.toggleLike = this.toggleLike.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }

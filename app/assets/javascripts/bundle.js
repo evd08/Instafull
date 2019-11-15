@@ -212,7 +212,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var receiveAllPosts = function receiveAllPosts(posts) {
-  // debugger
   return {
     type: RECEIVE_ALL_POSTS,
     posts: posts
@@ -238,7 +237,6 @@ var RECEIVE_POST = 'RECEIVE_POST';
 var REMOVE_POST = 'REMOVE_POST';
 var fetchPosts = function fetchPosts(userId) {
   return function (dispatch) {
-    // debugger
     return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPosts"](userId).then(function (posts) {
       return dispatch(receiveAllPosts(posts));
     });
@@ -1315,8 +1313,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Post).call(this, props));
     _this.state = {
       liked: false
-    }; // debugger
-
+    };
     _this.toggleLike = _this.toggleLike.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -1430,7 +1427,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
   return {
     like: {
       currentUserId: state.entities.users[state.session.id].id,
@@ -1641,7 +1637,7 @@ function (_React$Component) {
   function PostIndex(props) {
     _classCallCheck(this, PostIndex);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PostIndex).call(this, props)); // debugger
+    return _possibleConstructorReturn(this, _getPrototypeOf(PostIndex).call(this, props));
   }
 
   _createClass(PostIndex, [{
@@ -1654,7 +1650,6 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      // debugger
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1693,7 +1688,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
   return {
     posts: Object.values(state.entities.posts),
     currentUser: state.entities.users[state.session.id].username,
@@ -1827,7 +1821,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "upload-photo-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -2374,13 +2367,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var likesReducer = function likesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // debugger
   Object.freeze(state);
   var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_LIKES"]:
-      // debugger
       return action.likes;
 
     case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIKE"]:
@@ -2678,7 +2669,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLike", function() { return createLike; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLike", function() { return deleteLike; });
 var fetchLikes = function fetchLikes() {
-  // debugger
   return $.ajax({
     url: "api/likes",
     method: 'GET'
@@ -2692,7 +2682,6 @@ var fetchLike = function fetchLike(likeId) {
 }; // like = {post_id: ...}
 
 var createLike = function createLike(like) {
-  // debugger;
   return $.ajax({
     url: "api/likes",
     method: 'POST',
@@ -2725,7 +2714,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePost", function() { return updatePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
 var fetchPosts = function fetchPosts(userId) {
-  // debugger
   return $.ajax({
     url: "/api/users/".concat(userId, "/posts"),
     method: 'GET'
@@ -2738,7 +2726,6 @@ var fetchPost = function fetchPost(postId) {
   });
 };
 var createPost = function createPost(postInfo) {
-  // debugger
   return $.ajax({
     url: "/api/posts",
     method: 'POST',

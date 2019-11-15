@@ -39,7 +39,6 @@ class ProfilePic extends React.Component {
     }
 
     render() {
-        debugger
         return (
             <div className="upload-photo-div">
             {/* // <div className="upload-avatar-modal" >

@@ -4,7 +4,6 @@ import { createLike, deleteLike, fetchLikes } from '../../actions/likes_actions'
 
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger
 
     return {
         like: {

@@ -4,7 +4,6 @@ import PostContainer from './post_container'
 class PostIndex extends React.Component {
     constructor(props){
         super(props)
-        // debugger
     }
 
     componentDidMount() {
@@ -12,7 +11,6 @@ class PostIndex extends React.Component {
     }
 
     render(){
-        // debugger
 
         return(
             <div className="main-div">

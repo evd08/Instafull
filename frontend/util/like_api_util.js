@@ -1,5 +1,4 @@
 export const fetchLikes = () => {
-    // debugger
     return $.ajax({
         url: `api/likes`, 
         method: 'GET',
@@ -15,7 +14,6 @@ export const fetchLike = likeId => {
 
 // like = {post_id: ...}
 export const createLike = (like) => {
-    // debugger;
     return $.ajax({
         url: `api/likes`,
         method: 'POST',

@@ -3,7 +3,6 @@ json.photoUrl url_for(post.photo)
 json.username post.user.username
 
 like = current_user.likes.select {|like| like.post_id == post.id}.first
-# debugger
 if like
     json.likeId like.id
 else

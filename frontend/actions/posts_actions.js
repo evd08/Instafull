@@ -3,7 +3,6 @@ import { fetchUser } from '../util/user_api_util';
 
 
 const receiveAllPosts = posts => {
-    // debugger
     return {
         type: RECEIVE_ALL_POSTS,
         posts 
@@ -25,7 +24,6 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 
 export const fetchPosts = (userId) => dispatch => {
-    // debugger
     return PostAPIUtil.fetchPosts(userId)
         .then(posts => dispatch(receiveAllPosts(posts)))
 }
