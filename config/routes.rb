@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
 
     resources :likes, only:[:index, :show, :create, :destroy]
+    resources :comments, only:[:index, :show, :create, :destroy]
     resources :posts, except:[:new, :edit, :index]
     resource :session, only:[:create, :destroy]
   end

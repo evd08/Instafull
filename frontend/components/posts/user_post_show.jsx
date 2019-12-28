@@ -53,6 +53,7 @@ class UserPostShow extends React.Component {
                     <div className="profile-pic-div">
                         <label htmlFor="file-input">
                             {preview}
+                            
                             <input onChange={this.handleFile} type="file" id="file-input" className="hide" />
                         </label>
 

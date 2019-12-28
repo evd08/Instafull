@@ -1,0 +1,40 @@
+// Place all the styles related to the api/comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.outer-comment-form {
+  display: inline-flex;
+  position: relative;
+  border-top: 1px solid #efefef;
+  min-width: 600px;
+  max-width: 600px;
+  min-height: 56px;
+  // justify-content: center;
+}
+
+.inner-comment-form {
+  display: flex;
+  align-items: center;
+  padding-left: 22px;
+  padding-right: 22px;
+  max-height: 80px;
+  width: 100%;
+}
+
+#comment-textbox {
+  height: 18px;
+  max-height: 80px;
+  padding: 0;
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  border: none;
+  outline: none;
+  resize: none;
+  position: relative;
+}
+
+.comment-post-button {
+  border: none;
+  background: none;
+}
