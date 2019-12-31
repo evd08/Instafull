@@ -8,6 +8,7 @@ export default function Post(props) {
   let like = props.post.countLikes < 2 ? "like" : "likes";
   let captionClass = props.post.caption ? 'main-post-caption-div' : 'hide';
 
+  // debugger
   return (
     <li className="main-li">
       <div>
@@ -45,7 +46,14 @@ export default function Post(props) {
           </div>
 
           <div>
-            
+            <ul>
+            {props.comments.map((comment) => (
+              <li>
+                {}
+                {comment.body}
+              </li>
+            ))}
+            </ul>
           </div>
 
           <CommentForm 

@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
         post: ownProps.post,
         currentUser: state.entities.users[state.session.id],
         // likeId: state.entities.post.likeId
+        comments: Object.values(state.entities.comments)//[]
     }
 }
 
