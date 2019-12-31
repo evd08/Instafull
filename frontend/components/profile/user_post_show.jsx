@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../navbar/navbar_container';
 import { Link } from 'react-router-dom';
+import EditProfile from './edit_profile';
 
 class UserPostShow extends React.Component {
 
@@ -32,12 +33,17 @@ class UserPostShow extends React.Component {
     }
 
     handleProfilePic() {
-            const formData = new FormData();
-            formData.append('user[pic]', this.state.photoFile);
-            formData.append('user[id]', this.props.currentUser.id)
+        const formData = new FormData();
+        formData.append('user[pic]', this.state.photoFile);
+        formData.append('user[id]', this.props.currentUser.id)
+        this.props.updateUser(formData)
+            .then(() => window.location.reload(false))
+    }
 
-            this.props.updateUser(formData)
-                .then(() => window.location.reload(false))
+    handleEditProfile() {
+        // <EditProfile currentUser={this.props.currentUser}/>
+        document.querySelector('.modal-bg').style.visibility = "visible"
+        document.querySelector('.update-user-modal').style.visibility = "visible"
     }
 
     render() {
@@ -61,7 +67,7 @@ class UserPostShow extends React.Component {
                     <div className="profile-details">
                         <div className="profile-username-div">
                             <p className="profile-username-print">{this.props.currentUser.username}</p>
-                            <button className="edit-profile-button">Edit Profile</button>
+                            <button onClick={this.handleEditProfile} className="edit-profile-button">Edit Profile</button>
                         </div>
 
                         <div className="profile-right-div">
@@ -87,6 +93,11 @@ class UserPostShow extends React.Component {
                             {}
                         </li>
                     </ul>
+                </div>
+
+                <div className="modal-bg"></div>
+                <div className="update-user-modal">
+                    <EditProfile currentUser={this.props.currentUser} />
                 </div>
                 
             </div>

@@ -1,3 +1,50 @@
 // Place all the styles related to the api/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.edit-profile-div {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  width: 45%;
+  margin-bottom: 5rem;;
+  background: lightseagreen;
+  border: 1px solid black;
+  box-shadow: -2rem 2rem 2rem rgba(black, 0.2); 
+  z-index: 2;
+  min-width: 400px;
+  min-height: 250px;
+  top: 25%;
+  flex-direction: column;
+}
+
+.edit-profile-form {
+  width: 50%;
+  background-color: beige;
+  padding: 3% 3%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+  border: solid 3px black;
+  min-width: 350px;
+}
+
+.edit-profile-preview {
+  display: flex;
+  justify-content: space-between;;
+  text-align: center;
+}
+
+.edit-profile-pic-img {
+  width: 50%;
+  height: fit-content;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.edit-preview-img {
+  width: 50%;
+}

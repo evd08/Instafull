@@ -2,7 +2,7 @@ import React from 'react';
 import LoginFormContainer from '../login/login_container';
 import SignupFormContainer from '../signup/signup_container';
 import {connect} from 'react-redux';
-import ProfilePic from '../posts/profile_pic';
+// import ProfilePic from '../posts/profile_pic';
 import { closeModal } from '../../actions/modal_actions';
 
 const Modal = ({modal, closeModal}) => {
@@ -12,7 +12,7 @@ const Modal = ({modal, closeModal}) => {
     let component;
     switch (modal) {
         case 'pic':
-            component = <ProfilePic />;
+            // component = <ProfilePic />;
             break;
         // case 'signup':
         //     component = <SignupFormContainer />;

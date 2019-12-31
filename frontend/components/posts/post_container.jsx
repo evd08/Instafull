@@ -5,6 +5,7 @@ import { createLike, deleteLike, fetchLikes } from '../../actions/likes_actions'
 import { createComment, deleteComment, fetchComments } from '../../actions/comments_actions';
 
 const mapStateToProps = (state, ownProps) => {
+
     return {
         data: {
             currentUserId: state.entities.users[state.session.id].id, //state.session.id ?same?

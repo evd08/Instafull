@@ -1,6 +1,6 @@
 import React from 'react';
 import CreatePostFormContainer from '../posts/create_post_form_container'
-import PostShowContainer from '../posts/user_post_show_container'
+import PostShowContainer from '../profile/user_post_show_container'
 import {Link} from 'react-router-dom';
 import PostIndex from '../posts/post_index_container';
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Like from './like_hooks';
+import Like from '../likes/like_hooks';
 import CommentForm from '../comments/comment_form'
 
 export default function Post(props) {
@@ -8,7 +8,13 @@ export default function Post(props) {
   let like = props.post.countLikes < 2 ? "like" : "likes";
   let captionClass = props.post.caption ? 'main-post-caption-div' : 'hide';
 
-  // debugger
+  // let comments;
+  // props.comments.map((comment) => (
+  //   if(props.post.id === comment.post_id){
+  //     comments.push(comment)
+  //   }
+  // ))
+
   return (
     <li className="main-li">
       <div>
@@ -48,10 +54,13 @@ export default function Post(props) {
           <div>
             <ul>
             {props.comments.map((comment) => (
-              <li>
-                {}
-                {comment.body}
-              </li>
+              props.post.id === comment.post_id ?
+                <li>
+                  {comment.username}
+                  {comment.body}
+                </li>
+              : null
+              
             ))}
             </ul>
           </div>
