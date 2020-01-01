@@ -1676,8 +1676,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EditProfile; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 function EditProfile(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.currentUser.name),
+      _useState2 = _slicedToArray(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.currentUser.username),
+      _useState4 = _slicedToArray(_useState3, 2),
+      username = _useState4[0],
+      setUsername = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.currentUser.email),
+      _useState6 = _slicedToArray(_useState5, 2),
+      email = _useState6[0],
+      setEmail = _useState6[1];
+
   var preview = props.currentUser.picUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "edit-profile-pic-img",
     src: props.currentUser.picUrl
@@ -1691,6 +1714,31 @@ function EditProfile(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"
   }));
+
+  function updateName(e) {
+    setName(e.target.value);
+  }
+
+  function updateUsername(e) {
+    setUsername(e.target.value);
+  }
+
+  function updateEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleSubmit() {
+    var formData = new FormData();
+    formData.append('user[name]', name);
+    formData.append('user[username]', username);
+    formData.append('user[email]', email);
+    formData.append('user[id]', props.currentUser.id);
+    debugger;
+    props.updateUser(formData).then(function () {
+      return window.location.reload(false);
+    });
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "edit-profile-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1701,14 +1749,19 @@ function EditProfile(props) {
     className: "edit-profile-form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    value: props.currentUser.name
+    placeholder: props.currentUser.name,
+    onChange: updateName
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    value: props.currentUser.username
+    placeholder: props.currentUser.username,
+    onChange: updateUsername
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    value: props.currentUser.email
-  }))));
+    placeholder: props.currentUser.email,
+    onChange: updateEmail
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleSubmit
+  }, "Update")));
 }
 
 /***/ }),
@@ -1862,7 +1915,8 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "update-user-modal"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_edit_profile__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        currentUser: this.props.currentUser
+        currentUser: this.props.currentUser,
+        updateUser: this.props.updateUser
       })));
     }
   }]);
@@ -2860,6 +2914,7 @@ var fetchUser = function fetchUser(userId) {
   });
 };
 var updateUser = function updateUser(formData) {
+  debugger;
   return $.ajax({
     url: "api/users/".concat(formData.get("user[id]")),
     method: "PATCH",

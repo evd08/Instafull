@@ -23,8 +23,11 @@ class Api::UsersController < ApplicationController
         if user_params[:pic]
             @user.pic.attach(user_params[:pic])
             # @user.update_attribute(:pic, user_params[:pic])
+        elsif @user && @user.update(user_params)
+            render "api/users/show"
+        else
+            render json: @user.errors.full_messages, status: 401
         end
-        render "api/users/show"
     end
 
     private

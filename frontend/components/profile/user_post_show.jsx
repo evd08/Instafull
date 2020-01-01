@@ -97,7 +97,7 @@ class UserPostShow extends React.Component {
 
                 <div className="modal-bg"></div>
                 <div className="update-user-modal">
-                    <EditProfile currentUser={this.props.currentUser} />
+                    <EditProfile currentUser={this.props.currentUser} updateUser={this.props.updateUser}/>
                 </div>
                 
             </div>
