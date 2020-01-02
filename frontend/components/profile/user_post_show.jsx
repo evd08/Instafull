@@ -19,6 +19,7 @@ class UserPostShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchPosts(this.props.currentUser.id);
+        this.props.fetchComments();
     }
 
     handleFile(e) {

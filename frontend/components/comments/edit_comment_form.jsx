@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 export default function Comment(props){
   return (
     <div>
-      <ul>
-      
-      </ul>
+      <button className="delete-button">Delete</button>
+      <button>Cancel</button>
     </div>
   )
 }

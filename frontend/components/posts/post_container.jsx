@@ -22,9 +22,9 @@ const mapDispatchToProps = dispatch => {
     return {
         createLike: like => dispatch(createLike(like)),
         deleteLike: likeId => dispatch(deleteLike(likeId)),
+        fetchLikes: () => dispatch(fetchLikes()),
         createComment: comment => dispatch(createComment(comment)),
         deleteComment: commentId => dispatch(deleteComment(commentId)),
-        fetchLikes: () => dispatch(fetchLikes()),
         fetchComments: () => dispatch(fetchComments()),
     }
 }

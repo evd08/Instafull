@@ -58,7 +58,7 @@ class PostForm extends React.Component {
 
     render() {
 
-        const preview = this.state.photoUrl ? <img className="edit-post-img" src={this.state.photoUrl}/> : null;
+        const preview = this.state.photoUrl ? <img className="post-preview-img" src={this.state.photoUrl}/> : null;
 
         return (
             <div>
@@ -98,12 +98,12 @@ class PostForm extends React.Component {
 
 {/*  */}
 
-                <div className="edit-main-div">
+                <div className="post-preview-main-div">
                 {/* <div className="edit-post-div"> */}
 
-                    <form className="edit-post-div" onSubmit={this.handleSubmit}>
-                        <div className="edit-post-img-div">
-                            <div className="edit-post-img">
+                    <form className="post-preview-div" onSubmit={this.handleSubmit}>
+                        <div className="post-preview-img-div">
+                            <div className="post-preview-img">
                                 {preview}
                             </div>
                         </div>

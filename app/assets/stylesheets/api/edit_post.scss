@@ -1,0 +1,35 @@
+.edit-post-div {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 45%;
+  margin-bottom: 5rem;;
+  background: whitesmoke;
+  border: 1px solid black;
+  box-shadow: -2rem 2rem 2rem rgba(black, 0.2); 
+  z-index: 2;
+  min-width: 400px;
+  min-height: 250px;
+  top: 20%;
+  flex-direction: column;
+  border-radius: 8%;
+}
+
+.edit-post-text {
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.edit-post-button {
+  background-color: #3897f0;
+  border: 1px solid #3897f0;
+  border-radius: 4px;
+  color: #fff;
+  margin: 10px;
+  height: 30px;
+  width: auto;
+  font-size: 15px;
+  font-weight: 600;
+}

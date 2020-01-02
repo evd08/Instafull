@@ -6,7 +6,7 @@ import CommentForm from '../comments/comment_form'
 export default function Post(props) {
 
   let like = props.post.countLikes < 2 ? "like" : "likes";
-  let captionClass = props.post.caption ? 'main-post-caption-div' : 'hide';
+  let captionClass = props.post.caption ? 'edit-post-list' : 'hide';
 
   // let comments;
   // props.comments.map((comment) => (
@@ -51,13 +51,15 @@ export default function Post(props) {
             </p>
           </div>
 
-          <div>
-            <ul>
+          {/* <div className="comment-list-div"> */}
+          <div className="main-post-caption-div">
+            <ul className="comment-text">
             {props.comments.map((comment) => (
               props.post.id === comment.post_id ?
                 <li>
-                  {comment.username}
+                  <p className="option-button">{comment.username}</p>
                   {comment.body}
+                  <br/>
                 </li>
               : null
               

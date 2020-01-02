@@ -24,9 +24,13 @@ export default function EditProfile(props) {
     formData.append('user[username]', username)
     formData.append('user[email]', email)
     formData.append('user[id]', props.currentUser.id)
-    debugger
     props.updateUser(formData)
-      .then(() => window.location.reload(false))
+    handleCancel();
+  }
+
+  function handleCancel() {
+    document.querySelector('.modal-bg').style.visibility = "hidden"
+    document.querySelector('.update-user-modal').style.visibility = "hidden"
   }
 
   return (
@@ -49,7 +53,10 @@ export default function EditProfile(props) {
         <label>Email
           <input type="text" placeholder={props.currentUser.email} onChange={updateEmail} />
         </label>
-        <button onClick={handleSubmit}>Update</button>
+        <div className="edit-option-button">
+          <button onClick={handleCancel}>Cancel</button>
+          <button onClick={handleSubmit}>Update</button>
+        </div>
       </form>
 
     </div>
