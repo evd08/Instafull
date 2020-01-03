@@ -56,3 +56,54 @@
   display: flex;
   flex-direction: row;
 }
+
+.comment-div {
+  justify-content: space-between;
+  display: flex;
+}
+
+// .comment-div:hover, .comment-div button {
+//   // .comment-div button {
+//     visibility: visible;
+//   // }
+// }
+
+// .comment-div button {
+//   visibility: hidden;
+// }
+
+
+// .comment-option-button {
+//   position: fixed;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-direction: column;
+//   z-index: 2;
+//   background: whitesmoke;
+//   width: 45%;
+//   height: 50%;
+// }
+
+.comment-option-div {
+  width: 35%;
+  height: 15%;
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid #efef;
+  border-radius: 12px;
+  justify-content: center;
+  text-align: center;
+  background-color: whitesmoke;
+
+  button {
+    height: 100%;
+    // display: absolute;
+    border: none;
+    background: none;
+  }
+
+  .delete-button {
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+  }
+}

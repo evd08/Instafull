@@ -617,9 +617,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Comment(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  function handleCancel() {
+    document.querySelector('.modal-bg').style.visibility = "hidden";
+    document.querySelector('.update-comment-modal').style.visibility = "hidden";
+  }
+
+  function handleSubmit() {
+    props.deleteComment(props.commentId);
+    handleCancel();
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "comment-option-div"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleSubmit,
     className: "delete-button"
-  }, "Delete"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Cancel"));
+  }, "Delete"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleCancel
+  }, "Cancel"));
 }
 
 /***/ }),
@@ -1351,6 +1366,10 @@ function EditPost(props) {
     handleCancel();
   }
 
+  function handleDelete() {
+    props.deletePost();
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "edit-post-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -1373,6 +1392,9 @@ function EditPost(props) {
     onClick: handleCancel,
     className: "edit-post-button"
   }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleDelete,
+    className: "redBG-button"
+  }, "Delete"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleSubmit,
     className: "edit-post-button"
   }, "Submit")));
@@ -1685,6 +1707,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _comments_comment_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/comment_form */ "./frontend/components/comments/comment_form.jsx");
 /* harmony import */ var _comments_edit_comment_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comments/edit_comment_form */ "./frontend/components/comments/edit_comment_form.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1692,6 +1722,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function PostPreview(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      commentId = _useState2[0],
+      setCommentId = _useState2[1];
+
   function handleClick(e) {
     e.preventDefault(); // props.deletePost(props.post.id);
 
@@ -1699,8 +1734,9 @@ function PostPreview(props) {
     document.querySelector('.update-post-modal').style.visibility = "visible";
   }
 
-  function handleComment(e) {
-    e.preventDefault();
+  function handleComment(id) {
+    // e.preventDefault();
+    setCommentId(id);
     document.querySelector('.modal-bg').style.visibility = "visible";
     document.querySelector('.update-comment-modal').style.visibility = "visible";
   } // useEffect(() => {
@@ -1746,17 +1782,21 @@ function PostPreview(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
     className: "option-button",
     to: "/users/".concat(props.post.user_id)
-  }, props.post.username), props.post.caption), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "post-preview-button",
-    onClick: handleComment
-  }, "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.post.username), props.post.caption)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main-post-caption-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "comment-text"
   }, props.comments.map(function (comment) {
-    return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "comment-div"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "option-button"
-    }, comment.username), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)) : null;
+    }, comment.username), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "post-preview-button",
+      onClick: function onClick() {
+        return handleComment(comment.id);
+      }
+    }, "...")) : null;
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
     createComment: props.createComment,
     deleteComment: props.deleteComment,
@@ -1764,7 +1804,7 @@ function PostPreview(props) {
     postId: props.post.id
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-bg"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "update-post-modal"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_edit_post_form_hooks__WEBPACK_IMPORTED_MODULE_2__["default"], {
     deletePost: props.deletePost,
@@ -1772,7 +1812,11 @@ function PostPreview(props) {
     post: props.post
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "update-comment-modal"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_edit_comment_form__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_edit_comment_form__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    post: props.post,
+    commentId: commentId,
+    deleteComment: props.deleteComment
+  }))));
 }
 
 /***/ }),
@@ -2033,12 +2077,12 @@ function (_React$Component) {
         }))));
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-bg"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "update-user-modal"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_edit_profile__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currentUser: this.props.currentUser,
         updateUser: this.props.updateUser
-      })));
+      }))));
     }
   }]);
 

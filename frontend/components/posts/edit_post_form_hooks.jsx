@@ -21,6 +21,10 @@ export default function EditPost(props) {
     handleCancel()
   }
 
+  function handleDelete() {
+    props.deletePost()
+  }
+
   return (
     <div className="edit-post-div">
       <h3 className="edit-post-text">Update Post</h3>
@@ -35,6 +39,7 @@ export default function EditPost(props) {
       <br/><br/>
       <div className="edit-option-button">
         <button onClick={handleCancel} className="edit-post-button">Cancel</button>
+        <button onClick={handleDelete} className="redBG-button">Delete</button>
         <button onClick={handleSubmit} className="edit-post-button">Submit</button>
       </div>
     </div>

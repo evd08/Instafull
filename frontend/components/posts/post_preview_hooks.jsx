@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../navbar/navbar_container';
 import EditPost from './edit_post_form_hooks';
 import CommentForm from '../comments/comment_form';
@@ -6,6 +6,7 @@ import EditCommentForm from '../comments/edit_comment_form';
 import { Link } from 'react-router-dom';
 
 export default function PostPreview(props) {
+  const [commentId, setCommentId] = useState();
 
   function handleClick(e) {
     e.preventDefault();
@@ -14,8 +15,9 @@ export default function PostPreview(props) {
     document.querySelector('.update-post-modal').style.visibility = "visible"
   }
 
-  function handleComment(e) {
-    e.preventDefault();
+  function handleComment(id) {
+    // e.preventDefault();
+    setCommentId(id)
     document.querySelector('.modal-bg').style.visibility = "visible"
     document.querySelector('.update-comment-modal').style.visibility = "visible"
   }
@@ -39,7 +41,6 @@ export default function PostPreview(props) {
 
           <div className="edit-div">
             <div className="post-preview-username-div">
-              {/* profile pic */}
               <div className="user">
                 <div className="mini-profile-pic-div">
                   <img className="mini-profile-pic" src={props.currentUser.picUrl} />
@@ -69,23 +70,25 @@ export default function PostPreview(props) {
                 <Link className="option-button" to={`/users/${props.post.user_id}`}>{props.post.username}</Link>
                 {props.post.caption}
               </p>
-              <button
-                className="post-preview-button"
-                onClick={handleComment}
-              >
-                ...
-                </button>
             </div>
 
             <div className="main-post-caption-div">
               <ul className="comment-text">
                 {props.comments.map((comment) => (
                   props.post.id === comment.post_id ?
+                  <div className="comment-div">
                     <li>
                       <p className="option-button">{comment.username}</p>
                       {comment.body}
                       <br />
                     </li>
+                    < button
+                      className = "post-preview-button"
+                      onClick = { () => handleComment(comment.id) }
+                    >
+                    ...
+                    </button>
+                  </div>
                     : null
                 ))}
               </ul>
@@ -104,7 +107,7 @@ export default function PostPreview(props) {
 
       </div>
 
-      <div className="modal-bg"></div>
+      <div className="modal-bg">
         
       <div className="update-post-modal">
         <EditPost
@@ -115,7 +118,12 @@ export default function PostPreview(props) {
       </div>
       
       <div className="update-comment-modal">
-        <EditCommentForm />
+        <EditCommentForm 
+          post={props.post}
+          commentId={commentId}
+          deleteComment={props.deleteComment}
+        />
+      </div>
       </div>
 
     </div>
