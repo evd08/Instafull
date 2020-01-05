@@ -23,23 +23,29 @@ const receiveErrors = (errors) => ({
     errors
 });
 
+
+
 export const fetchUsers = () => (dispatch) => {
     return UserApiUtil.fetchUsers()
-        .then((users) => dispatch(receiveUsers(users)));
+        .then((users) => dispatch(receiveUsers(users)))
 };
 
 export const fetchUser = (userId) => (dispatch) => {
     return UserApiUtil.fetchUser(userId)
-        .then((user) => dispatch(receiveUser(user)));
+        .then((user) => dispatch(receiveUser(user)))
 };
 
 export const updateUser = (user) => (dispatch) => {
     return UserApiUtil.updateUser(user)
         .then(
             user => dispatch(receiveUser(user)),
-            err => dispatch(receiveErrors(err.responseJSON)));
+            err => dispatch(receiveErrors(err.responseJSON)))
 };
 
-// export const updateUserAvatar = (id, data) => (dispatch) => {
-//     return UserApiUtil.updateUserAvatar(id, data).then((user) => dispatch(receiveUser(user)));
-// };
+export const fetchSearch = (user) => (dispatch => {
+    return UserApiUtil.searchUser(user)
+        .then(
+            users => dispatch(receiveUsers(users)),
+            err => dispatch(receiveErrors(err.responseJSON))
+        )
+})

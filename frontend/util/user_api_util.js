@@ -14,6 +14,14 @@ export const fetchUser = (userId) => {
     });
 };
 
+export const fetchSearch = (user) => {
+    return $.ajax({
+        url: `api/search`,
+        method: `GET`,
+        data: user
+    })
+}
+
 export const updateUser = (formData) => {
     return $.ajax({
         url: `api/users/${formData.get("user[id]")}`,
@@ -24,12 +32,3 @@ export const updateUser = (formData) => {
     });
 };
 
-// export const updateUserAvatar = (id, data) => {
-//     return $.ajax({
-//         url: `api/users/${id}`,
-//         method: `PATCH`,
-//         data: data,
-//         contentType: false,
-//         processData: false
-//     });
-// };

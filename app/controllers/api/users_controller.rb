@@ -30,6 +30,15 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def search
+        @users = User.where('username LIKE ?', `%#{paramas[:username]}%`)
+        if @users
+            render :search
+        else 
+            render json: @users.errors.full_messages, status: 401
+        end
+    end
+
     private
 
     def user_params
