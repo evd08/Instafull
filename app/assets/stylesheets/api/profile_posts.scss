@@ -114,3 +114,9 @@
     color: #ed4956;
     font-weight: bold;
 }
+
+.counts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

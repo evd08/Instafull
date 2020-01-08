@@ -72,7 +72,11 @@ class UserPostShow extends React.Component {
                         </div>
 
                         <div className="profile-right-div">
-                            <p>{this.props.posts.length} Posts</p>
+                            <div className="counts">
+                                <p>{this.props.posts.length} Posts</p>
+                                <p> Followers</p>
+                                <p> Following</p>
+                            </div>
                             <p className="profile-name">{this.props.currentUser.name}</p>
                         </div>
                     </div>

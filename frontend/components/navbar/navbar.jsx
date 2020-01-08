@@ -3,6 +3,7 @@ import CreatePostFormContainer from '../posts/create_post_form_container'
 import PostShowContainer from '../profile/user_post_show_container'
 import {Link} from 'react-router-dom';
 import PostIndex from '../posts/post_index_container';
+import SearchBar from './searchbar';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -42,13 +43,15 @@ class Navbar extends React.Component {
                     </a>
                 </div>
 
-                <div className="nav-profile-div">
-                    {/* <p className="nav-welcome-print">Welcome {this.props.currentUser.username}</p> */}
+                {/* <div className="nav-profile-div">
                     <input type="text"
                         value={this.state.search}
                         onChange={this.handleUpdate}
                     /> 
-                </div>
+                </div> */}
+                <SearchBar 
+                    fetchSearch={this.props.fetchSearch}
+                />
 
                 <div className="nav-options-div">
                     <a href="/#/users/upload">

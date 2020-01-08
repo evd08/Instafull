@@ -14,11 +14,11 @@ export const fetchUser = (userId) => {
     });
 };
 
-export const fetchSearch = (user) => {
+export const fetchSearch = (username) => {
     return $.ajax({
         url: `api/search`,
-        method: `GET`,
-        data: user
+        method: 'GET',
+        data: username
     })
 }
 

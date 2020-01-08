@@ -1,0 +1,26 @@
+.searchList {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 30%;
+  max-height: 40%;
+  background-color: whitesmoke;
+  border: 1px solid #efefef;
+
+
+  li {
+    display: inline-flex;
+    position: relative;  
+    height: 4em;
+    width: 100%;
+    overflow: auto;
+    align-items: center;
+
+    div {
+      width: 3vw;
+      height: 4vh;
+      padding-left: 3%;
+    }
+  }
+}
+

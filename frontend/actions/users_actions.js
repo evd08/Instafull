@@ -3,6 +3,7 @@ import * as UserApiUtil from '../util/user_api_util';
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+export const SEARCH_USERS ='SEARCH_USERS';
 
 const receiveUsers = (users) => {
     return {
@@ -23,6 +24,13 @@ const receiveErrors = (errors) => ({
     errors
 });
 
+const receiveResult = (users) => {
+    return {
+        type: SEARCH_USERS,
+        users
+    }
+}
+
 
 
 export const fetchUsers = () => (dispatch) => {
@@ -42,10 +50,10 @@ export const updateUser = (user) => (dispatch) => {
             err => dispatch(receiveErrors(err.responseJSON)))
 };
 
-export const fetchSearch = (user) => (dispatch => {
-    return UserApiUtil.searchUser(user)
+export const fetchSearch = (username) => (dispatch => {
+    return UserApiUtil.fetchSearch(username)
         .then(
-            users => dispatch(receiveUsers(users)),
+            users => dispatch(receiveResult(users)),
             err => dispatch(receiveErrors(err.responseJSON))
         )
 })

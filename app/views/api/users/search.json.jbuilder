@@ -1,5 +1,6 @@
 @users.each do |user|
-  json.set user.id do 
+  # debugger
+  json.set! user.id do 
     json.id user.id
     json.username user.username
     if user.pic.attached?
