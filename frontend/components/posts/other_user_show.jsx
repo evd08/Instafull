@@ -37,7 +37,6 @@ class OtherUserShow extends React.Component {
                     <div className="profile-pic-div">
                         <label htmlFor="file-input">
                             {preview}
-                            {/* <input onChange={this.handleFile} type="file" id="file-input" className="hide" /> */}
                         </label>
                     </div>
 
@@ -49,7 +48,7 @@ class OtherUserShow extends React.Component {
 
                         <div className="profile-right-div">
                             <div className="counts">
-                                {/* <p>{this.props.posts.length} Posts</p> */}
+                                <p>{this.props.posts.length} Posts</p>
                                 <p> Followers</p>
                                 <p> Following</p>
                             </div>
@@ -80,23 +79,3 @@ class OtherUserShow extends React.Component {
 }
 
 export default OtherUserShow;
-
-
-
-
-// export default function OtherUserShow(props) {
-
-
-//     useEffect(() => {
-//         if(!props.otherUser){
-//             props.fetchUserByUsername(props.username)
-//         }
-//     })
-
-
-//     return (
-//         <div>
-//             <p>This is other users show page</p>
-//         </div>
-//     )
-// }

@@ -1170,11 +1170,21 @@ function searchbar(props) {
   }, result.map(function (user) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/".concat(user.username)
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "mini-profile-pic-div"
+    }, user.picUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "profile-pic-img",
-      src: user.picUrl,
-      alt: "profilePicture"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      src: user.picUrl
+    }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      className: "profile-pic-img",
+      fill: "gray",
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "24",
+      height: "24",
+      viewBox: "0 0 24 24"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "post-user-button"
     }, user.username)));
   })) : null;
@@ -1673,7 +1683,7 @@ function (_React$Component) {
         className: "profile-right-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "counts"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.posts.length, " Posts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "profile-name"
       }, this.props.otherUser.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-post-div"
@@ -1699,18 +1709,7 @@ function (_React$Component) {
   return OtherUserShow;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (OtherUserShow); // export default function OtherUserShow(props) {
-//     useEffect(() => {
-//         if(!props.otherUser){
-//             props.fetchUserByUsername(props.username)
-//         }
-//     })
-//     return (
-//         <div>
-//             <p>This is other users show page</p>
-//         </div>
-//     )
-// }
+/* harmony default export */ __webpack_exports__["default"] = (OtherUserShow);
 
 /***/ }),
 
