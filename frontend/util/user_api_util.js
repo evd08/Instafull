@@ -1,7 +1,16 @@
-export const fetchUsers = () => {
+// export const fetchUsers = () => {
+//     return $.ajax({
+//         url: `api/users/`,
+//         method: 'GET',
+//         // error: (err) => console.log(err)
+//     });
+// };
+
+export const fetchUserByUsername = (username) => {
     return $.ajax({
         url: `api/users/`,
         method: 'GET',
+        data: username,
         // error: (err) => console.log(err)
     });
 };

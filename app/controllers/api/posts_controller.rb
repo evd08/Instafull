@@ -2,6 +2,8 @@ class Api::PostsController < ApplicationController
 
     def index 
         @posts = Post.where(user_id: params[:user_id])
+        # debugger
+        # @posts = Post.where(username: params[:username])
     end
 
     def show 

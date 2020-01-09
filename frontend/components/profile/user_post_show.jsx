@@ -83,20 +83,18 @@ class UserPostShow extends React.Component {
                 </div>
 
                 <div className="profile-post-div">
-                    {/* posts */}
                     <ul className="posts-ul">
-                        {this.props.posts.map((post) => (
-                            <li key={post.id}>
-                                <div className="users-post-div">
-                                    <Link to={`/posts/${post.id}/edit`}>
-                                        <img className="users-post-img" src={post.photoUrl} />
-                                    </Link>
-                                </div>
-                            </li>
-                        ))}
-                        <li>
-                            {}
-                        </li>
+                        <div className="post-ul-div">
+                            {this.props.posts.map((post) => (
+                                <li key={post.id}>
+                                    <div className="users-post-div">
+                                        <Link to={`/posts/${post.id}/edit`}>
+                                            <img className="users-post-img" src={post.photoUrl} />
+                                        </Link>
+                                    </div>
+                                </li>
+                            ))}
+                        </div>
                     </ul>
                 </div>
 

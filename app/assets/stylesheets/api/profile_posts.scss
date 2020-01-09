@@ -19,13 +19,19 @@
 
 .profile-post-div {
     display: flex;
-    // margin-left: 7%;
-    // margin-right: 7%;
     text-align: center;
     justify-content: center;
     width: 100%;
     margin: 0 auto;
     overflow-x: scroll;
+
+}
+
+.post-ul-div {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 900px;
 }
 
 .posts-ul .users-post-div {
@@ -46,7 +52,6 @@
 }
 
 .profile-pic-div {
-        /* align-items: stretch; */
     width: 150px;
     height: 150px;
 }
@@ -91,7 +96,12 @@
 .posts-ul {
     display: flex;
     flex-wrap: wrap;
-    width: 81%;
+    max-width: 65vw;
+    justify-content: center;
+
+    div {
+        justify-content: start;
+    }
 }
 
 .edit-profile-button {

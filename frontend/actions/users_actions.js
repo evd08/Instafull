@@ -38,6 +38,11 @@ export const fetchUsers = () => (dispatch) => {
         .then((users) => dispatch(receiveUsers(users)))
 };
 
+export const fetchUserByUsername = (username) => (dispatch) =>{
+    return UserApiUtil.fetchUserByUsername(username)
+        .then((user) => dispatch(receiveUser(user)))
+}
+
 export const fetchUser = (userId) => (dispatch) => {
     return UserApiUtil.fetchUser(userId)
         .then((user) => dispatch(receiveUser(user)))
