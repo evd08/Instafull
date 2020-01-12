@@ -11,10 +11,17 @@ class OtherUserShow extends React.Component {
     componentDidMount() {
         this.props.fetchUserByUsername({username: this.props.username})
             .then(() => this.props.fetchPosts(this.props.otherUser.id))
-
+            // .then(() => window.location.reload())
             // .then(this.props.fetchComments())
-  
         // debugger
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        // debugger
+        if(prevProps.match.params.username !== this.props.match.params.username){
+            this.props.fetchUserByUsername({ username: this.props.username })
+                .then(() => this.props.fetchPosts(this.props.otherUser.id))
+        }
     }
     
     render() {

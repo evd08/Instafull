@@ -943,6 +943,52 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/modal/menu_post_modal.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/modal/menu_post_modal.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MenuPost; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function MenuPost(props) {
+  function handleCancel() {
+    document.querySelector('.modal-bg').style.visibility = "hidden";
+    document.querySelector('.menu-post-modal').style.visibility = "hidden";
+    document.querySelector('.unfollow-user-modal').style.visibility = "hidden";
+  }
+
+  function handleUnfollow() {
+    document.querySelector('.menu-post-modal').style.visibility = "hidden";
+    document.querySelector('.unfollow-user-modal').style.visibility = "visible";
+  }
+
+  function handleSubmit() {// props.removeFollow() //followId
+  }
+
+  return (// <div>
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "menu-post-div"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: handleUnfollow
+    }, "Unfollow"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Go to post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: handleCancel
+    }, "Cancel")) //   <div className="unfollow-user-modal">
+    //     <button onClick={handleSubmit}>Unfollow</button>
+    //     <button onClick={handleCancel}>Cancel</button>
+    //   </div>
+    // </div>
+
+  );
+}
+
+/***/ }),
+
 /***/ "./frontend/components/navbar/navbar.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/navbar/navbar.jsx ***!
@@ -1639,8 +1685,23 @@ function (_React$Component) {
         username: this.props.username
       }).then(function () {
         return _this.props.fetchPosts(_this.props.otherUser.id);
-      }); // .then(this.props.fetchComments())
+      }); // .then(() => window.location.reload())
+      // .then(this.props.fetchComments())
       // debugger
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this2 = this;
+
+      // debugger
+      if (prevProps.match.params.username !== this.props.match.params.username) {
+        this.props.fetchUserByUsername({
+          username: this.props.username
+        }).then(function () {
+          return _this2.props.fetchPosts(_this2.props.otherUser.id);
+        });
+      }
     }
   }, {
     key: "render",
@@ -1789,6 +1850,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _likes_like_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../likes/like_hooks */ "./frontend/components/likes/like_hooks.jsx");
 /* harmony import */ var _comments_comment_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/comment_form */ "./frontend/components/comments/comment_form.jsx");
+/* harmony import */ var _modal_menu_post_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modal/menu_post_modal */ "./frontend/components/modal/menu_post_modal.jsx");
+
 
 
 
@@ -1801,6 +1864,11 @@ function Post(props) {
   //     comments.push(comment)
   //   }
   // ))
+
+  function handleModal() {
+    document.querySelector('.modal-bg').style.visibility = "visible";
+    document.querySelector('.menu-post-modal').style.visibility = "visible";
+  }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "main-li"
@@ -1817,6 +1885,7 @@ function Post(props) {
     className: "post-user-button",
     to: "/users/page"
   }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleModal,
     className: "option-button"
   }, "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "main-posts",
@@ -1850,7 +1919,11 @@ function Post(props) {
     deleteComment: props.deleteComment,
     currentUserId: props.data.currentUserId,
     postId: props.data.post_id
-  }))));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-bg"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "menu-post-modal"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_menu_post_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
 }
 
 /***/ }),

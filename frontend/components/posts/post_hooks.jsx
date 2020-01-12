@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Like from '../likes/like_hooks';
-import CommentForm from '../comments/comment_form'
+import CommentForm from '../comments/comment_form';
+import MenuPost from '../modal/menu_post_modal';
 
 export default function Post(props) {
 
@@ -15,6 +16,11 @@ export default function Post(props) {
   //   }
   // ))
 
+  function handleModal() {
+    document.querySelector('.modal-bg').style.visibility = ("visible")
+    document.querySelector('.menu-post-modal').style.visibility = ("visible")
+  }
+
   return (
     <li className="main-li">
       <div>
@@ -26,7 +32,7 @@ export default function Post(props) {
             </div>
             <Link className="post-user-button" to="/users/page">{props.post.username}</Link>
           </div>
-          <button className="option-button">...</button>
+          <button onClick={handleModal} className="option-button">...</button>
         </div>
 
         <img className="main-posts" src={props.post.photoUrl} />
@@ -73,6 +79,12 @@ export default function Post(props) {
             currentUserId={props.data.currentUserId}
             postId={props.data.post_id}
           />
+        </div>
+
+        <div className="modal-bg">
+          <div className="menu-post-modal">
+            <MenuPost />
+          </div>
         </div>
 
       </div>

@@ -41,3 +41,47 @@
   visibility: hidden;
   z-index: 1;
 }
+
+.menu-post-modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+	align-items: center;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.unfollow-user-modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+	align-items: center;
+  visibility: hidden;
+  z-index: 1;
+}
+
+
+
+.menu-post-div {
+  width: 35%;
+  // height: 15%;
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid #efef;
+  border-radius: 12px;
+  justify-content: center;
+  text-align: center;
+  background-color: whitesmoke;
+
+  button {
+    // height: 100%;
+    // display: absolute;
+    min-height: 55px;
+    border: none;
+    background: none;
+  }
+}
