@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
 
     get 'search', to: 'users#search'
+    resources :follows, only:[:index, :show, :create, :destroy]
     resources :likes, only:[:index, :show, :create, :destroy]
     resources :comments, only:[:index, :show, :create, :destroy]
     resources :posts, except:[:new, :edit, :index]

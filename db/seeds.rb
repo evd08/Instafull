@@ -11,6 +11,8 @@ require 'open-uri'
 User.destroy_all
 Post.destroy_all
 Like.destroy_all
+Comment.destroy_all
+Follow.destroy_all
 
 
 user1 = User.create( username: "demo", name: "demo", email: "demo@gmail.com", password: "Philippines" );
@@ -120,21 +122,49 @@ post18.photo.attach(io: picture18, filename: 'bali4.png')
 
 
 likes = Like.create!([
-    { user_id: user1.id, post_id: post13.id},
-    { user_id: user1.id, post_id: post15.id},
-    { user_id: user1.id, post_id: post18.id},
-    { user_id: user2.id, post_id: post3.id},
-    { user_id: user2.id, post_id: post7.id},
-    { user_id: user2.id, post_id: post16.id},
-    { user_id: user3.id, post_id: post16.id},
-    { user_id: user3.id, post_id: post7.id},
-    { user_id: user3.id, post_id: post8.id},
-    { user_id: user3.id, post_id: post2.id},
-    { user_id: user3.id, post_id: post5.id},
-    { user_id: user3.id, post_id: post18.id},
-    { user_id: user4.id, post_id: post8.id},
-    { user_id: user4.id, post_id: post3.id},
-    { user_id: user5.id, post_id: post8.id},
-    { user_id: user5.id, post_id: post2.id},
+    { user_id: user1.id, post_id: post13.id },
+    { user_id: user1.id, post_id: post15.id },
+    { user_id: user1.id, post_id: post18.id },
+    { user_id: user2.id, post_id: post3.id },
+    { user_id: user2.id, post_id: post7.id },
+    { user_id: user2.id, post_id: post16.id },
+    { user_id: user3.id, post_id: post16.id },
+    { user_id: user3.id, post_id: post7.id },
+    { user_id: user3.id, post_id: post8.id },
+    { user_id: user3.id, post_id: post2.id },
+    { user_id: user3.id, post_id: post5.id },
+    { user_id: user3.id, post_id: post18.id },
+    { user_id: user4.id, post_id: post8.id },
+    { user_id: user4.id, post_id: post3.id },
+    { user_id: user5.id, post_id: post8.id },
+    { user_id: user5.id, post_id: post2.id },
 ])
 
+comments = Comment.create!([
+    { user_id: user5.id, post_id: post8.id, body: 'northern lights' },
+    { user_id: user1.id, post_id: post15.id, body: 'The structure is so cool' },
+    { user_id: user1.id, post_id: post9.id, body: 'So refreshing' },
+    { user_id: user4.id, post_id: post8.id, body: 'I like the colors' },
+    { user_id: user2.id, post_id: post5.id, body: '<3' },
+    { user_id: user3.id, post_id: post4.id, body: 'Is this the Mayon volcano in Albay?' },
+    { user_id: user1.id, post_id: post4.id, body: 'yes it is' },
+    { user_id: user4.id, post_id: post4.id, body: 'When did it last erupted?' },
+    { user_id: user2.id, post_id: post6.id, body: 'Good place to have some fresh air' },
+    { user_id: user3.id, post_id: post7.id, body: 'This is in Palawan right?' },
+    { user_id: user2.id, post_id: post2.id, body: 'sometimes green, sometimes brown'},
+    { user_id: user1.id, post_id: post14.id, body: 'Is this one of the temples?'},
+])
+
+follows = Follow.create!([
+    { follower_id: user1.id, followed_id: user2.id },
+    { follower_id: user1.id, followed_id: user5.id },
+    { follower_id: user2.id, followed_id: user1.id },
+    { follower_id: user2.id, followed_id: user5.id },
+    { follower_id: user2.id, followed_id: user4.id },
+    { follower_id: user3.id, followed_id: user1.id },
+    { follower_id: user3.id, followed_id: user5.id },
+    { follower_id: user3.id, followed_id: user2.id },
+    { follower_id: user4.id, followed_id: user1.id },
+    { follower_id: user5.id, followed_id: user2.id },
+    { follower_id: user5.id, followed_id: user3.id },
+])

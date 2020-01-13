@@ -21,11 +21,13 @@ class Api::FollowsController < ApplicationController
     end
   end
 
-  # def index
-  #   @follows = Follow.where()
-  # end
+  def index
+    # @follows = Follow.where()
+    @follows = Follow.all
+  end
 
   def show
+    @follow = Follow.find(params[:id])
   end
 
   private

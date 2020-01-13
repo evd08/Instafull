@@ -27,6 +27,7 @@ class Api::UsersController < ApplicationController
     end
 
     def update
+        debugger
         @user = User.find(params[:id])
         if user_params[:pic]
             @user.pic.attach(user_params[:pic])

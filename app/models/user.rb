@@ -9,7 +9,14 @@ class User < ApplicationRecord
     before_validation :ensure_session_token
 
     has_many :likes
-    has_many :follower
+    has_many :followers,
+        foreign_key: :followed_id,
+        class_name: :Follow
+
+    has_many :followings,
+        foreign_key: :follower_id,
+        class_name: :Follow
+
     has_many :comments
     has_one_attached :pic
 
