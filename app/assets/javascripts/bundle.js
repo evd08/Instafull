@@ -553,17 +553,14 @@ var App = function App() {
     path: "/login",
     component: _login_login_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
-    path: "/users/page",
-    component: _profile_user_post_show_container__WEBPACK_IMPORTED_MODULE_2__["default"]
+    path: "/:username",
+    component: _posts_other_user_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     path: "/users/upload",
     component: _posts_create_post_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     path: "/posts/:postId/edit",
     component: _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
-    path: "/:username",
-    component: _posts_other_user_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     path: "/",
     component: _posts_post_index_container__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -1093,7 +1090,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
         d: "M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm-2-9h4v1h-4v-1zm0 3v-1h4v1h-4zm2-13l6 6h-4v3h-4v-3h-4l6-6z"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/#/users/page"
+        href: "/#/".concat(this.props.currentUser.username)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
         className: "icon",
         xmlns: "http://www.w3.org/2000/svg",
@@ -1604,10 +1601,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // debugger
+  var followers;
+  var followings; // debugger
+
+  if (state.entities.otherUser === true) {
+    // debugger
+    followers = Object.values(state.entities.otherUser.follower).map(function (_ref) {
+      var follower_id = _ref.follower_id;
+      return follower_id;
+    });
+    followings = Object.values(state.entities.otherUser.followed).map(function (_ref2) {
+      var followed_id = _ref2.followed_id;
+      return followed_id;
+    });
+  }
+
   return {
+    currentUser: state.entities.users[state.session.id],
     username: ownProps.match.params.username,
     posts: Object.values(state.entities.posts),
-    otherUser: state.entities.otherUser
+    otherUser: state.entities.otherUser,
+    // if(Object.values(state.entities.otherUser.follower)){
+    //   followerIds: (Object.values(state.entities.otherUser.follower)).map(({ follower_id }) => follower_id),
+    // }
+    followerIds: followers,
+    followingIds: followings
   };
 };
 
@@ -1670,21 +1688,27 @@ function (_React$Component) {
   _inherits(OtherUserShow, _React$Component);
 
   function OtherUserShow(props) {
+    var _this;
+
     _classCallCheck(this, OtherUserShow);
 
     // debugger
-    return _possibleConstructorReturn(this, _getPrototypeOf(OtherUserShow).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(OtherUserShow).call(this, props));
+    _this.state = {
+      followed: false
+    };
+    return _this;
   }
 
   _createClass(OtherUserShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this = this;
+      var _this2 = this;
 
       this.props.fetchUserByUsername({
         username: this.props.username
       }).then(function () {
-        return _this.props.fetchPosts(_this.props.otherUser.id);
+        return _this2.props.fetchPosts(_this2.props.otherUser.id);
       }); // .then(() => window.location.reload())
       // .then(this.props.fetchComments())
       // debugger
@@ -1692,14 +1716,14 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      var _this2 = this;
+      var _this3 = this;
 
       // debugger
       if (prevProps.match.params.username !== this.props.match.params.username) {
         this.props.fetchUserByUsername({
           username: this.props.username
         }).then(function () {
-          return _this2.props.fetchPosts(_this2.props.otherUser.id);
+          return _this3.props.fetchPosts(_this3.props.otherUser.id);
         });
       }
     }
@@ -1709,6 +1733,18 @@ function (_React$Component) {
       // debugger
       if (!this.props.posts) {
         return null;
+      }
+
+      if (this.props.followers) {
+        if (this.props.followers.includes(this.props.currentUser.id)) {
+          this.setState({
+            followed: true
+          });
+        } else {
+          this.setState({
+            followed: false
+          });
+        }
       }
 
       var preview = this.props.otherUser.picUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1744,7 +1780,7 @@ function (_React$Component) {
         className: "profile-right-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "counts"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.posts.length, " Posts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.posts.length, " Posts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.otherUser.followerCount, " Followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.otherUser.followingCount, " Following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "profile-name"
       }, this.props.otherUser.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-post-div"
@@ -35890,7 +35926,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

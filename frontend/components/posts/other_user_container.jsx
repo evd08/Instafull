@@ -6,10 +6,26 @@ import { fetchUserByUsername} from '../../actions/users_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
+  let followers;
+  let followings; 
+// debugger
+  if (state.entities.otherUser === true) {
+    // debugger
+    followers = (Object.values(state.entities.otherUser.follower)).map(({ follower_id }) => follower_id);
+    followings = (Object.values(state.entities.otherUser.followed)).map(({ followed_id }) => followed_id);
+  }
+
   return {
+    currentUser: state.entities.users[state.session.id],
     username: ownProps.match.params.username,
     posts: Object.values(state.entities.posts),
     otherUser: state.entities.otherUser,
+
+    // if(Object.values(state.entities.otherUser.follower)){
+    //   followerIds: (Object.values(state.entities.otherUser.follower)).map(({ follower_id }) => follower_id),
+    // }
+    followerIds: followers,
+    followingIds: followings,
   }
 }
 

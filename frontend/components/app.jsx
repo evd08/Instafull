@@ -15,11 +15,11 @@ const App = () => (
         <Switch>
             <AuthRoute path="/signup" component={SignUpFormContainer} />
             <AuthRoute path="/login" component={LogInFormContainer} />
-            <ProtectedRoute path="/users/page" component={PostShowContainer}/>
+            {/* <ProtectedRoute path="/users/page" component={PostShowContainer}/> */}
+            <ProtectedRoute path="/:username" component={OtherUserContainer} />
             <ProtectedRoute path="/users/upload" component={CreatePostContainer} />
             <ProtectedRoute path="/posts/:postId/edit" component={EditPostContainer} />
             {/* <ProtectedRoute path="/:username" component={PostShowContainer}/> */}
-            <ProtectedRoute path="/:username" component={OtherUserContainer} />
             <ProtectedRoute path="/" component={PostIndexContainer}/>
             <Redirect to="/signup" />
         </Switch>
