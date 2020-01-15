@@ -1779,8 +1779,8 @@ function (_React$Component) {
     // debugger
     _this = _possibleConstructorReturn(this, _getPrototypeOf(OtherUserShow).call(this, props));
     _this.state = {
-      followed: false,
-      btn: '',
+      // followed: false,
+      // btn: '',
       followId: ''
     };
     return _this;
@@ -1822,7 +1822,9 @@ function (_React$Component) {
       } else if (set === 'Following') {
         this.props.deleteFollow(this.state.followId);
       } else if (set === 'Follow') {
-        this.props.createFollow(this.props.otherUser.id);
+        this.props.createFollow({
+          followed_id: this.props.otherUser.id
+        });
       }
     }
   }, {
@@ -1835,28 +1837,27 @@ function (_React$Component) {
         return null;
       }
 
-      if (this.props.currentUser.username === this.props.username && this.state.btn !== 'Edit Profile') {
-        this.setState({
-          btn: 'Edit Profile'
-        });
+      var txt; // if (this.props.currentUser.username === this.props.username && this.state.btn !== 'Edit Profile') {
+
+      if (this.props.currentUser.username === this.props.username) {
+        // this.setState({ btn : 'Edit Profile' }) 
+        txt = 'Edit Profile';
       } else if (this.props.currentUser.username !== this.props.username) {
         // debugger
         if (this.props.followerIds) {
-          if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following') {
+          // if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following'){
+          if (this.props.followerIds.includes(this.props.currentUser.id)) {
             this.props.currentUser.followed.map(function (follow) {
-              follow.followed_id === _this4.props.otherUser.id ? _this4.setState({
+              follow.followed_id === _this4.props.otherUser.id && _this4.state.followId !== follow.id ? _this4.setState({
                 followId: follow.id
               }) : null;
-            });
-            this.setState({
-              btn: 'Following',
-              followed: true
-            }); // debugger
-          } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
-            this.setState({
-              btn: 'Follow',
-              followed: false
-            }); // debugger
+            }); // this.setState({ btn: 'Following', followed: true })
+
+            txt = 'Following'; // debugger
+            // } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
+          } else if (!this.props.followerIds.includes(this.props.currentUser.id)) {
+            // this.setState({ btn: 'Follow', followed: false })
+            txt = 'Follow'; // debugger
           }
         }
       }
@@ -1891,10 +1892,10 @@ function (_React$Component) {
         className: "profile-username-print"
       }, this.props.otherUser.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this4.handleClick(_this4.state.btn);
+          return _this4.handleClick(txt);
         },
         className: "edit-profile-button"
-      }, this.state.btn)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, txt)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-right-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "counts"
@@ -3448,12 +3449,12 @@ var fetchFollow = function fetchFollow(followId) {
     method: 'GET'
   });
 };
-var createFollow = function createFollow(followId) {
+var createFollow = function createFollow(follow) {
   return $.ajax({
     url: "api/follows",
     method: 'POST',
     data: {
-      followId: followId
+      follow: follow
     }
   });
 };
@@ -3490,8 +3491,7 @@ var fetchLike = function fetchLike(likeId) {
     url: "api/likes/".concat(likeId),
     method: 'GET'
   });
-}; // like = {post_id: ...}
-
+};
 var createLike = function createLike(like) {
   return $.ajax({
     url: "api/likes",

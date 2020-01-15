@@ -9,8 +9,8 @@ class OtherUserShow extends React.Component {
         super(props)
 
         this.state = {
-            followed: false,
-            btn: '',
+            // followed: false,
+            // btn: '',
             followId: ''
         };
     }
@@ -39,7 +39,7 @@ class OtherUserShow extends React.Component {
         else if (set === 'Following') {
             this.props.deleteFollow(this.state.followId)
         } else if (set === 'Follow') {
-            this.props.createFollow(this.props.otherUser.id)
+            this.props.createFollow({followed_id: this.props.otherUser.id})
         }
     }
     
@@ -50,20 +50,27 @@ class OtherUserShow extends React.Component {
             return null;
         }
 
-        if (this.props.currentUser.username === this.props.username && this.state.btn !== 'Edit Profile') {
-            this.setState({ btn : 'Edit Profile' }) 
+        let txt
+        // if (this.props.currentUser.username === this.props.username && this.state.btn !== 'Edit Profile') {
+        if (this.props.currentUser.username === this.props.username) {
+            // this.setState({ btn : 'Edit Profile' }) 
+            txt = 'Edit Profile'
         } else if (this.props.currentUser.username !== this.props.username) {
             // debugger
             if (this.props.followerIds) {
-                if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following'){
+                // if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following'){
+                if (this.props.followerIds.includes(this.props.currentUser.id)){
                     this.props.currentUser.followed.map((follow) => {
-                        follow.followed_id === this.props.otherUser.id ?
+                        (follow.followed_id === this.props.otherUser.id && this.state.followId !== follow.id) ?
                         this.setState({ followId: follow.id }) : null
                     })
-                    this.setState({ btn: 'Following', followed: true })
+                    // this.setState({ btn: 'Following', followed: true })
+                    txt = 'Following'
                     // debugger
-                } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
-                    this.setState({ btn: 'Follow', followed: false })
+                // } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
+                } else if (!this.props.followerIds.includes(this.props.currentUser.id)) {
+                    // this.setState({ btn: 'Follow', followed: false })
+                    txt = 'Follow'
                     // debugger
                 }  
             }
@@ -90,8 +97,8 @@ class OtherUserShow extends React.Component {
                     <div className="profile-details">
                         <div className="profile-username-div">
                             <p className="profile-username-print">{this.props.otherUser.username}</p>
-                            {/* <button className="edit-profile-button">Follow</button> */}
-                            <button onClick={() => this.handleClick(this.state.btn)} className="edit-profile-button">{this.state.btn}</button>
+                            {/* <button onClick={() => this.handleClick(this.state.btn)} className="edit-profile-button">{this.state.btn}</button> */}
+                            <button onClick={() => this.handleClick(txt)} className="edit-profile-button">{txt}</button>
                         </div>
 
                         <div className="profile-right-div">
