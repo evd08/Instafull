@@ -6,24 +6,23 @@ export default function searchbar(props) {
 
   function handleUpdate(e) {
     if(e.currentTarget.value == ""){
-      let list = ""
+      handleSearchbar();
     }
     props.fetchSearch({username: e.currentTarget.value})
-      .then(res => {
-        setResult(Object.values(res.users))
-      })
+      .then(res => { setResult(Object.values(res.users)) })
+      .then(document.querySelector('.searchList').style.visibility = "visible")
   }
 
-  // function handleProfile() {
-
-  // }
-
-  // debugger
+  function handleSearchbar() {
+    // list = null
+    document.getElementById('txtbox').value = ""
+    document.querySelector('.searchList').style.visibility = "hidden"
+  }
 
   let list = result ?       
     <ul className="searchList">
       {result.map((user) => (
-        <Link to={`/${user.username}`}>
+        <Link onClick={handleSearchbar} to={`/${user.username}`}>
           <li>
             <div className="mini-profile-pic-div">
               {user.picUrl ? <img className="profile-pic-img" src={user.picUrl} /> :
@@ -43,6 +42,7 @@ export default function searchbar(props) {
           type="text"
           placeholder="search"
           onChange={handleUpdate}
+          id="txtbox"
         />
         </div>
         {list}

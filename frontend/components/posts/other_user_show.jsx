@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '../navbar/navbar_container';
 import { Link } from 'react-router-dom';
+import EditProfile from '../profile/edit_profile';
 
 class OtherUserShow extends React.Component {
     constructor(props){
@@ -8,16 +9,17 @@ class OtherUserShow extends React.Component {
         super(props)
 
         this.state = {
-            followed: false
-        }
+            followed: false,
+            btn: '',
+            followId: ''
+        };
     }
 
     componentDidMount() {
         this.props.fetchUserByUsername({username: this.props.username})
             .then(() => this.props.fetchPosts(this.props.otherUser.id))
-            // .then(() => window.location.reload())
-            // .then(this.props.fetchComments())
-        // debugger
+            // .then( document.querySelector('.searchList').style.visibility = "hidden" )
+            // debugger
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -25,6 +27,19 @@ class OtherUserShow extends React.Component {
         if(prevProps.match.params.username !== this.props.match.params.username){
             this.props.fetchUserByUsername({ username: this.props.username })
                 .then(() => this.props.fetchPosts(this.props.otherUser.id))
+        }
+    }
+
+    handleClick(set) {
+        // debugger
+        if (set === 'Edit Profile') {
+            document.querySelector('.modal-bg').style.visibility = "visible"
+            document.querySelector('.update-user-modal').style.visibility = "visible"
+        } 
+        else if (set === 'Following') {
+            this.props.deleteFollow(this.state.followId)
+        } else if (set === 'Follow') {
+            this.props.createFollow(this.props.otherUser.id)
         }
     }
     
@@ -35,19 +50,30 @@ class OtherUserShow extends React.Component {
             return null;
         }
 
-        if (this.props.followers) {
-            if (this.props.followers.includes(this.props.currentUser.id)){
-                this.setState({ followed: true })
-            } else {
-                this.setState({ followed: false })
-            }  
+        if (this.props.currentUser.username === this.props.username && this.state.btn !== 'Edit Profile') {
+            this.setState({ btn : 'Edit Profile' }) 
+        } else if (this.props.currentUser.username !== this.props.username) {
+            // debugger
+            if (this.props.followerIds) {
+                if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following'){
+                    this.props.currentUser.followed.map((follow) => {
+                        follow.followed_id === this.props.otherUser.id ?
+                        this.setState({ followId: follow.id }) : null
+                    })
+                    this.setState({ btn: 'Following', followed: true })
+                    // debugger
+                } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
+                    this.setState({ btn: 'Follow', followed: false })
+                    // debugger
+                }  
+            }
         }
-
-        
-        
+         
         const preview = this.props.otherUser.picUrl ? <img className="profile-pic-img" src={this.props.otherUser.picUrl} /> :
             <svg className="profile-pic-img" fill="gray" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z" /></svg>;
        
+
+        // debugger
         return (
 
             <div className="outer-show-div">
@@ -64,14 +90,15 @@ class OtherUserShow extends React.Component {
                     <div className="profile-details">
                         <div className="profile-username-div">
                             <p className="profile-username-print">{this.props.otherUser.username}</p>
-                            <button className="edit-profile-button">Follow</button>
+                            {/* <button className="edit-profile-button">Follow</button> */}
+                            <button onClick={() => this.handleClick(this.state.btn)} className="edit-profile-button">{this.state.btn}</button>
                         </div>
 
                         <div className="profile-right-div">
                             <div className="counts">
-                                <p>{this.props.posts.length} Posts</p>
-                                <p>{this.props.otherUser.followerCount} Followers</p>
-                                <p>{this.props.otherUser.followingCount} Following</p>
+                                <p><span>{this.props.posts.length}</span> posts</p>
+                                <p><span>{this.props.otherUser.followerCount}</span> followers</p>
+                                <p><span>{this.props.otherUser.followingCount}</span> following</p>
                             </div>
                             <p className="profile-name">{this.props.otherUser.name}</p>
                         </div>
@@ -92,6 +119,12 @@ class OtherUserShow extends React.Component {
                             ))}
                         </div>
                     </ul>
+                </div>
+
+                <div className="modal-bg">
+                    <div className="update-user-modal">
+                        <EditProfile currentUser={this.props.currentUser} updateUser={this.props.updateUser} />
+                    </div>
                 </div>
 
             </div>

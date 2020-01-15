@@ -30,7 +30,7 @@ export default function Post(props) {
             <div className="mini-profile-pic-div">
               <img className="mini-profile-pic" src={props.currentUser.picUrl} />
             </div>
-            <Link className="post-user-button" to="/users/page">{props.post.username}</Link>
+            <Link className="post-user-button" to={`/${props.post.username}`}>{props.post.username}</Link>
           </div>
           <button onClick={handleModal} className="option-button">...</button>
         </div>
@@ -57,7 +57,6 @@ export default function Post(props) {
             </p>
           </div>
 
-          {/* <div className="comment-list-div"> */}
           <div className="main-post-caption-div">
             <ul className="comment-text">
             {props.comments.map((comment) => (
