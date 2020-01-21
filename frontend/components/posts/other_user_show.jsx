@@ -5,7 +5,6 @@ import EditProfile from '../profile/edit_profile';
 
 class OtherUserShow extends React.Component {
     constructor(props){
-        // debugger
         super(props)
 
         this.state = {
@@ -18,12 +17,11 @@ class OtherUserShow extends React.Component {
     componentDidMount() {
         this.props.fetchUserByUsername({username: this.props.username})
             .then(() => this.props.fetchPosts(this.props.otherUser.id))
+            .then(() => this.props.fetchComments())
             // .then( document.querySelector('.searchList').style.visibility = "hidden" )
-            // debugger
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // debugger
         if(prevProps.match.params.username !== this.props.match.params.username){
             this.props.fetchUserByUsername({ username: this.props.username })
                 .then(() => this.props.fetchPosts(this.props.otherUser.id))
@@ -31,7 +29,6 @@ class OtherUserShow extends React.Component {
     }
 
     handleClick(set) {
-        // debugger
         if (set === 'Edit Profile') {
             document.querySelector('.modal-bg').style.visibility = "visible"
             document.querySelector('.update-user-modal').style.visibility = "visible"
@@ -44,7 +41,6 @@ class OtherUserShow extends React.Component {
     }
     
     render() {
-        // debugger
 
         if(!this.props.posts){
             return null;
@@ -56,7 +52,6 @@ class OtherUserShow extends React.Component {
             // this.setState({ btn : 'Edit Profile' }) 
             txt = 'Edit Profile'
         } else if (this.props.currentUser.username !== this.props.username) {
-            // debugger
             if (this.props.followerIds) {
                 // if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following'){
                 if (this.props.followerIds.includes(this.props.currentUser.id)){
@@ -66,12 +61,10 @@ class OtherUserShow extends React.Component {
                     })
                     // this.setState({ btn: 'Following', followed: true })
                     txt = 'Following'
-                    // debugger
                 // } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
                 } else if (!this.props.followerIds.includes(this.props.currentUser.id)) {
                     // this.setState({ btn: 'Follow', followed: false })
                     txt = 'Follow'
-                    // debugger
                 }  
             }
         }

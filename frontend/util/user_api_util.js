@@ -7,6 +7,7 @@
 // };
 
 export const fetchUserByUsername = (username) => {
+    // debugger
     return $.ajax({
         url: `api/users/`,
         method: 'GET',
@@ -16,6 +17,7 @@ export const fetchUserByUsername = (username) => {
 };
 
 export const fetchUser = (userId) => {
+    // debugger
     return $.ajax({
         url: `api/users/${userId}`,
         method: 'GET',
@@ -24,6 +26,7 @@ export const fetchUser = (userId) => {
 };
 
 export const fetchSearch = (username) => {
+    // debugger
     return $.ajax({
         url: `api/search`,
         method: 'GET',
@@ -32,7 +35,7 @@ export const fetchSearch = (username) => {
 }
 
 export const updateUser = (formData) => {
-    debugger
+    // debugger
     return $.ajax({
         url: `api/users/${formData.get("user[id]")}`,
         method: `PATCH`,

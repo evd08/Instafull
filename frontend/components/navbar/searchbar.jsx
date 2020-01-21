@@ -36,7 +36,7 @@ export default function searchbar(props) {
     </ul> : null
 
   return (
-    <div>
+    <div className="searchbar">
       <div className="nav-profile-div">
         <input 
           type="text"

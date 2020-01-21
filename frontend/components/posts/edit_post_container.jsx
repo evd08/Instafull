@@ -5,6 +5,7 @@ import { fetchPost, updatePost, deletePost } from '../../actions/posts_actions';
 import { createComment, deleteComment, fetchComments } from '../../actions/comments_actions';
 
 const mapStateToProps = (state, ownProps) => {
+    debugger
     return {
         // posts: Object.values(state.entities.posts), 
         post: state.entities.posts[ownProps.match.params.postId],

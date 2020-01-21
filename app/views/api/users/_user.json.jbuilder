@@ -1,3 +1,4 @@
+# debugger
 json.extract! user, :id, :username, :email, :name
 if user.pic.attached?
     json.picUrl url_for(user.pic)

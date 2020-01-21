@@ -45,7 +45,7 @@
 
 .option-button {
     // padding-right: 3%;
-    margin-right: 3%;
+    margin-right: 1%;
     // padding-left: 22px;
     font-weight: bold;
     color: black;
@@ -87,10 +87,11 @@
 .count-likes {
     display: flex;
     // height: 20px;
-    padding-left: 3%;
+    // padding-left: 3%;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 18px;
+    flex-direction: column;
 }
 
 .like-comment-div {
@@ -130,6 +131,7 @@
 .mini-profile-pic-div {
     width: 30px;
     height: 30px;
+    // position: relative;
     // padding-left: 30px;
 }
 
@@ -137,6 +139,7 @@
     display: flex;
     align-items: center;
     padding-left: 3%;
+    // position: relative;
 }
 
 .submit-button-div {

@@ -6,7 +6,7 @@ import MenuPost from '../modal/menu_post_modal';
 
 export default function Post(props) {
 
-  let like = props.post.countLikes < 2 ? "like" : "likes";
+  // let like = props.post.countLikes < 2 ? "like" : "likes";
   let captionClass = props.post.caption ? 'edit-post-list' : 'hide';
 
   // let comments;
@@ -44,11 +44,14 @@ export default function Post(props) {
             createLike={props.createLike} 
             likeId={props.post.likeId} 
             data={props.data} 
+            countLikes={props.post.countLikes}
+            fetchLikes={props.fetchLikes}
+            fetchPosts={props.fetchPosts}
           />
 
-          <div className="count-likes">
+          {/* <div className="count-likes">
             <p>{props.post.countLikes} {like}</p>
-          </div>
+          </div> */}
 
           <div className={captionClass}>
             <p className="comment-text">

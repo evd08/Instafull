@@ -11,8 +11,9 @@ class Api::LikesController < ApplicationController
     end
 
     def destroy
-        @like = Like.find(params[:id])
-        # @like = Like.where(post_id: params[:post_id], user_id: current_user.id)
+        # @like = Like.find(params[:id])
+        @like = Like.where(post_id: params[:data][:post_id]).where(user_id: params[:data][:currentUserId])
+        @like = @like.first
 
         if @like
             @like.destroy 
@@ -36,3 +37,5 @@ class Api::LikesController < ApplicationController
         params.require(:like).permit(:user_id, :post_id)
     end
 end
+
+

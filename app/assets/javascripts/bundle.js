@@ -297,10 +297,14 @@ var createLike = function createLike(like) {
       return dispatch(receiveLike(like));
     });
   };
-};
-var deleteLike = function deleteLike(likeId) {
+}; // export const deleteLike = likeId => dispatch => {
+//     return LikeAPIUtil.deleteLike(likeId)
+//         .then(like => dispatch(removeLike(like)))
+// }
+
+var deleteLike = function deleteLike(data) {
   return function (dispatch) {
-    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLike"](likeId).then(function (like) {
+    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLike"](data).then(function (like) {
       return dispatch(removeLike(like));
     });
   };
@@ -627,14 +631,15 @@ var App = function App() {
     path: "/login",
     component: _login_login_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
+    exact: true,
     path: "/:username",
     component: _posts_other_user_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
-    path: "/users/upload",
-    component: _posts_create_post_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     path: "/posts/:postId/edit",
     component: _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
+    path: "/users/upload",
+    component: _posts_create_post_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     path: "/",
     component: _posts_post_index_container__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -762,12 +767,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Like(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  // const [liked, setLike] = useState(false);
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.countLikes),
       _useState2 = _slicedToArray(_useState, 2),
-      liked = _useState2[0],
-      setLike = _useState2[1];
+      countLikes = _useState2[0],
+      setCount = _useState2[1];
 
-  var likeButton = props.likeId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.likeId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "like-button",
     fill: "red",
     xmlns: "http://www.w3.org/2000/svg",
@@ -784,41 +790,62 @@ function Like(props) {
     viewBox: "0 0 24 24"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M17.516 3c2.382 0 4.487 1.564 4.487 4.712 0 4.963-6.528 8.297-10.003 11.935-3.475-3.638-10.002-6.971-10.002-11.934 0-3.055 2.008-4.713 4.487-4.713 3.18 0 4.846 3.644 5.515 5.312.667-1.666 2.333-5.312 5.516-5.312zm0-2c-2.174 0-4.346 1.062-5.516 3.419-1.17-2.357-3.342-3.419-5.515-3.419-3.403 0-6.484 2.39-6.484 6.689 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-4.586-3.414-6.689-6.484-6.689z"
-  }));
+  }))),
+      _useState4 = _slicedToArray(_useState3, 2),
+      likeButton = _useState4[0],
+      setLikeBtn = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.likeId ? true : false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      liked = _useState6[0],
+      setLiked = _useState6[1]; // debugger
+  // let likeButton = props.likeId ?
+  //   <svg className="like-button" fill="red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z" /></svg>
+  //   : <svg className="like-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17.516 3c2.382 0 4.487 1.564 4.487 4.712 0 4.963-6.528 8.297-10.003 11.935-3.475-3.638-10.002-6.971-10.002-11.934 0-3.055 2.008-4.713 4.487-4.713 3.18 0 4.846 3.644 5.515 5.312.667-1.666 2.333-5.312 5.516-5.312zm0-2c-2.174 0-4.346 1.062-5.516 3.419-1.17-2.357-3.342-3.419-5.515-3.419-3.403 0-6.484 2.39-6.484 6.689 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-4.586-3.414-6.689-6.484-6.689z" /></svg>;
+
+
+  var like = countLikes < 2 ? "like" : "likes";
 
   function toggleLike() {
-    setLike(!liked);
-    props.likeId ? props.deleteLike(props.likeId) : //.then(() => window.location.reload(false)) :
-    props.createLike(props.data);
-    likeButton = props.likeId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "like-button",
-      fill: "red",
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z"
-    })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "like-button",
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M17.516 3c2.382 0 4.487 1.564 4.487 4.712 0 4.963-6.528 8.297-10.003 11.935-3.475-3.638-10.002-6.971-10.002-11.934 0-3.055 2.008-4.713 4.487-4.713 3.18 0 4.846 3.644 5.515 5.312.667-1.666 2.333-5.312 5.516-5.312zm0-2c-2.174 0-4.346 1.062-5.516 3.419-1.17-2.357-3.342-3.419-5.515-3.419-3.403 0-6.484 2.39-6.484 6.689 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-4.586-3.414-6.689-6.484-6.689z"
-    }));
+    if (liked) {
+      setLikeBtn(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        className: "like-button",
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "24",
+        height: "24",
+        viewBox: "0 0 24 24"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M17.516 3c2.382 0 4.487 1.564 4.487 4.712 0 4.963-6.528 8.297-10.003 11.935-3.475-3.638-10.002-6.971-10.002-11.934 0-3.055 2.008-4.713 4.487-4.713 3.18 0 4.846 3.644 5.515 5.312.667-1.666 2.333-5.312 5.516-5.312zm0-2c-2.174 0-4.346 1.062-5.516 3.419-1.17-2.357-3.342-3.419-5.515-3.419-3.403 0-6.484 2.39-6.484 6.689 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-4.586-3.414-6.689-6.484-6.689z"
+      })));
+      setLiked(false);
+      setCount(countLikes - 1);
+      props.deleteLike(props.data);
+    } else {
+      setLikeBtn(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        className: "like-button",
+        fill: "red",
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "24",
+        height: "24",
+        viewBox: "0 0 24 24"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z"
+      })));
+      setLiked(true);
+      setCount(countLikes + 1);
+      props.createLike(props.data);
+    }
   }
 
-  ; // useEffect(() => {
-  // });
-
+  ;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "like-comment-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "option-button",
     onClick: toggleLike
-  }, likeButton));
+  }, likeButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "count-likes"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, countLikes, " ", like)));
 }
 
 /***/ }),
@@ -1071,11 +1098,7 @@ function MenuPost(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _posts_create_post_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../posts/create_post_form_container */ "./frontend/components/posts/create_post_form_container.jsx");
-/* harmony import */ var _profile_user_post_show_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/user_post_show_container */ "./frontend/components/profile/user_post_show_container.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _posts_post_index_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../posts/post_index_container */ "./frontend/components/posts/post_index_container.jsx");
-/* harmony import */ var _searchbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./searchbar */ "./frontend/components/navbar/searchbar.jsx");
+/* harmony import */ var _searchbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchbar */ "./frontend/components/navbar/searchbar.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1097,10 +1120,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-
-
-
 var Navbar =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1114,16 +1133,10 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
     _this.state = {
       search: ""
-    }; // this.handleProfileClick = this.handleProfileClick.bind(this);
-
+    };
     _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
     return _this;
-  } // handleProfileClick() {
-  //     // return( 
-  //         <Link to={`/users`}></Link>
-  //     // )
-  // }
-
+  }
 
   _createClass(Navbar, [{
     key: "handleUpdate",
@@ -1131,9 +1144,7 @@ function (_React$Component) {
       this.setState({
         search: e.currentTarget.value
       });
-    } // handleSearchBar(e) {
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1149,7 +1160,7 @@ function (_React$Component) {
         className: "icon"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "nav-logo-print"
-      }, "Instaplaces"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_searchbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, "Instaplaces"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_searchbar__WEBPACK_IMPORTED_MODULE_1__["default"], {
         fetchSearch: this.props.fetchSearch
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-options-div"
@@ -1309,7 +1320,9 @@ function searchbar(props) {
       className: "post-user-button"
     }, user.username)));
   })) : null;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "searchbar"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "nav-profile-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
@@ -1538,6 +1551,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
     // posts: Object.values(state.entities.posts), 
     post: state.entities.posts[ownProps.match.params.postId],
@@ -1776,7 +1790,6 @@ function (_React$Component) {
 
     _classCallCheck(this, OtherUserShow);
 
-    // debugger
     _this = _possibleConstructorReturn(this, _getPrototypeOf(OtherUserShow).call(this, props));
     _this.state = {
       // followed: false,
@@ -1795,15 +1808,15 @@ function (_React$Component) {
         username: this.props.username
       }).then(function () {
         return _this2.props.fetchPosts(_this2.props.otherUser.id);
+      }).then(function () {
+        return _this2.props.fetchComments();
       }); // .then( document.querySelector('.searchList').style.visibility = "hidden" )
-      // debugger
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       var _this3 = this;
 
-      // debugger
       if (prevProps.match.params.username !== this.props.match.params.username) {
         this.props.fetchUserByUsername({
           username: this.props.username
@@ -1815,7 +1828,6 @@ function (_React$Component) {
   }, {
     key: "handleClick",
     value: function handleClick(set) {
-      // debugger
       if (set === 'Edit Profile') {
         document.querySelector('.modal-bg').style.visibility = "visible";
         document.querySelector('.update-user-modal').style.visibility = "visible";
@@ -1832,7 +1844,6 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      // debugger
       if (!this.props.posts) {
         return null;
       }
@@ -1843,7 +1854,6 @@ function (_React$Component) {
         // this.setState({ btn : 'Edit Profile' }) 
         txt = 'Edit Profile';
       } else if (this.props.currentUser.username !== this.props.username) {
-        // debugger
         if (this.props.followerIds) {
           // if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following'){
           if (this.props.followerIds.includes(this.props.currentUser.id)) {
@@ -1853,11 +1863,10 @@ function (_React$Component) {
               }) : null;
             }); // this.setState({ btn: 'Following', followed: true })
 
-            txt = 'Following'; // debugger
-            // } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
+            txt = 'Following'; // } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
           } else if (!this.props.followerIds.includes(this.props.currentUser.id)) {
             // this.setState({ btn: 'Follow', followed: false })
-            txt = 'Follow'; // debugger
+            txt = 'Follow';
           }
         }
       }
@@ -1949,13 +1958,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_hooks */ "./frontend/components/posts/post_hooks.jsx");
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
  // import Post from './post';
 
 
 
 
 
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger
   return {
     data: {
       currentUserId: state.entities.users[state.session.id].id,
@@ -1989,6 +2001,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchComments: function fetchComments() {
       return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__["fetchComments"])());
+    },
+    fetchPosts: function fetchPosts() {
+      return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__["fetchPosts"])());
     }
   };
 };
@@ -2019,7 +2034,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Post(props) {
-  var like = props.post.countLikes < 2 ? "like" : "likes";
+  // let like = props.post.countLikes < 2 ? "like" : "likes";
   var captionClass = props.post.caption ? 'edit-post-list' : 'hide'; // let comments;
   // props.comments.map((comment) => (
   //   if(props.post.id === comment.post_id){
@@ -2058,10 +2073,11 @@ function Post(props) {
     deleteLike: props.deleteLike,
     createLike: props.createLike,
     likeId: props.post.likeId,
-    data: props.data
+    data: props.data,
+    countLikes: props.post.countLikes,
+    fetchLikes: props.fetchLikes,
+    fetchPosts: props.fetchPosts
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "count-likes"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.countLikes, " ", like)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: captionClass
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "comment-text"
@@ -2536,6 +2552,7 @@ function (_React$Component) {
   _createClass(UserPostShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      // debugger
       this.props.fetchPosts(this.props.currentUser.id);
       this.props.fetchComments();
     }
@@ -3332,10 +3349,11 @@ var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState;
+  var nextState; // debugger
 
   switch (action.type) {
     case _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USERS"]:
+      // debugger
       return action.users;
     // case RECEIVE_USER:
     //     nextState = Object.assign({}, state, { [action.user.id]: action.user } )
@@ -3501,10 +3519,13 @@ var createLike = function createLike(like) {
     }
   });
 };
-var deleteLike = function deleteLike(likeId) {
+var deleteLike = function deleteLike(data) {
   return $.ajax({
-    url: "api/likes/".concat(likeId),
-    method: 'DELETE'
+    url: "api/likes/".concat(data.post_id),
+    method: 'DELETE',
+    data: {
+      data: data
+    }
   });
 };
 
@@ -3685,6 +3706,7 @@ __webpack_require__.r(__webpack_exports__);
 //     });
 // };
 var fetchUserByUsername = function fetchUserByUsername(username) {
+  // debugger
   return $.ajax({
     url: "api/users/",
     method: 'GET',
@@ -3693,6 +3715,7 @@ var fetchUserByUsername = function fetchUserByUsername(username) {
   });
 };
 var fetchUser = function fetchUser(userId) {
+  // debugger
   return $.ajax({
     url: "api/users/".concat(userId),
     method: 'GET' // error: (err) => console.log(err)
@@ -3700,6 +3723,7 @@ var fetchUser = function fetchUser(userId) {
   });
 };
 var fetchSearch = function fetchSearch(username) {
+  // debugger
   return $.ajax({
     url: "api/search",
     method: 'GET',
@@ -3707,7 +3731,7 @@ var fetchSearch = function fetchSearch(username) {
   });
 };
 var updateUser = function updateUser(formData) {
-  debugger;
+  // debugger
   return $.ajax({
     url: "api/users/".concat(formData.get("user[id]")),
     method: "PATCH",

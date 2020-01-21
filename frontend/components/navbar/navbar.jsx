@@ -1,8 +1,4 @@
 import React from 'react';
-import CreatePostFormContainer from '../posts/create_post_form_container'
-import PostShowContainer from '../profile/user_post_show_container'
-import {Link} from 'react-router-dom';
-import PostIndex from '../posts/post_index_container';
 import SearchBar from './searchbar';
 
 class Navbar extends React.Component {
@@ -12,23 +8,13 @@ class Navbar extends React.Component {
             search: ""
         }
 
-        // this.handleProfileClick = this.handleProfileClick.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
     }
 
-    // handleProfileClick() {
-    //     // return( 
-    //         <Link to={`/users`}></Link>
-    //     // )
-    // }
 
     handleUpdate(e) {
         this.setState({search: e.currentTarget.value});
     }
-
-    // handleSearchBar(e) {
-
-    // }
 
     render() {
         return (
@@ -43,12 +29,6 @@ class Navbar extends React.Component {
                     </a>
                 </div>
 
-                {/* <div className="nav-profile-div">
-                    <input type="text"
-                        value={this.state.search}
-                        onChange={this.handleUpdate}
-                    /> 
-                </div> */}
                 <SearchBar 
                     fetchSearch={this.props.fetchSearch}
                 />
@@ -57,7 +37,6 @@ class Navbar extends React.Component {
                     <a href="/#/users/upload">
                         <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm-2-9h4v1h-4v-1zm0 3v-1h4v1h-4zm2-13l6 6h-4v3h-4v-3h-4l6-6z" /></svg>
                     </a>
-                     {/* <a href="/#/users/page"> */}
                      <a href={`/#/${this.props.currentUser.username}`}>
                         <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z" /></svg>
                     </a>
