@@ -46,7 +46,6 @@ export default function Post(props) {
             data={props.data} 
             countLikes={props.post.countLikes}
             fetchLikes={props.fetchLikes}
-            fetchPosts={props.fetchPosts}
           />
 
           {/* <div className="count-likes">

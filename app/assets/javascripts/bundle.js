@@ -223,10 +223,14 @@ var createFollow = function createFollow(follow) {
       return dispatch(receiveFollow(follow));
     });
   };
-};
-var deleteFollow = function deleteFollow(followId) {
+}; // export const deleteFollow = followId => dispatch => {
+//   return FollowAPIUtil.deleteFollow(followId)
+//     .then(follow => dispatch(removeFollow(follow)))
+// }
+
+var deleteFollow = function deleteFollow(data) {
   return function (dispatch) {
-    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteFollow"](followId).then(function (follow) {
+    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteFollow"](data).then(function (follow) {
       return dispatch(removeFollow(follow));
     });
   };
@@ -767,13 +771,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Like(props) {
-  // const [liked, setLike] = useState(false);
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.countLikes),
       _useState2 = _slicedToArray(_useState, 2),
       countLikes = _useState2[0],
       setCount = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.likeId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.likeId ? true : false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      liked = _useState4[0],
+      setLiked = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.likeId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "like-button",
     fill: "red",
     xmlns: "http://www.w3.org/2000/svg",
@@ -791,18 +799,9 @@ function Like(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M17.516 3c2.382 0 4.487 1.564 4.487 4.712 0 4.963-6.528 8.297-10.003 11.935-3.475-3.638-10.002-6.971-10.002-11.934 0-3.055 2.008-4.713 4.487-4.713 3.18 0 4.846 3.644 5.515 5.312.667-1.666 2.333-5.312 5.516-5.312zm0-2c-2.174 0-4.346 1.062-5.516 3.419-1.17-2.357-3.342-3.419-5.515-3.419-3.403 0-6.484 2.39-6.484 6.689 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-4.586-3.414-6.689-6.484-6.689z"
   }))),
-      _useState4 = _slicedToArray(_useState3, 2),
-      likeButton = _useState4[0],
-      setLikeBtn = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.likeId ? true : false),
       _useState6 = _slicedToArray(_useState5, 2),
-      liked = _useState6[0],
-      setLiked = _useState6[1]; // debugger
-  // let likeButton = props.likeId ?
-  //   <svg className="like-button" fill="red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z" /></svg>
-  //   : <svg className="like-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17.516 3c2.382 0 4.487 1.564 4.487 4.712 0 4.963-6.528 8.297-10.003 11.935-3.475-3.638-10.002-6.971-10.002-11.934 0-3.055 2.008-4.713 4.487-4.713 3.18 0 4.846 3.644 5.515 5.312.667-1.666 2.333-5.312 5.516-5.312zm0-2c-2.174 0-4.346 1.062-5.516 3.419-1.17-2.357-3.342-3.419-5.515-3.419-3.403 0-6.484 2.39-6.484 6.689 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-4.586-3.414-6.689-6.484-6.689z" /></svg>;
-
+      likeButton = _useState6[0],
+      setLikeBtn = _useState6[1];
 
   var like = countLikes < 2 ? "like" : "likes";
 
@@ -1327,6 +1326,7 @@ function searchbar(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     placeholder: "search",
+    autoComplete: "off",
     onChange: handleUpdate,
     id: "txtbox"
   })), list);
@@ -1551,7 +1551,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     // posts: Object.values(state.entities.posts), 
     post: state.entities.posts[ownProps.match.params.postId],
@@ -1696,7 +1695,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
   return {
     currentUser: state.entities.users[state.session.id],
     username: ownProps.match.params.username,
@@ -1767,9 +1765,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1792,10 +1790,12 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(OtherUserShow).call(this, props));
     _this.state = {
-      // followed: false,
-      // btn: '',
-      followId: ''
+      followed: false,
+      btn: '',
+      followerCount: _this.props.otherUser ? _this.props.otherUser.followerCount : ''
     };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.setUserInfo = _this.setUserInfo.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1810,7 +1810,7 @@ function (_React$Component) {
         return _this2.props.fetchPosts(_this2.props.otherUser.id);
       }).then(function () {
         return _this2.props.fetchComments();
-      }); // .then( document.querySelector('.searchList').style.visibility = "hidden" )
+      });
     }
   }, {
     key: "componentDidUpdate",
@@ -1821,53 +1821,88 @@ function (_React$Component) {
         this.props.fetchUserByUsername({
           username: this.props.username
         }).then(function () {
-          return _this3.props.fetchPosts(_this3.props.otherUser.id);
+          _this3.props.fetchPosts(_this3.props.otherUser.id);
+
+          _this3.setState({
+            followerCount: _this3.props.otherUser.followerCount
+          });
         });
       }
     }
   }, {
     key: "handleClick",
-    value: function handleClick(set) {
-      if (set === 'Edit Profile') {
+    value: function handleClick() {
+      if (this.state.btn === 'Edit Profile') {
         document.querySelector('.modal-bg').style.visibility = "visible";
         document.querySelector('.update-user-modal').style.visibility = "visible";
-      } else if (set === 'Following') {
-        this.props.deleteFollow(this.state.followId);
-      } else if (set === 'Follow') {
+      } else if (this.state.btn === 'Following') {
+        this.setState({
+          followed: false
+        });
+        this.setState({
+          followerCount: this.state.followerCount - 1
+        });
+        this.setState({
+          btn: "Follow"
+        });
+        this.props.deleteFollow({
+          followed_id: this.props.otherUser.id
+        });
+      } else if (this.state.btn === 'Follow') {
+        this.setState({
+          followed: true
+        });
+        this.setState({
+          followerCount: this.state.followerCount + 1
+        });
+        this.setState({
+          btn: "Following"
+        });
         this.props.createFollow({
           followed_id: this.props.otherUser.id
         });
       }
     }
   }, {
+    key: "setUserInfo",
+    value: function setUserInfo() {
+      if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following') {
+        this.setState({
+          btn: 'Following',
+          followed: true
+        });
+      } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
+        this.setState({
+          btn: 'Follow',
+          followed: false
+        });
+      }
+    }
+  }, {
+    key: "setCurrentUser",
+    value: function setCurrentUser() {
+      this.setState({
+        btn: 'Edit Profile'
+      });
+      this.setState({
+        followerCount: this.props.currentUser.followerCount
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
-
       if (!this.props.posts) {
         return null;
       }
 
-      var txt; // if (this.props.currentUser.username === this.props.username && this.state.btn !== 'Edit Profile') {
+      var buttonClass = this.state.btn === 'Follow' ? "follow-button" : "edit-profile-button";
 
-      if (this.props.currentUser.username === this.props.username) {
-        // this.setState({ btn : 'Edit Profile' }) 
-        txt = 'Edit Profile';
+      if (this.props.currentUser.username === this.props.username && this.state.btn !== 'Edit Profile') {
+        this.setCurrentUser();
       } else if (this.props.currentUser.username !== this.props.username) {
-        if (this.props.followerIds) {
-          // if (this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Following'){
-          if (this.props.followerIds.includes(this.props.currentUser.id)) {
-            this.props.currentUser.followed.map(function (follow) {
-              follow.followed_id === _this4.props.otherUser.id && _this4.state.followId !== follow.id ? _this4.setState({
-                followId: follow.id
-              }) : null;
-            }); // this.setState({ btn: 'Following', followed: true })
-
-            txt = 'Following'; // } else if (!this.props.followerIds.includes(this.props.currentUser.id) && this.state.btn !== 'Follow') {
-          } else if (!this.props.followerIds.includes(this.props.currentUser.id)) {
-            // this.setState({ btn: 'Follow', followed: false })
-            txt = 'Follow';
-          }
+        // if (this.props.followerIds !== null && this.state.followerCount === "") {
+        if (this.props.followerIds !== null) {
+          this.setUserInfo();
         }
       }
 
@@ -1883,8 +1918,7 @@ function (_React$Component) {
         viewBox: "0 0 24 24"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
         d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"
-      })); // debugger
-
+      }));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "outer-show-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1900,15 +1934,13 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "profile-username-print"
       }, this.props.otherUser.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return _this4.handleClick(txt);
-        },
-        className: "edit-profile-button"
-      }, txt)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleClick,
+        className: buttonClass
+      }, this.state.btn)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-right-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "counts"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.posts.length), " posts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.otherUser.followerCount), " followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.otherUser.followingCount), " following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.posts.length), " posts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.followerCount), " followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.otherUser.followingCount), " following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "profile-name"
       }, this.props.otherUser.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-post-div"
@@ -1958,9 +1990,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_hooks */ "./frontend/components/posts/post_hooks.jsx");
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
-/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
  // import Post from './post';
-
 
 
 
@@ -2001,9 +2031,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchComments: function fetchComments() {
       return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__["fetchComments"])());
-    },
-    fetchPosts: function fetchPosts() {
-      return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__["fetchPosts"])());
     }
   };
 };
@@ -2075,8 +2102,7 @@ function Post(props) {
     likeId: props.post.likeId,
     data: props.data,
     countLikes: props.post.countLikes,
-    fetchLikes: props.fetchLikes,
-    fetchPosts: props.fetchPosts
+    fetchLikes: props.fetchLikes
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: captionClass
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -3476,9 +3502,9 @@ var createFollow = function createFollow(follow) {
     }
   });
 };
-var deleteFollow = function deleteFollow(followId) {
+var deleteFollow = function deleteFollow(data) {
   return $.ajax({
-    url: "api/follows/".concat(followId),
+    url: "api/follows/".concat(data.followed_id),
     method: 'DELETE'
   });
 };

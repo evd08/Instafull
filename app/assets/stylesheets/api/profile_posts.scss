@@ -110,7 +110,17 @@
     position: relative;
     width: 105px;
     height: 28px;
-    
+    font-weight: bold;
+}
+
+.follow-button {
+    border-radius: 4px;
+    position: relative;
+    width: 105px;
+    height: 28px; 
+    background-color: #3897f0;
+    color: white;
+    font-weight: bold;
 }
 
 .hide {

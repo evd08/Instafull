@@ -43,6 +43,7 @@
     display: inline-block;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
 }
 
 .edit-username {
@@ -59,6 +60,10 @@
     align-items: center;
     width: 100%;
     height: 10%;
+
+    .option-button {
+        padding-right: 3%;
+    }
 }
 
 .edit-delete-button {

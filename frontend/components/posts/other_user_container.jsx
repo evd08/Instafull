@@ -7,7 +7,6 @@ import { fetchUserByUsername} from '../../actions/users_actions';
 import { createFollow, deleteFollow } from '../../actions/follows_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   return {
     currentUser: state.entities.users[state.session.id],
     username: ownProps.match.params.username,

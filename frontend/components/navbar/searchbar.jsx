@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function searchbar(props) {
@@ -41,6 +41,7 @@ export default function searchbar(props) {
         <input 
           type="text"
           placeholder="search"
+          autoComplete="off"
           onChange={handleUpdate}
           id="txtbox"
         />
