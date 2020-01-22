@@ -40,22 +40,27 @@ export default function EditProfile(props) {
         <div className="edit-preview-img">
           {preview}
         </div>
-        {props.currentUser.username}
+        <p>{props.currentUser.username}</p>
       </div>
 
       <form className="edit-profile-form">
-        <label>Name
-          <input type="text" placeholder={props.currentUser.name} onChange={updateName} />
-        </label>
-        <label>Username
-          <input type="text" placeholder={props.currentUser.username} onChange={updateUsername} />
-        </label>
-        <label>Email
-          <input type="text" placeholder={props.currentUser.email} onChange={updateEmail} />
-        </label>
+        <div className="edit-profile-form-div1">
+          {/* <div className="edit-profile-form-div2"> */}
+            <label>Name
+              <input type="text" placeholder={props.currentUser.name} onChange={updateName} />
+            </label>
+            <label>Username
+              <input type="text" placeholder={props.currentUser.username} onChange={updateUsername} />
+            </label>
+            <label>Email
+              <input type="text" placeholder={props.currentUser.email} onChange={updateEmail} />
+            </label>
+          {/* </div> */}
+        </div>
+        
         <div className="edit-option-button">
           <button onClick={handleCancel}>Cancel</button>
-          <button onClick={handleSubmit}>Update</button>
+          <button className="submit-button" onClick={handleSubmit}>Update</button>
         </div>
       </form>
 

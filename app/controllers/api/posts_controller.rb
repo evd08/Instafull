@@ -1,7 +1,9 @@
 class Api::PostsController < ApplicationController
 
     def index 
-        @posts = Post.where(user_id: params[:user_id])
+        user_ids = params[:user_id].split(",").map(&:to_i)
+        @posts = Post.where(user_id: user_ids)
+        # @posts = (@posts.sort_by &:updated_at).reverse()
         # debugger
         # @posts = Post.where(username: params[:username])
     end

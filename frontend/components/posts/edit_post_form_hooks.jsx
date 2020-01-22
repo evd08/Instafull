@@ -22,7 +22,8 @@ export default function EditPost(props) {
   }
 
   function handleDelete() {
-    props.deletePost()
+    props.deletePost(props.post.id)
+      .then(props.history.push(`/${props.post.username}`))
   }
 
   return (

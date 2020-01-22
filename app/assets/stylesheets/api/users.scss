@@ -23,8 +23,8 @@
 
 .edit-profile-form {
   width: 50%;
-  background-color: beige;
-  padding: 3% 3%;
+  background-color: whitesmoke;
+  padding: 3%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -33,15 +33,56 @@
   min-width: 350px;
 }
 
+.edit-profile-form-div1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+    label {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 4vh;
+    text-align: left;
+    font-size: large;
+
+    input {
+      position: absolute;
+      left: 30%;
+      text-align: center;
+    }
+  }
+}
+
+// .edit-profile-form-div2 {
+//   display: flex;
+//   flex-direction: column;
+//   width: 60%;
+
+
+// }
+
 .edit-profile-preview {
   display: flex;
-  justify-content: space-between;;
+  justify-content: space-around;
   text-align: center;
+  width: 40%;
+  height: 10vh;
+  padding-bottom: 8%;
+  position: relative;
+
+  p {
+    align-items: center;
+    display: flex;
+    font-size: larger;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
 }
 
 .edit-profile-pic-img {
-  width: 100%;
-  height: fit-content;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -52,5 +93,20 @@
 
 .edit-option-button {
   justify-content: space-evenly;
+  position: relative;
+  width: 100%;
+  padding-top: 5%;
+  text-align: center;
+
+  button {
+    height: 28px;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+
+  .submit-button {
+    background-color: #3897f0;
+  }
 }
+
 

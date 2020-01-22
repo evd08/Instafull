@@ -4,11 +4,11 @@ import { fetchPosts } from '../../actions/posts_actions';
 import { fetchComments } from '../../actions/comments_actions';
 
 const mapStateToProps = (state, ownProps) => {
-
     return {
-        posts: Object.values(state.entities.posts),
-        currentUser: state.entities.users[state.session.id].username,
-        currentUserId: state.entities.users[state.session.id].id,
+        posts: Object.values(state.entities.posts).reverse(),
+        currentUser: state.entities.users[state.session.id],
+        followingIds: Object.values(state.entities.users[state.session.id].followed).map(({ followed_id }) => followed_id)
+        // currentUserId: state.entities.users[state.session.id].id,
         // users: Object.values(state.entities.users),
     }
 }

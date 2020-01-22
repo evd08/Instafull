@@ -609,6 +609,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _profile_user_post_show_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile/user_post_show_container */ "./frontend/components/profile/user_post_show_container.jsx");
+/* harmony import */ var _profile_user_post_show_container__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_profile_user_post_show_container__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _posts_post_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./posts/post_index_container */ "./frontend/components/posts/post_index_container.jsx");
 /* harmony import */ var _posts_create_post_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./posts/create_post_form_container */ "./frontend/components/posts/create_post_form_container.jsx");
 /* harmony import */ var _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./posts/edit_post_container */ "./frontend/components/posts/edit_post_container.jsx");
@@ -1382,22 +1383,20 @@ function (_React$Component) {
       currentUser: _this.props.post.currentUser,
       caption: _this.props.post.caption,
       photoFile: null,
-      photoUrl: null,
-      posts: _this.props.posts,
-      post: _this.props.post
+      photoUrl: null // posts: this.props.posts,
+      // post: this.props.post
+
     };
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleCaption = _this.handleCaption.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //     this.props.fetchPosts();
+  // }
+
 
   _createClass(PostForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchPosts();
-    }
-  }, {
     key: "handleCaption",
     value: function handleCaption(e) {
       this.setState({
@@ -1509,8 +1508,8 @@ var mapStateToProps = function mapStateToProps(state) {
       // user_id: state.session.id,
       currentUser: state.entities.users[state.session.id],
       caption: ''
-    },
-    posts: state.entities.posts // formType: 'Create Post'
+    } // posts: state.entities.posts,
+    // formType: 'Create Post'
 
   };
 };
@@ -1519,10 +1518,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createPost: function createPost(post) {
       return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["createPost"])(post));
-    },
-    fetchPosts: function fetchPosts() {
-      return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPosts"])());
-    }
+    } // fetchPosts: () => dispatch(fetchPosts())
+
   };
 };
 
@@ -1636,7 +1633,7 @@ function EditPost(props) {
   }
 
   function handleDelete() {
-    props.deletePost();
+    props.deletePost(props.post.id).then(props.history.push("/".concat(props.post.username)));
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2181,7 +2178,8 @@ function (_React$Component) {
   _createClass(PostIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPosts(this.props.currentUserId);
+      this.props.followingIds.push(this.props.currentUser.id);
+      this.props.fetchPosts(this.props.followingIds);
       this.props.fetchComments();
     }
   }, {
@@ -2197,7 +2195,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: post.id,
           post: post,
-          currentUser: _this.props.currentUser
+          currentUser: _this.props.currentUser.username
         });
       }))));
     }
@@ -2230,9 +2228,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    posts: Object.values(state.entities.posts),
-    currentUser: state.entities.users[state.session.id].username,
-    currentUserId: state.entities.users[state.session.id].id // users: Object.values(state.entities.users),
+    posts: Object.values(state.entities.posts).reverse(),
+    currentUser: state.entities.users[state.session.id],
+    followingIds: Object.values(state.entities.users[state.session.id].followed).map(function (_ref) {
+      var followed_id = _ref.followed_id;
+      return followed_id;
+    }) // currentUserId: state.entities.users[state.session.id].id,
+    // users: Object.values(state.entities.users),
 
   };
 };
@@ -2332,7 +2334,12 @@ function PostPreview(props) {
   // });
 
 
-  var captionClass = props.post.caption ? 'edit-post-list' : 'hide';
+  var captionClass = props.post.caption ? 'edit-post-list' : 'hide'; // debugger
+
+  var postMenu = props.post.username === props.currentUser.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "post-preview-button",
+    onClick: handleClick
+  }, "...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "outer-show-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2360,10 +2367,7 @@ function PostPreview(props) {
     className: "post-user-button"
   }, props.currentUser.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "option-button"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "post-preview-button",
-    onClick: handleClick
-  }, "..."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, postMenu)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: captionClass
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "comment-text"
@@ -2379,12 +2383,12 @@ function PostPreview(props) {
       className: "comment-div"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "option-button"
-    }, comment.username), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, comment.username), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.post.username === props.currentUser.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "post-preview-button",
       onClick: function onClick() {
         return handleComment(comment.id);
       }
-    }, "...")) : null;
+    }, "...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)) : null;
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
     createComment: props.createComment,
     deleteComment: props.deleteComment,
@@ -2397,7 +2401,8 @@ function PostPreview(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_edit_post_form_hooks__WEBPACK_IMPORTED_MODULE_2__["default"], {
     deletePost: props.deletePost,
     updatePost: props.updatePost,
-    post: props.post
+    post: props.post,
+    history: props.history
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "update-comment-modal"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_edit_comment_form__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -2493,8 +2498,10 @@ function EditProfile(props) {
     className: "edit-profile-preview"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "edit-preview-img"
-  }, preview), props.currentUser.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, preview), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.currentUser.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "edit-profile-form"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-profile-form-div1"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     placeholder: props.currentUser.name,
@@ -2507,182 +2514,15 @@ function EditProfile(props) {
     type: "text",
     placeholder: props.currentUser.email,
     onChange: updateEmail
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "edit-option-button"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleCancel
   }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "submit-button",
     onClick: handleSubmit
   }, "Update"))));
 }
-
-/***/ }),
-
-/***/ "./frontend/components/profile/user_post_show.jsx":
-/*!********************************************************!*\
-  !*** ./frontend/components/profile/user_post_show.jsx ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navbar/navbar_container */ "./frontend/components/navbar/navbar_container.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _edit_profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit_profile */ "./frontend/components/profile/edit_profile.jsx");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-var UserPostShow =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(UserPostShow, _React$Component);
-
-  function UserPostShow(props) {
-    var _this;
-
-    _classCallCheck(this, UserPostShow);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(UserPostShow).call(this, props));
-    _this.state = {
-      photoFile: null,
-      picUrl: null
-    };
-    _this.handleProfilePic = _this.handleProfilePic.bind(_assertThisInitialized(_this));
-    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(UserPostShow, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      // debugger
-      this.props.fetchPosts(this.props.currentUser.id);
-      this.props.fetchComments();
-    }
-  }, {
-    key: "handleFile",
-    value: function handleFile(e) {
-      var file = e.currentTarget.files[0];
-      this.setState({
-        photoFile: file
-      }, this.handleProfilePic);
-    }
-  }, {
-    key: "handleProfilePic",
-    value: function handleProfilePic() {
-      var formData = new FormData();
-      formData.append('user[pic]', this.state.photoFile);
-      formData.append('user[id]', this.props.currentUser.id);
-      this.props.updateUser(formData).then(function () {
-        return window.location.reload(false);
-      });
-    }
-  }, {
-    key: "handleEditProfile",
-    value: function handleEditProfile() {
-      // <EditProfile currentUser={this.props.currentUser}/>
-      document.querySelector('.modal-bg').style.visibility = "visible";
-      document.querySelector('.update-user-modal').style.visibility = "visible";
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var preview = this.props.currentUser.picUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "profile-pic-img",
-        src: this.props.currentUser.picUrl
-      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-        className: "profile-pic-img",
-        fill: "gray",
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "24",
-        height: "24",
-        viewBox: "0 0 24 24"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-        d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"
-      }));
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "outer-show-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-pic-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "file-input"
-      }, preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.handleFile,
-        type: "file",
-        id: "file-input",
-        className: "hide"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-details"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-username-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "profile-username-print"
-      }, this.props.currentUser.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleEditProfile,
-        className: "edit-profile-button"
-      }, "Edit Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-right-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "counts"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.posts.length, " Posts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "profile-name"
-      }, this.props.currentUser.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-post-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "posts-ul"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-ul-div"
-      }, this.props.posts.map(function (post) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: post.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "users-post-div"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "/posts/".concat(post.id, "/edit")
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "users-post-img",
-          src: post.photoUrl
-        }))));
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-bg"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "update-user-modal"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_edit_profile__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        currentUser: this.props.currentUser,
-        updateUser: this.props.updateUser
-      }))));
-    }
-  }]);
-
-  return UserPostShow;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (UserPostShow);
 
 /***/ }),
 
@@ -2690,49 +2530,32 @@ function (_React$Component) {
 /*!******************************************************************!*\
   !*** ./frontend/components/profile/user_post_show_container.jsx ***!
   \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _user_post_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_post_show */ "./frontend/components/profile/user_post_show.jsx");
-/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
-/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
-/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
-
-
-
-
- // import { openModal } from '../../actions/modal_actions';
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    posts: Object.values(state.entities.posts),
-    // currentUserPosts: state.entities.posts[ownProps.match.params.postId],
-    // post: state.entities.posts[ownProps.match.params.postId],
-    currentUser: state.entities.users[state.session.id]
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchPosts: function fetchPosts(posts) {
-      return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPosts"])(posts));
-    },
-    fetchPost: function fetchPost(postId) {
-      return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPost"])(postId));
-    },
-    updateUser: function updateUser(user) {
-      return dispatch(Object(_actions_users_actions__WEBPACK_IMPORTED_MODULE_3__["updateUser"])(user));
-    },
-    fetchComments: function fetchComments() {
-      return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_4__["fetchComments"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_user_post_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
+// import { connect } from 'react-redux';
+// import UserPostShow from './user_post_show';
+// import { fetchPosts, fetchPost } from '../../actions/posts_actions';
+// import { updateUser } from '../../actions/users_actions';
+// import { fetchComments } from '../../actions/comments_actions';
+// // import { openModal } from '../../actions/modal_actions';
+// const mapStateToProps = (state, ownProps) => {
+//     return {
+//         posts: Object.values(state.entities.posts),
+//         // currentUserPosts: state.entities.posts[ownProps.match.params.postId],
+//         // post: state.entities.posts[ownProps.match.params.postId],
+//         currentUser: state.entities.users[state.session.id],
+//     }
+// }
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         fetchPosts: posts => dispatch(fetchPosts(posts)),
+//         fetchPost: postId => dispatch(fetchPost(postId)),
+//         updateUser: user => dispatch(updateUser(user)),
+//         fetchComments: () => dispatch(fetchComments()),
+//     }
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(UserPostShow);
 
 /***/ }),
 

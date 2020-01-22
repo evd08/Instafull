@@ -8,7 +8,8 @@ class PostIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchPosts(this.props.currentUserId);
+        this.props.followingIds.push(this.props.currentUser.id)
+        this.props.fetchPosts(this.props.followingIds);
         this.props.fetchComments();
     }
 
@@ -20,7 +21,7 @@ class PostIndex extends React.Component {
                 <div className="main-div">
                 <ul className="main-ul-div">
                     {this.props.posts.map((post) => (
-                        <PostContainer key={post.id} post={post} currentUser={this.props.currentUser} />
+                        <PostContainer key={post.id} post={post} currentUser={this.props.currentUser.username} />
                     ))
                     }
                 </ul>

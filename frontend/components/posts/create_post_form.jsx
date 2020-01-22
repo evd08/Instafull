@@ -9,8 +9,8 @@ class PostForm extends React.Component {
             caption: this.props.post.caption,
             photoFile: null,
             photoUrl: null,
-            posts: this.props.posts,
-            post: this.props.post
+            // posts: this.props.posts,
+            // post: this.props.post
         }
 
         this.handleFile = this.handleFile.bind(this);
@@ -18,9 +18,9 @@ class PostForm extends React.Component {
         this.handleCaption = this.handleCaption.bind(this);
     }
     
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
+    // componentDidMount() {
+    //     this.props.fetchPosts();
+    // }
 
     handleCaption(e) {
         this.setState({caption: e.currentTarget.value});
@@ -66,40 +66,7 @@ class PostForm extends React.Component {
                     <Navbar />
                 </div>
 
-                {/* <div className="profile-div">
-
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <div className="post-preview-div">
-                                {preview}
-                            </div>
-                        </div>
-
-                        <div>
-                            <p>Upload a photo</p>
-                            <input type="file" onChange={this.handleFile}/>
-                            <br/>
-                            
-                            <br/>
-                            <textarea  
-                                id="post-body" 
-                                placeholder="Add a caption"
-                                onChange={this.handleCaption}
-                            />
-                            <br/>
-                            <input 
-                                type="submit" 
-                                className="auth-button"
-                                value="Create a new post"
-                            />
-                        </div>
-                    </form>
-                </div> */}
-
-{/*  */}
-
                 <div className="post-preview-main-div">
-                {/* <div className="edit-post-div"> */}
 
                     <form className="post-preview-div" onSubmit={this.handleSubmit}>
                         <div className="post-preview-img-div">
@@ -132,7 +99,6 @@ class PostForm extends React.Component {
                         </div>
 
                     </form>
-                {/* </div> */}
                 </div>
 
             </div>

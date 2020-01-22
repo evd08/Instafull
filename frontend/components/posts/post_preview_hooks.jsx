@@ -27,6 +27,17 @@ export default function PostPreview(props) {
   // });
 
   let captionClass = props.post.caption ? 'edit-post-list' : 'hide'
+// debugger
+
+  let postMenu = props.post.username === props.currentUser.username ? 
+    <button
+      className="post-preview-button"
+      onClick={handleClick}
+    >
+      ...
+    </button> :
+    <div></div>
+
 
   return (
     <div className="outer-show-div">
@@ -48,23 +59,10 @@ export default function PostPreview(props) {
                 <p className="post-user-button">{props.currentUser.username}</p>
               </div>
               <div className="option-button">
-                <button
-                  className="post-preview-button"
-                  onClick={handleClick}
-                >
-                  ...
-                </button>
+                {postMenu}
               </div>
             </div>
 
-            {/* <div className={captionClass}> */}
-
-              {/* <div className="edit-page-caption">
-                <div className="option-button">
-                  <a className="edit-username" href="/#/users/page">{props.currentUser.username}</a>
-                </div>
-                <div className="comment-text">{props.post.caption}</div>
-              </div> */}
             <div className={captionClass}>
               <p className="comment-text">
                 <Link className="option-button" to={`/users/${props.post.user_id}`}>{props.post.username}</Link>
@@ -82,19 +80,20 @@ export default function PostPreview(props) {
                       {comment.body}
                       <br />
                     </li>
-                    < button
-                      className = "post-preview-button"
-                      onClick = { () => handleComment(comment.id) }
-                    >
-                    ...
-                    </button>
+                      {props.post.username === props.currentUser.username ? (
+                        < button
+                          className="post-preview-button"
+                          onClick={() => handleComment(comment.id)}
+                        >
+                          ...
+                      </button>) : 
+                        (<div></div>)
+                      }
                   </div>
                     : null
                 ))}
               </ul>
             </div>
-
-            {/* </div> */}
 
             <CommentForm
               createComment={props.createComment}
@@ -114,6 +113,7 @@ export default function PostPreview(props) {
           deletePost={props.deletePost}
           updatePost={props.updatePost}
           post={props.post}
+          history={props.history}
         />
       </div>
       

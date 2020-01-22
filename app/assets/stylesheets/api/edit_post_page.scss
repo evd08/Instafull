@@ -104,4 +104,11 @@
 .post-preview-button {
     border: none;
     padding-right: 3%;
+    visibility: visible;
+}
+
+.post-preview-hidden {
+    border: none;
+    padding-right: 3%;
+    visibility: hidden;
 }

@@ -9,7 +9,7 @@ const mapStateToProps = state => {
             currentUser: state.entities.users[state.session.id],
             caption: ''
         },
-        posts: state.entities.posts,
+        // posts: state.entities.posts,
         // formType: 'Create Post'
     }
 }
@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         createPost: post => dispatch(createPost(post)),
-        fetchPosts: () => dispatch(fetchPosts())
+        // fetchPosts: () => dispatch(fetchPosts())
     }
 }
 
