@@ -25,7 +25,7 @@ export default function EditPost(props) {
     props.deletePost(props.post.id)
       .then(props.history.push(`/${props.post.username}`))
   }
-
+  
   return (
     <div className="edit-post-div">
       <h3 className="edit-post-text">Update Post</h3>

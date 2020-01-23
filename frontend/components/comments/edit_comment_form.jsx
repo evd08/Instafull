@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function Comment(props){
 
@@ -8,7 +8,7 @@ export default function Comment(props){
   }
 
   function handleSubmit() {
-    props.deleteComment(props.commentId);
+    props.deleteComment(props.commentId)
     handleCancel();
   }
 

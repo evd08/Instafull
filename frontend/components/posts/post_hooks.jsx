@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Like from '../likes/like_hooks';
 import CommentForm from '../comments/comment_form';
@@ -6,15 +6,7 @@ import MenuPost from '../modal/menu_post_modal';
 
 export default function Post(props) {
 
-  // let like = props.post.countLikes < 2 ? "like" : "likes";
   let captionClass = props.post.caption ? 'edit-post-list' : 'hide';
-
-  // let comments;
-  // props.comments.map((comment) => (
-  //   if(props.post.id === comment.post_id){
-  //     comments.push(comment)
-  //   }
-  // ))
 
   function handleModal() {
     document.querySelector('.modal-bg').style.visibility = ("visible")
@@ -48,10 +40,6 @@ export default function Post(props) {
             fetchLikes={props.fetchLikes}
           />
 
-          {/* <div className="count-likes">
-            <p>{props.post.countLikes} {like}</p>
-          </div> */}
-
           <div className={captionClass}>
             <p className="comment-text">
               <Link className="option-button" to={`/users/${props.post.user_id}`}>{props.post.username}</Link>
@@ -84,7 +72,9 @@ export default function Post(props) {
 
         <div className="modal-bg">
           <div className="menu-post-modal">
-            <MenuPost />
+            <MenuPost 
+              postId={props.post.id}
+            />
           </div>
         </div>
 

@@ -3,7 +3,7 @@ import { Switch, Redirect } from 'react-router-dom';
 import PostShowContainer from './profile/user_post_show_container';
 import PostIndexContainer from './posts/post_index_container';
 import CreatePostContainer from './posts/create_post_form_container';
-import EditPostContainer from './posts/edit_post_container';
+import EditPostContainer from './posts/post_preview_container';
 import SignUpFormContainer from './signup/signup_container';
 import LogInFormContainer from './login/login_container';
 import OtherUserContainer from './posts/other_user_container';

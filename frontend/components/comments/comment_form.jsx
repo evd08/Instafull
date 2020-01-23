@@ -8,17 +8,15 @@ export default function CommentForm(props){
   }
 
   function handleSubmit() {
-    let commentTxtBox = document.querySelector('#comment-textbox')
     props.createComment({ body: comment, user_id: props.currentUserId, post_id: props.postId })
-      // .then(commentTxtBox.value = "") // try later
+    setComment('');
   }
 
 
   return (
     <div className="outer-comment-form">
       <div className="inner-comment-form">
-        <textarea placeholder="Add a comment..." name="" id="comment-textbox" onChange={update}></textarea>
-        {/* <div id="comment-textbox" contentEditable="true" onChange={update} >Add a comment...</div> */}
+        <textarea placeholder="Add a comment..." name="" id="comment-textbox" onChange={update} value={comment}></textarea>
         <button onClick={handleSubmit} className="comment-post-button">Post</button>
       </div>
     </div>

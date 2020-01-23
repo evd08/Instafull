@@ -21,7 +21,7 @@ export default function MenuPost(props) {
     // <div>
       <div className="menu-post-div">
         <button onClick={handleUnfollow}>Unfollow</button>
-        <button>Go to post</button>
+        <button><a href={`/#/posts/${props.postId}/edit`}>Go to post</a></button>
         <button onClick={handleCancel}>Cancel</button>
       </div>
 

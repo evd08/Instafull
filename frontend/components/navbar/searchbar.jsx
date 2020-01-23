@@ -8,6 +8,7 @@ export default function searchbar(props) {
     if(e.currentTarget.value == ""){
       handleSearchbar();
     }
+
     props.fetchSearch({username: e.currentTarget.value})
       .then(res => { setResult(Object.values(res.users)) })
       .then(document.querySelector('.searchList').style.visibility = "visible")
