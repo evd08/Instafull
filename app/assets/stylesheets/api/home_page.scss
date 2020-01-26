@@ -41,6 +41,25 @@
     border-radius: 3px 3px 0 0;
     justify-content: space-between;
     align-items: center;
+
+    span {
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+}
+
+.home-follow {
+    color: #3897f0;
+    display: inline;
+    position: relative;
+    border: none;
+    font-weight: bold;
+    background: none;
+}
+
+.main-username {
+    display: flex;
+    padding-left: 2%;
 }
 
 .option-button {
@@ -142,6 +161,13 @@
     // position: relative;
 }
 
+.follow-user {
+    display: flex;
+    align-items: center;
+    padding-left: 3%;
+    visibility: hidden;
+}
+
 .submit-button-div {
     text-align: center;
 }
@@ -169,4 +195,9 @@
     resize: none;
     border: none;
 
+}
+
+a {
+    color: black;
+    text-decoration: none;
 }

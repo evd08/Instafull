@@ -1,5 +1,4 @@
 import * as PostAPIUtil from '../util/post_api_util';
-import { fetchUser } from '../util/user_api_util';
 
 
 const receiveAllPosts = posts => {

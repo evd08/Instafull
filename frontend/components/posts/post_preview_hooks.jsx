@@ -4,6 +4,7 @@ import EditPost from './edit_post_form_hooks';
 import CommentForm from '../comments/comment_form';
 import EditCommentForm from '../comments/edit_comment_form';
 import { Link } from 'react-router-dom';
+import Like from '../likes/like_hooks';
 
 export default function PostPreview(props) {
   const [commentId, setCommentId] = useState();
@@ -22,25 +23,14 @@ export default function PostPreview(props) {
   
   useEffect(() => {
     if (!props.post) {
-      // debugger
       props.fetchPost(props.match.params.postId)
-        // .then(res => props.fetchUserByUsername(res.username))
       props.fetchComments()
-      // debugger
-      // props.fetchUserByUsername()
     }
   });
 
-  // function handleUser() {
-  //   debugger
-  //   props.fetchUserByUsername(props.post.username);
-  // }
-
   useEffect(() => {
     if (props.post && !Object.keys(props.user).length) {
-      debugger;
       props.fetchUser(props.post.user_id);
-      // props.fetchUserByUsername(props.post.username);
     }
   })
 
@@ -60,12 +50,6 @@ export default function PostPreview(props) {
   }
 
   if (!props.post) return <div></div>
-  // debugger
-  // if (!props.post === false && !props.otherUser) {
-  //   debugger
-  //   // props.fetchUserByUsername(props.post.username)
-  //   handleUser();
-  // }
 
     return (
       <div className="outer-show-div">
@@ -109,7 +93,7 @@ export default function PostPreview(props) {
                     props.post.id === comment.post_id ? (
                       <div className="comment-div">
                         <li>
-                          <p className="option-button">{comment.username}</p>
+                          <p className="option-button"><a href={`/#/${comment.username}`}>{comment.username}</a></p>
                           {comment.body}
                           <br />
                         </li>
@@ -128,6 +112,15 @@ export default function PostPreview(props) {
                   )}
                 </ul>
               </div>
+
+              <Like
+                deleteLike={props.deleteLike}
+                createLike={props.createLike}
+                likeId={props.post.likeId}
+                data={props.data}
+                countLikes={props.post.countLikes}
+                fetchLikes={props.fetchLikes}
+              />
 
               <CommentForm
                 createComment={props.createComment}

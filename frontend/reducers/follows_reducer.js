@@ -15,6 +15,7 @@ const followsReducer = (state = {}, action) => {
       nextState = Object.assign({}, state, { [action.follow.id]: action.follow })
       return nextState;
     case REMOVE_FOLLOW:
+      debugger
       delete nextState[action.followId]
       return nextState;
     default:

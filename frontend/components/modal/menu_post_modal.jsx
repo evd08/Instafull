@@ -1,34 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function MenuPost(props) {
 
+  
+
   function handleCancel() {
-    document.querySelector('.modal-bg').style.visibility = "hidden"
-    document.querySelector('.menu-post-modal').style.visibility = "hidden"
-    document.querySelector('.unfollow-user-modal').style.visibility = "hidden"
+    document.querySelector(`#modal-bg-${props.postId}`).style.visibility = ("hidden")
+    document.querySelector(`#menu-post-modal-${props.postId}`).style.visibility = ("hidden")
   }
 
   function handleUnfollow() {
-    document.querySelector('.menu-post-modal').style.visibility = "hidden"
-    document.querySelector('.unfollow-user-modal').style.visibility = "visible"
+    // debugger
+    // document.querySelector(`#follow-user-${props.userId}`).style.visibility = "visible"
+    props.deleteFollow({ followed_id: props.userId })
+    handleCancel();
   }
 
-  function handleSubmit() {
-    // props.removeFollow() //followId
-  }
-
+// debugger
   return (
-    // <div>
       <div className="menu-post-div">
         <button onClick={handleUnfollow}>Unfollow</button>
         <button><a href={`/#/posts/${props.postId}/edit`}>Go to post</a></button>
         <button onClick={handleCancel}>Cancel</button>
       </div>
-
-    //   <div className="unfollow-user-modal">
-    //     <button onClick={handleSubmit}>Unfollow</button>
-    //     <button onClick={handleCancel}>Cancel</button>
-    //   </div>
-    // </div>
   )
 }

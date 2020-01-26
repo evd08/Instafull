@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Post from './post_hooks';
 import { createLike, deleteLike, fetchLikes } from '../../actions/likes_actions';
 import { createComment, deleteComment, fetchComments } from '../../actions/comments_actions';
+import { deleteFollow } from '../../actions/follows_actions';
 
 const mapStateToProps = (state, ownProps) => {
 // debugger
@@ -26,6 +27,7 @@ const mapDispatchToProps = dispatch => {
         createComment: comment => dispatch(createComment(comment)),
         deleteComment: commentId => dispatch(deleteComment(commentId)),
         fetchComments: () => dispatch(fetchComments()),
+        deleteFollow: followed_id => dispatch(deleteFollow(followed_id)),
     }
 }
 

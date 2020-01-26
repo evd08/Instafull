@@ -12,7 +12,6 @@ class Api::UsersController < ApplicationController
 
     def index
         # @users = User.all
-        # debugger
         if params[:username]
             @user = User.find_by(username: params[:username])
             # debugger

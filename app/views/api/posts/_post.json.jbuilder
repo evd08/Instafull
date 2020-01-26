@@ -9,8 +9,11 @@ else
     json.likeId like
 end
 
-
 json.countLikes post.likes.length #.likes comes from association
+
+if post.user.pic.attached?
+    json.userPic url_for(post.user.pic)
+end
 
 # json.likes do json.
 #     post.likes.each do |like|

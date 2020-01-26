@@ -5,6 +5,7 @@ import likesReducer from './likes_reducer';
 import commentsReducer from './comments_reducer';
 import searchReducer from './search_reducer';
 import otherUsersReducer from './other_users_reducer';
+import followsReducer from './follows_reducer';
 
 const entitiesReducer = combineReducers({
     users: usersReducer,
@@ -13,6 +14,7 @@ const entitiesReducer = combineReducers({
     likes: likesReducer,
     comments: commentsReducer,
     search: searchReducer,
+    follows: followsReducer,
 })
 
 export default entitiesReducer;

@@ -21,6 +21,7 @@ export const createFollow = (follow) => {
 }
 
 export const deleteFollow = (data) => {
+  // debugger
   return $.ajax({
     url: `api/follows/${data.followed_id}`,
     method: 'DELETE',

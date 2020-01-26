@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import PostIndex from './post_index';
 import { fetchPosts } from '../../actions/posts_actions';
 import { fetchComments } from '../../actions/comments_actions';
+// import { fetchUsers } from '../../actions/users_actions';
 
 const mapStateToProps = (state, ownProps) => {
+    debugger
     return {
         posts: Object.values(state.entities.posts).reverse(),
         currentUser: state.entities.users[state.session.id],
@@ -19,6 +21,7 @@ const mapDispatchToProps = dispatch => {
         createLike: like => dispatch(createLike(like)),
         deleteLike: likeId => dispatch(deleteLike(likeId)),
         fetchComments: () => dispatch(fetchComments()),
+        // fetchUsers: () => dispatch(fetchUsers()),
     }
 }
 
