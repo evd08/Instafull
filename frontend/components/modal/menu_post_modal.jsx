@@ -2,21 +2,18 @@ import React, { useState } from 'react';
 
 export default function MenuPost(props) {
 
-  
-
   function handleCancel() {
     document.querySelector(`#modal-bg-${props.postId}`).style.visibility = ("hidden")
     document.querySelector(`#menu-post-modal-${props.postId}`).style.visibility = ("hidden")
   }
 
   function handleUnfollow() {
-    // debugger
-    // document.querySelector(`#follow-user-${props.userId}`).style.visibility = "visible"
+    debugger
+    document.querySelectorAll(`#follow-user-${props.userId}`).forEach(el => el.style.visibility = 'visible')
     props.deleteFollow({ followed_id: props.userId })
     handleCancel();
   }
 
-// debugger
   return (
       <div className="menu-post-div">
         <button onClick={handleUnfollow}>Unfollow</button>

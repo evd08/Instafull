@@ -11,10 +11,16 @@ class PostIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.props.followingIds.push(this.props.currentUser.id)
-        this.props.fetchPosts(this.props.followingIds);
-        this.props.fetchComments()
-            .then(this.setState({ loading: false }))
+      this.props.fetchFollows(this.props.currentUser.id)
+        .then((res) => {
+          let ids = res.follows.followed.map(({ followed_id }) => followed_id)
+          ids.push(this.props.currentUser.id)
+          this.props.fetchPosts(ids)
+        })
+        .then(() => {
+          this.props.fetchComments()
+          this.setState({ loading: false })
+        })
     }
 
     render(){

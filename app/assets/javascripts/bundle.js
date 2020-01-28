@@ -203,9 +203,9 @@ var removeFollow = function removeFollow(followId) {
 var RECEIVE_ALL_FOLLOWS = 'RECEIVE_ALL_FOLLOWS';
 var RECEIVE_FOLLOW = "RECEIVE_FOLLOW";
 var REMOVE_FOLLOW = 'REMOVE_FOLLOW';
-var fetchFollows = function fetchFollows(postId) {
+var fetchFollows = function fetchFollows(userId) {
   return function (dispatch) {
-    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchFollows"](postId).then(function (follows) {
+    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchFollows"](userId).then(function (follows) {
       return dispatch(receiveAllFollows(follows));
     });
   };
@@ -226,7 +226,6 @@ var createFollow = function createFollow(follow) {
 };
 var deleteFollow = function deleteFollow(data) {
   return function (dispatch) {
-    // debugger
     return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteFollow"](data).then(function (follow) {
       return dispatch(removeFollow(follow));
     });
@@ -1057,14 +1056,15 @@ function MenuPost(props) {
   }
 
   function handleUnfollow() {
-    // debugger
-    // document.querySelector(`#follow-user-${props.userId}`).style.visibility = "visible"
+    debugger;
+    document.querySelectorAll("#follow-user-".concat(props.userId)).forEach(function (el) {
+      return el.style.visibility = 'visible';
+    });
     props.deleteFollow({
       followed_id: props.userId
     });
     handleCancel();
-  } // debugger
-
+  }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-post-div"
@@ -2006,6 +2006,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     deleteFollow: function deleteFollow(followed_id) {
       return dispatch(Object(_actions_follows_actions__WEBPACK_IMPORTED_MODULE_4__["deleteFollow"])(followed_id));
+    },
+    createFollow: function createFollow(followed_id) {
+      return dispatch(Object(_actions_follows_actions__WEBPACK_IMPORTED_MODULE_4__["createFollow"])(followed_id));
     }
   };
 };
@@ -2043,10 +2046,32 @@ function Post(props) {
     document.querySelector("#menu-post-modal-".concat(props.post.id)).style.visibility = "visible";
   }
 
+  function handleFollow(id) {
+    props.createFollow({
+      followed_id: id
+    });
+    document.querySelectorAll("#follow-user-".concat(id)).forEach(function (el) {
+      return el.style.visibility = 'hidden';
+    });
+  }
+
   var btn = props.post.username === props.currentUser.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleModal,
     className: "option-button"
   }, "...");
+  var preview = props.post.userPic ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "mini-profile-pic",
+    src: props.post.userPic
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "profile-pic-img",
+    fill: "gray",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"
+  }));
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "main-li"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2057,16 +2082,16 @@ function Post(props) {
     className: "user"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-profile-pic-div"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "mini-profile-pic",
-    src: props.post.userPic
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, preview), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "post-user-button",
     to: "/".concat(props.post.username)
   }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "follow-user",
     id: "follow-user-".concat(props.post.user_id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u2022"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return handleFollow(props.post.user_id);
+    },
     className: "home-follow"
   }, "Follow"))), btn), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "main-posts",
@@ -2092,7 +2117,9 @@ function Post(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "comment-text"
   }, props.comments.map(function (comment) {
-    return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: comment.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "option-button"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/#/".concat(comment.username)
@@ -2175,16 +2202,28 @@ function (_React$Component) {
   _createClass(PostIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.followingIds.push(this.props.currentUser.id);
-      this.props.fetchPosts(this.props.followingIds);
-      this.props.fetchComments().then(this.setState({
-        loading: false
-      }));
+      var _this2 = this;
+
+      this.props.fetchFollows(this.props.currentUser.id).then(function (res) {
+        var ids = res.follows.followed.map(function (_ref) {
+          var followed_id = _ref.followed_id;
+          return followed_id;
+        });
+        ids.push(_this2.props.currentUser.id);
+
+        _this2.props.fetchPosts(ids);
+      }).then(function () {
+        _this2.props.fetchComments();
+
+        _this2.setState({
+          loading: false
+        });
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return this.state.loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_loader_spinner__WEBPACK_IMPORTED_MODULE_3___default.a, {
         type: "Bars",
@@ -2198,7 +2237,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: post.id,
           post: post,
-          currentUser: _this2.props.currentUser.username
+          currentUser: _this3.props.currentUser.username
         });
       }))));
     }
@@ -2224,21 +2263,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_index */ "./frontend/components/posts/post_index.jsx");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_follows_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/follows_actions */ "./frontend/actions/follows_actions.js");
+
 
 
 
  // import { fetchUsers } from '../../actions/users_actions';
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     posts: Object.values(state.entities.posts).reverse(),
     currentUser: state.entities.users[state.session.id],
-    followingIds: Object.values(state.entities.users[state.session.id].followed).map(function (_ref) {
+    // followingIds: Object.values(state.entities.users[state.session.id].followed).map(({ followed_id }) => followed_id)
+    followingIds: Object.values(state.entities.follows).length ? Object.values(state.entities.follows.followed).map(function (_ref) {
       var followed_id = _ref.followed_id;
       return followed_id;
-    }) // currentUserId: state.entities.users[state.session.id].id,
-    // users: Object.values(state.entities.users),
+    }) : [] // users: Object.values(state.entities.users),
 
   };
 };
@@ -2276,6 +2316,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }),
     fetchComments: function fetchComments() {
       return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__["fetchComments"])());
+    },
+    fetchFollows: function fetchFollows(userId) {
+      return dispatch(Object(_actions_follows_actions__WEBPACK_IMPORTED_MODULE_4__["fetchFollows"])(userId));
     } // fetchUsers: () => dispatch(fetchUsers()),
 
   };
@@ -2425,6 +2468,19 @@ function PostPreview(props) {
   }
 
   if (!props.post) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+  var preview = props.user.picUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "mini-profile-pic",
+    src: props.user.picUrl
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "profile-pic-img",
+    fill: "gray",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"
+  }));
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "outer-show-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2445,10 +2501,7 @@ function PostPreview(props) {
     className: "user"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-profile-pic-div"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "mini-profile-pic",
-    src: props.user.picUrl
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, preview), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "post-user-button"
   }, props.user.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "option-button"
@@ -3058,11 +3111,14 @@ var followsReducer = function followsReducer() {
       return action.follows;
 
     case _actions_follows_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FOLLOW"]:
-      nextState = Object.assign({}, state, _defineProperty({}, action.follow.id, action.follow));
+      var addition = Object.assign({}, state.followed, _defineProperty({}, action.follow.id, action.follow));
+      nextState = Object.assign({}, state, {
+        followed: addition
+      }); // Object.assign({}, state, {followed: (Object.assign({}, state.followed, { [action.follow.id]: action.follow }))})
+
       return nextState;
 
     case _actions_follows_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_FOLLOW"]:
-      debugger;
       delete nextState[action.followId];
       return nextState;
 
@@ -3444,10 +3500,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFollow", function() { return fetchFollow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFollow", function() { return createFollow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFollow", function() { return deleteFollow; });
-var fetchFollows = function fetchFollows() {
+var fetchFollows = function fetchFollows(userId) {
   return $.ajax({
     url: "api/follows",
-    method: 'GET'
+    method: 'GET',
+    data: {
+      userId: userId
+    }
   });
 };
 var fetchFollow = function fetchFollow(followId) {

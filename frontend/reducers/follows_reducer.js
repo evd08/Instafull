@@ -12,10 +12,11 @@ const followsReducer = (state = {}, action) => {
     case RECEIVE_ALL_FOLLOWS:
       return action.follows;
     case RECEIVE_FOLLOW:
-      nextState = Object.assign({}, state, { [action.follow.id]: action.follow })
+      let addition = Object.assign({}, state.followed, { [action.follow.id]: action.follow })
+      nextState = Object.assign({}, state, { followed: addition })
+      // Object.assign({}, state, {followed: (Object.assign({}, state.followed, { [action.follow.id]: action.follow }))})
       return nextState;
     case REMOVE_FOLLOW:
-      debugger
       delete nextState[action.followId]
       return nextState;
     default:

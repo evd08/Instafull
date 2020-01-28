@@ -23,8 +23,8 @@ export const RECEIVE_ALL_FOLLOWS = 'RECEIVE_ALL_FOLLOWS';
 export const RECEIVE_FOLLOW = "RECEIVE_FOLLOW";
 export const REMOVE_FOLLOW = 'REMOVE_FOLLOW';
 
-export const fetchFollows = postId => dispatch => {
-  return FollowAPIUtil.fetchFollows(postId)
+export const fetchFollows = userId => dispatch => {
+  return FollowAPIUtil.fetchFollows(userId)
     .then(follows => dispatch(receiveAllFollows(follows)))
 }
 
@@ -39,7 +39,6 @@ export const createFollow = follow => dispatch => {
 }
 
 export const deleteFollow = data => dispatch => {
-  // debugger
   return FollowAPIUtil.deleteFollow(data)
     .then(follow => dispatch(removeFollow(follow)))
 }
