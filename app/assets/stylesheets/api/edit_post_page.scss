@@ -8,8 +8,8 @@
 
 .post-preview-div {
     display: inline-flex;
-    min-width: 900px;
-    max-width: 900px;
+    min-width: 902px;
+    max-width: 902px;
     min-height: 600px;
     max-height: 600px;
     border-style: solid;
@@ -23,6 +23,8 @@
     max-width: 600px;
     max-height: 600px;
     min-height: 600px;
+    box-sizing: border-box;
+    padding: 1px 0px;
 }
 
 .post-preview-img {
@@ -30,11 +32,10 @@
     // width: 400px;
     // height: 450px;
     vertical-align: middle;
-    height: 600px;
+    height: 598px;
     width: 600px;
     object-fit: contain;
     background-color: whitesmoke;
-    border-top: 1px black solid; //temporary
     // border: solid 1px;
 }
 
@@ -55,16 +56,26 @@
 }
 
 .post-preview-username-div {
+    box-sizing: border-box;
     display: inline-flex;
     justify-content: space-between;
-    border-bottom: solid 1px #e6e6e6;
     align-items: center;
     width: 100%;
     height: 10%;
+    // padding: 1px;
 
     .option-button {
         padding-right: 3%;
     }
+}
+
+.post-preview-username-wrapper {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-bottom: solid 1px #e6e6e6;
 }
 
 .edit-delete-button {
@@ -82,6 +93,18 @@
     display: inline-block;
     width: 100%;
     text-align: left;
+
+    p {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+        line-height: 25px;
+        width: -webkit-fill-available;;
+        min-height: 35px;
+        max-height: 35px;
+        align-items: center;
+        flex-direction: column;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
 }
 
 .add-comment-div {

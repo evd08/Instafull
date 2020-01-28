@@ -679,7 +679,13 @@ function CommentForm(props) {
       setComment = _useState2[1];
 
   function update(e) {
-    setComment(e.target.value);
+    setComment(e.target.value); // const lines = Math.floor(comment.length / 24);
+    // document.getElementById("comment-textbox").style.height = `${18*(lines+1)}px`;
+    // const commentStyle = document.getElementsByClassName("comment-text")[0].style;
+    // // /\d+/
+    // if (Number(commentStyle.minHeight.match(/[0-9]+/)) > 200) {
+    //   commentStyle.minHeight = `${440-(18*lines)}px`;
+    // }
   }
 
   function handleSubmit() {
@@ -2498,6 +2504,8 @@ function PostPreview(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-preview-username-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "post-preview-username-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "user"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-profile-pic-div"
@@ -2505,11 +2513,9 @@ function PostPreview(props) {
     className: "post-user-button"
   }, props.user.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "option-button"
-  }, postMenu)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, postMenu))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: captionClass
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-text"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
     className: "option-button",
     to: "/users/".concat(props.post.user_id)
   }, props.post.username), props.post.caption)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

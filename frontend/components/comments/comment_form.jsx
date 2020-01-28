@@ -5,6 +5,14 @@ export default function CommentForm(props){
 
   function update(e) {
     setComment(e.target.value)
+    
+    // const lines = Math.floor(comment.length / 24);
+    // document.getElementById("comment-textbox").style.height = `${18*(lines+1)}px`;
+    // const commentStyle = document.getElementsByClassName("comment-text")[0].style;
+    // // /\d+/
+    // if (Number(commentStyle.minHeight.match(/[0-9]+/)) > 200) {
+    //   commentStyle.minHeight = `${440-(18*lines)}px`;
+    // }
   }
 
   function handleSubmit() {

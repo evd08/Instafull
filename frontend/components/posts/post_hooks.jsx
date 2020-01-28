@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Like from '../likes/like_hooks';
 import CommentForm from '../comments/comment_form';

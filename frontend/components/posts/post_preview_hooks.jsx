@@ -69,17 +69,19 @@ export default function PostPreview(props) {
 
             <div className="edit-div">
               <div className="post-preview-username-div">
-                <div className="user">
-                  <div className="mini-profile-pic-div">
-                    {preview}
+                <div className="post-preview-username-wrapper">
+                  <div className="user">
+                    <div className="mini-profile-pic-div">
+                      {preview}
+                    </div>
+                    <p className="post-user-button">{props.user.username}</p>
                   </div>
-                  <p className="post-user-button">{props.user.username}</p>
+                  <div className="option-button">{postMenu}</div>
                 </div>
-                <div className="option-button">{postMenu}</div>
               </div>
 
               <div className={captionClass}>
-                <p className="comment-text">
+                <p>
                   <Link
                     className="option-button"
                     to={`/users/${props.post.user_id}`}

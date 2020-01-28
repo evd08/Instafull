@@ -79,12 +79,13 @@
     // text-align: start;
     width: -webkit-fill-available;;
     min-height: 35px;
-    max-height: 105px;
+    max-height: 405px;
     align-items: center;
     // display: inline-flex;
     flex-direction: column;
     padding-left: 3%;
     padding-right: 3%;
+    overflow: scroll;
 }
 
 .post-user-button {
