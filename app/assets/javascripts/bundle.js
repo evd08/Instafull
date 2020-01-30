@@ -1057,12 +1057,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function MenuPost(props) {
   function handleCancel() {
-    document.querySelector("#modal-bg-".concat(props.postId)).style.visibility = "hidden";
-    document.querySelector("#menu-post-modal-".concat(props.postId)).style.visibility = "hidden";
+    document.querySelector("#modal-bg-".concat(props.postId, "-user-").concat(props.userId)).style.visibility = "hidden";
+    document.querySelector("#menu-post-modal-".concat(props.postId, "-user-").concat(props.userId)).style.visibility = "hidden";
   }
 
   function handleUnfollow() {
-    debugger;
     document.querySelectorAll("#follow-user-".concat(props.userId)).forEach(function (el) {
       return el.style.visibility = 'visible';
     });
@@ -1072,11 +1071,23 @@ function MenuPost(props) {
     handleCancel();
   }
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  var following = true;
+
+  if (document.querySelector("#follow-user-".concat(props.userId))) {
+    document.querySelector("#follow-user-".concat(props.userId)).style.visibility === "hidden" || document.querySelector("#follow-user-".concat(props.userId)).style.visibility === "" ? following = true : following = false;
+  }
+
+  return following ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-post-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleUnfollow
   }, "Unfollow"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/#/posts/".concat(props.postId, "/edit")
+  }, "Go to post")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleCancel
+  }, "Cancel")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "menu-post-div"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/#/posts/".concat(props.postId, "/edit")
   }, "Go to post")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleCancel
@@ -2048,8 +2059,8 @@ function Post(props) {
   var captionClass = props.post.caption ? 'edit-post-list' : 'hide';
 
   function handleModal() {
-    document.querySelector("#modal-bg-".concat(props.post.id)).style.visibility = "visible";
-    document.querySelector("#menu-post-modal-".concat(props.post.id)).style.visibility = "visible";
+    document.querySelector("#modal-bg-".concat(props.post.id, "-user-").concat(props.post.user_id)).style.visibility = "visible";
+    document.querySelector("#menu-post-modal-".concat(props.post.id, "-user-").concat(props.post.user_id)).style.visibility = "visible";
   }
 
   function handleFollow(id) {
@@ -2137,10 +2148,10 @@ function Post(props) {
     postId: props.data.post_id
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-bg",
-    id: "modal-bg-".concat(props.post.id)
+    id: "modal-bg-".concat(props.post.id, "-user-").concat(props.post.user_id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-post-modal",
-    id: "menu-post-modal-".concat(props.post.id)
+    id: "menu-post-modal-".concat(props.post.id, "-user-").concat(props.post.user_id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_menu_post_modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     postId: props.post.id,
     userId: props.post.user_id,
@@ -2529,7 +2540,7 @@ function PostPreview(props) {
       className: "option-button"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/#/".concat(comment.username)
-    }, comment.username)), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.user.username === props.currentUser.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, comment.username)), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.user.username === props.currentUser.username || props.currentUser.username === comment.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "post-preview-button",
       onClick: function onClick() {
         return handleComment(comment.id);

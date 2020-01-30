@@ -102,7 +102,7 @@ export default function PostPreview(props) {
                           {comment.body}
                           <br />
                         </li>
-                        {props.user.username === props.currentUser.username ? (
+                        {props.user.username === props.currentUser.username || props.currentUser.username === comment.username ? (
                           <button
                             className="post-preview-button"
                             onClick={() => handleComment(comment.id)}

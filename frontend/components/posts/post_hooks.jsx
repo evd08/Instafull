@@ -6,12 +6,11 @@ import MenuPost from '../modal/menu_post_modal';
 
 export default function Post(props) {
 
-
   let captionClass = props.post.caption ? 'edit-post-list' : 'hide';
 
   function handleModal() {
-    document.querySelector(`#modal-bg-${props.post.id}`).style.visibility = ("visible")
-    document.querySelector(`#menu-post-modal-${props.post.id}`).style.visibility = ("visible")
+    document.querySelector(`#modal-bg-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("visible")
+    document.querySelector(`#menu-post-modal-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("visible")
   }
 
   function handleFollow(id) {
@@ -77,7 +76,6 @@ export default function Post(props) {
                   <br/>
                 </li>
               : null
-              
             ))}
             </ul>
           </div>
@@ -90,8 +88,8 @@ export default function Post(props) {
           />
         </div>
 
-        <div className="modal-bg" id={`modal-bg-${props.post.id}`}>
-          <div className="menu-post-modal" id={`menu-post-modal-${props.post.id}`}>
+        <div className="modal-bg" id={`modal-bg-${props.post.id}-user-${props.post.user_id}`}>
+          <div className="menu-post-modal" id={`menu-post-modal-${props.post.id}-user-${props.post.user_id}`}>
             <MenuPost 
               postId={props.post.id}
               userId={props.post.user_id}
