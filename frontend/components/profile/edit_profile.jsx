@@ -33,6 +33,12 @@ export default function EditProfile(props) {
     document.querySelector('.update-user-modal').style.visibility = "hidden"
   }
 
+  window.addEventListener('click', e => {
+    if ((e.target.className === 'update-user-modal') && e.target.style.visibility === 'visible') {
+      handleCancel()
+    }
+  })
+
   return (
     <div className="edit-profile-div">
 

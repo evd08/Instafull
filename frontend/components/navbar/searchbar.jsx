@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function searchbar(props) {
@@ -19,6 +19,15 @@ export default function searchbar(props) {
     document.getElementById('txtbox').value = ""
     document.querySelector('.searchList').style.visibility = "hidden"
   }
+
+  useEffect(() => {
+    window.addEventListener('click', function (e) {
+      if (result !== "" && !document.querySelector('.searchList').contains(e.target)) {
+        handleSearchbar();
+      }
+    })
+  })
+
 
   let list = result ?       
     <ul className="searchList">

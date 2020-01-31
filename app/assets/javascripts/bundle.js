@@ -739,6 +739,11 @@ function Comment(props) {
     handleCancel();
   }
 
+  window.addEventListener('click', function (e) {
+    if (e.target.className === 'update-comment-modal' && e.target.style.visibility === 'visible') {
+      handleCancel();
+    }
+  });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "comment-option-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1071,6 +1076,20 @@ function MenuPost(props) {
     handleCancel();
   }
 
+  window.addEventListener('click', function (e) {
+    if (e.target.className === 'menu-post-modal' && e.target.style.visibility === 'visible') {
+      handleCancel();
+    }
+  }); // useEffect(() => {
+  //   window.addEventListener('click', function (e) {
+  //     if (document.querySelector(`#menu-post-modal-${props.postId}-user-${props.userId}`).style.visibility = ("visible")
+  //       && !document.querySelector('.menu-post-div').contains(e.target)) 
+  //     {
+  //       handleCancel();
+  //     }
+  //   })
+  // }, [])
+
   var following = true;
 
   if (document.querySelector("#follow-user-".concat(props.userId))) {
@@ -1305,6 +1324,13 @@ function searchbar(props) {
     document.querySelector('.searchList').style.visibility = "hidden";
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    window.addEventListener('click', function (e) {
+      if (result !== "" && !document.querySelector('.searchList').contains(e.target)) {
+        handleSearchbar();
+      }
+    });
+  });
   var list = result ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "searchList"
   }, result.map(function (user) {
@@ -1469,10 +1495,12 @@ function (_React$Component) {
         className: "upload-photo-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "upload"
-      }, "Upload a photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Upload a photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "justify-content": "center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         onChange: this.handleFile
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "add-comment-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "add-caption",
@@ -1575,6 +1603,12 @@ function EditPost(props) {
     document.querySelector('.modal-bg').style.visibility = "hidden";
     document.querySelector('.update-post-modal').style.visibility = "hidden";
   }
+
+  window.addEventListener('click', function (e) {
+    if (e.target.className === 'update-post-modal' && e.target.style.visibility === 'visible') {
+      handleCancel();
+    }
+  });
 
   function handleSubmit() {
     var post = {
@@ -2070,7 +2104,13 @@ function Post(props) {
     document.querySelectorAll("#follow-user-".concat(id)).forEach(function (el) {
       return el.style.visibility = 'hidden';
     });
-  }
+  } // window.addEventListener('click', function (e) {
+  //   if (!document.querySelector('.menu-post-modal').contains(e.target)) {
+  //     // document.querySelector(`#modal-bg-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("hidden")
+  //     // document.querySelector(`#menu-post-modal-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("hidden")
+  //   }
+  // })
+
 
   var btn = props.post.username === props.currentUser.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleModal,
@@ -2525,27 +2565,28 @@ function PostPreview(props) {
   }, props.user.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "option-button"
   }, postMenu))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: captionClass
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    className: "option-button",
-    to: "/users/".concat(props.post.user_id)
-  }, props.post.username), props.post.caption)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main-post-caption-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "comment-text"
-  }, props.comments.map(function (comment) {
+  }, props.post.caption ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "option-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/#/".concat(props.post.username)
+  }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.caption)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), props.comments.map(function (comment) {
     return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "comment-div"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "option-button"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/#/".concat(comment.username)
-    }, comment.username)), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.user.username === props.currentUser.username || props.currentUser.username === comment.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, comment.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "comment-body"
+    }, comment.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.user.username === props.currentUser.username || props.currentUser.username === comment.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "post-preview-button",
       onClick: function onClick() {
         return handleComment(comment.id);
       }
-    }, "...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)) : null;
+    }, "...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_likes_like_hooks__WEBPACK_IMPORTED_MODULE_6__["default"], {
     deleteLike: props.deleteLike,
     createLike: props.createLike,
@@ -2657,6 +2698,11 @@ function EditProfile(props) {
     document.querySelector('.update-user-modal').style.visibility = "hidden";
   }
 
+  window.addEventListener('click', function (e) {
+    if (e.target.className === 'update-user-modal' && e.target.style.visibility === 'visible') {
+      handleCancel();
+    }
+  });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "edit-profile-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

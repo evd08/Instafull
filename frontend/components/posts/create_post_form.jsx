@@ -78,7 +78,7 @@ class PostForm extends React.Component {
                         <div className="edit-div">
                             <div className="upload-photo-div">
                                 <p className="upload">Upload a photo</p>
-                                <input type="file" onChange={this.handleFile} />
+                                <div justify-content="center"><input type="file" onChange={this.handleFile} /></div>
                             </div>
 
                             <div className="add-comment-div">
@@ -102,6 +102,8 @@ class PostForm extends React.Component {
                 </div>
 
             </div>
+
+            
         )
     }
 }

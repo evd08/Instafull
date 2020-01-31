@@ -18,6 +18,13 @@ export default function Post(props) {
     document.querySelectorAll(`#follow-user-${id}`).forEach(el => el.style.visibility = 'hidden')
   }
 
+  // window.addEventListener('click', function (e) {
+  //   if (!document.querySelector('.menu-post-modal').contains(e.target)) {
+  //     // document.querySelector(`#modal-bg-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("hidden")
+  //     // document.querySelector(`#menu-post-modal-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("hidden")
+  //   }
+  // })
+
   let btn = props.post.username === props.currentUser.username ?
     <div></div>
     :

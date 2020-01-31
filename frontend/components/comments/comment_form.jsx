@@ -24,6 +24,7 @@ export default function CommentForm(props){
   return (
     <div className="outer-comment-form">
       <div className="inner-comment-form">
+        {/* <input type="text" placeholder="Add a comment..." name="" id="comment-textbox" onChange={update} /> */}
         <textarea placeholder="Add a comment..." name="" id="comment-textbox" onChange={update} value={comment}></textarea>
         <button onClick={handleSubmit} className="comment-post-button">Post</button>
       </div>

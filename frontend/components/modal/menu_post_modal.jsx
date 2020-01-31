@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function MenuPost(props) {
 
@@ -12,6 +12,23 @@ export default function MenuPost(props) {
     props.deleteFollow({ followed_id: props.userId })
     handleCancel();
   }
+
+
+  window.addEventListener('click', e => {
+    if ((e.target.className === 'menu-post-modal') && e.target.style.visibility === 'visible'){
+      handleCancel()
+    }
+  })
+
+  // useEffect(() => {
+  //   window.addEventListener('click', function (e) {
+  //     if (document.querySelector(`#menu-post-modal-${props.postId}-user-${props.userId}`).style.visibility = ("visible")
+  //       && !document.querySelector('.menu-post-div').contains(e.target)) 
+  //     {
+  //       handleCancel();
+  //     }
+  //   })
+  // }, [])
 
   let following = true
   if (document.querySelector(`#follow-user-${props.userId}`)) {

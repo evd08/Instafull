@@ -15,6 +15,12 @@ export default function EditPost(props) {
     document.querySelector('.update-post-modal').style.visibility = "hidden"
   }
 
+  window.addEventListener('click', e => {
+    if ((e.target.className === 'update-post-modal') && e.target.style.visibility === 'visible') {
+      handleCancel()
+    }
+  })
+
   function handleSubmit() {
     let post = {id: id, caption: caption}
     props.updatePost(post)

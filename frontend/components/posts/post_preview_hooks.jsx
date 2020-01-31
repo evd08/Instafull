@@ -80,26 +80,20 @@ export default function PostPreview(props) {
                 </div>
               </div>
 
-              <div className={captionClass}>
-                <p>
-                  <Link
-                    className="option-button"
-                    to={`/users/${props.post.user_id}`}
-                  >
-                    {props.post.username}
-                  </Link>
-                  {props.post.caption}
-                </p>
-              </div>
-
               <div className="main-post-caption-div">
                 <ul className="comment-text">
+                  {props.post.caption ? 
+                  (<li>
+                    <p className="option-button"><a href={`/#/${props.post.username}`}>{props.post.username}</a></p>
+                    <p>{props.post.caption}</p>
+                  </li>) : (<div></div>)
+                  }
                   {props.comments.map(comment =>
                     props.post.id === comment.post_id ? (
                       <div className="comment-div">
                         <li>
                           <p className="option-button"><a href={`/#/${comment.username}`}>{comment.username}</a></p>
-                          {comment.body}
+                          <p className="comment-body">{comment.body}</p>
                           <br />
                         </li>
                         {props.user.username === props.currentUser.username || props.currentUser.username === comment.username ? (
@@ -113,7 +107,7 @@ export default function PostPreview(props) {
                           <div></div>
                         )}
                       </div>
-                    ) : null
+                    ) : (<div></div>)
                   )}
                 </ul>
               </div>

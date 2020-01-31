@@ -12,6 +12,12 @@ export default function Comment(props){
     handleCancel();
   }
 
+  window.addEventListener('click', e => {
+    if ((e.target.className === 'update-comment-modal') && e.target.style.visibility === 'visible') {
+      handleCancel()
+    }
+  })
+
   return (
     <div className="comment-option-div">
       <button onClick={handleSubmit} className="delete-button">Delete</button>

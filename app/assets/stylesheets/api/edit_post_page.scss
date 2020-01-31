@@ -8,10 +8,8 @@
 
 .post-preview-div {
     display: inline-flex;
-    min-width: 902px;
-    max-width: 902px;
-    min-height: 600px;
-    max-height: 600px;
+    width: 90vw;
+    height: 75vh;
     border-style: solid;
     border-color: black;
     border-width: 1px;
@@ -19,10 +17,8 @@
 
 .post-preview-img-div {
     display: inline-block;
-    min-width: 600px;
-    max-width: 600px;
-    max-height: 600px;
-    min-height: 600px;
+    width: 60vw;
+    height: 75vh;
     box-sizing: border-box;
     padding: 1px 0px;
 }
@@ -32,20 +28,25 @@
     // width: 400px;
     // height: 450px;
     vertical-align: middle;
-    height: 598px;
-    width: 600px;
+    height: 100%;
+    width: 100%;
     object-fit: contain;
     background-color: whitesmoke;
     // border: solid 1px;
 }
 
 .edit-div {
-    width: 300px;
+    width: 30vw;
+    height: 75vh;
     border-left: 1px solid black;
-    display: inline-block;
+    display: inline-flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+
+    .main-post-caption-div {
+        height: 53vh;
+    }
 }
 
 .edit-username {
@@ -61,8 +62,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 10%;
-    // padding: 1px;
+    height: 7vh;
 
     .option-button {
         padding-right: 3%;
@@ -92,6 +92,8 @@
 .edit-post-list {
     display: inline-block;
     width: 100%;
+    min-height: 5vh;
+    max-height: 10vh;
     text-align: left;
 
     p {
@@ -108,11 +110,13 @@
 }
 
 .add-comment-div {
-    height: 80px;
+    width: 100%;
+    min-height: 13vh;
+    max-height: 58vh;
     align-items: center;
     display: flex;
     border-top: 1px solid #e6e6e6;
-    width: 299px;
+    border-bottom: 1px solid #e6e6e6;
     justify-content: space-around;
     align-items: center;
 }
