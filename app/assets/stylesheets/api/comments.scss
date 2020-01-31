@@ -11,6 +11,7 @@
   box-sizing: border-box;
   padding: 1px;
   align-items: center;
+  border-top: 1px solid #efefef;
 }
 
 .inner-comment-form {
@@ -19,10 +20,7 @@
   min-height: 50px;
   max-height: 80px;
   width: 100%;
-  // width: 296px;
   position: absolute;
-  // padding-left: 2px;
-  border-top: 1px solid #efefef;
 }
 
 #comment-textbox {

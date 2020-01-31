@@ -33,7 +33,7 @@ export default function Post(props) {
     
   return (
     <li className="main-li">
-      <div>
+      <div className="main-post-div">
 
         <div className="main-post-header">
           <div className="main-username">
