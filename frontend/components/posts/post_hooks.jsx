@@ -6,8 +6,6 @@ import MenuPost from '../modal/menu_post_modal';
 
 export default function Post(props) {
 
-  let captionClass = props.post.caption ? 'edit-post-list' : 'hide';
-
   function handleModal() {
     document.querySelector(`#modal-bg-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("visible")
     document.querySelector(`#menu-post-modal-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("visible")
@@ -41,7 +39,9 @@ export default function Post(props) {
           <div className="main-username">
             <div className="user">
               <div className="mini-profile-pic-div">
-                {preview}
+                <a href={`/#/${props.post.username}`}>
+                  {preview}
+                </a>
               </div>
               <Link className="post-user-button" to={`/${props.post.username}`}>{props.post.username}</Link>
             </div>
@@ -66,15 +66,14 @@ export default function Post(props) {
             fetchLikes={props.fetchLikes}
           />
 
-          <div className={captionClass}>
-            <p className="comment-text">
-              <Link className="option-button" to={`/${props.post.username}`}>{props.post.username}</Link>
-              {props.post.caption}
-            </p>
-          </div>
-
           <div className="main-post-caption-div">
             <ul className="comment-text">
+              {props.post.caption ?
+                (<li>
+                  <p className="option-button"><a href={`/#/${props.post.username}`}>{props.post.username}</a></p>
+                  <p>{props.post.caption}</p>
+                </li>) : <div></div>
+              }
             {props.comments.map((comment) => (
               props.post.id === comment.post_id ?
                 <li key={comment.id}>

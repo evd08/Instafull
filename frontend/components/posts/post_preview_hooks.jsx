@@ -3,7 +3,6 @@ import Navbar from '../navbar/navbar_container';
 import EditPost from './edit_post_form_hooks';
 import CommentForm from '../comments/comment_form';
 import EditCommentForm from '../comments/edit_comment_form';
-import { Link } from 'react-router-dom';
 import Like from '../likes/like_hooks';
 
 export default function PostPreview(props) {
@@ -34,10 +33,8 @@ export default function PostPreview(props) {
     }
   })
 
-  let captionClass
   let postMenu;
   if(props.post) {
-    captionClass = props.post.caption ? "edit-post-list" : "hide";
 
     postMenu =
       props.user.username === props.currentUser.username ? (
@@ -72,7 +69,9 @@ export default function PostPreview(props) {
                 <div className="post-preview-username-wrapper">
                   <div className="user">
                     <div className="mini-profile-pic-div">
-                      {preview}
+                      <a href={`/#/${props.post.username}`}>
+                        {preview}
+                      </a>
                     </div>
                     <p className="post-user-button">{props.user.username}</p>
                   </div>

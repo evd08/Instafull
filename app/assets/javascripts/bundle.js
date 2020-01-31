@@ -2090,8 +2090,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Post(props) {
-  var captionClass = props.post.caption ? 'edit-post-list' : 'hide';
-
   function handleModal() {
     document.querySelector("#modal-bg-".concat(props.post.id, "-user-").concat(props.post.user_id)).style.visibility = "visible";
     document.querySelector("#menu-post-modal-".concat(props.post.id, "-user-").concat(props.post.user_id)).style.visibility = "visible";
@@ -2139,7 +2137,9 @@ function Post(props) {
     className: "user"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-profile-pic-div"
-  }, preview), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/#/".concat(props.post.username)
+  }, preview)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "post-user-button",
     to: "/".concat(props.post.username)
   }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2163,17 +2163,14 @@ function Post(props) {
     countLikes: props.post.countLikes,
     fetchLikes: props.fetchLikes
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: captionClass
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-text"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "option-button",
-    to: "/".concat(props.post.username)
-  }, props.post.username), props.post.caption)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main-post-caption-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "comment-text"
-  }, props.comments.map(function (comment) {
+  }, props.post.caption ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "option-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/#/".concat(props.post.username)
+  }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.caption)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), props.comments.map(function (comment) {
     return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: comment.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -2467,8 +2464,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_post_form_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit_post_form_hooks */ "./frontend/components/posts/edit_post_form_hooks.jsx");
 /* harmony import */ var _comments_comment_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/comment_form */ "./frontend/components/comments/comment_form.jsx");
 /* harmony import */ var _comments_edit_comment_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comments/edit_comment_form */ "./frontend/components/comments/edit_comment_form.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _likes_like_hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../likes/like_hooks */ "./frontend/components/likes/like_hooks.jsx");
+/* harmony import */ var _likes_like_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../likes/like_hooks */ "./frontend/components/likes/like_hooks.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -2476,7 +2472,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -2513,11 +2508,9 @@ function PostPreview(props) {
       props.fetchUser(props.post.user_id);
     }
   });
-  var captionClass;
   var postMenu;
 
   if (props.post) {
-    captionClass = props.post.caption ? "edit-post-list" : "hide";
     postMenu = props.user.username === props.currentUser.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "post-preview-button",
       onClick: handleClick
@@ -2560,7 +2553,9 @@ function PostPreview(props) {
     className: "user"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-profile-pic-div"
-  }, preview), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/#/".concat(props.post.username)
+  }, preview)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "post-user-button"
   }, props.user.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "option-button"
@@ -2587,7 +2582,7 @@ function PostPreview(props) {
         return handleComment(comment.id);
       }
     }, "...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_likes_like_hooks__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_likes_like_hooks__WEBPACK_IMPORTED_MODULE_5__["default"], {
     deleteLike: props.deleteLike,
     createLike: props.createLike,
     likeId: props.post.likeId,
