@@ -40,12 +40,12 @@ export default function MenuPost(props) {
   return following ? (
     <div className="menu-post-div">
       <button onClick={handleUnfollow}>Unfollow</button>
-      <button><a href={`/#/posts/${props.postId}/edit`}>Go to post</a></button>
+      <a href={`/#/posts/${props.postId}/edit`}><button>Go to post</button></a>
       <button onClick={handleCancel}>Cancel</button>
     </div>
   ):(
     <div className="menu-post-div">
-      <button><a href={`/#/posts/${props.postId}/edit`}>Go to post</a></button>
+      <a href={`/#/posts/${props.postId}/edit`}><button>Go to post</button></a>
       <button onClick={handleCancel}>Cancel</button>
     </div>
   )

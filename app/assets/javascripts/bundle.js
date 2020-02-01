@@ -990,14 +990,15 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Sign Up")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://github.com/evd08"
+        target: "_blank",
+        href: "https://evd08.github.io/"
       }, "About Me"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
         href: "https://github.com/evd08"
       }, "Github"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.appacademy.io"
-      }, "App Academy"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "www.appacademy.io"
-      }, "FAQs")));
+        target: "_blank",
+        href: "https://www.linkedin.com/in/eunice-dayrit/"
+      }, "LinkedIn")));
     }
   }]);
 
@@ -1100,15 +1101,15 @@ function MenuPost(props) {
     className: "menu-post-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleUnfollow
-  }, "Unfollow"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "Unfollow"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/#/posts/".concat(props.postId, "/edit")
-  }, "Go to post")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Go to post")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleCancel
   }, "Cancel")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-post-div"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/#/posts/".concat(props.postId, "/edit")
-  }, "Go to post")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Go to post")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleCancel
   }, "Cancel"));
 }
@@ -2934,14 +2935,15 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Log In")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://github.com/evd08"
+        target: "_blank",
+        href: "https://evd08.github.io/"
       }, "About Me"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
         href: "https://github.com/evd08"
       }, "Github"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.appacademy.io"
-      }, "App Academy"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "www.appacademy.io"
-      }, "FAQs")));
+        target: "_blank",
+        href: "https://www.linkedin.com/in/eunice-dayrit/"
+      }, "LinkedIn")));
     }
   }]);
 
