@@ -39,7 +39,7 @@ class LogInForm extends React.Component {
     render() {
         return (
             <div className="outer-div">
-                <div className="main-div">
+                <div className="auth-div">
 
                     <div className="img-div">
                         <img className="" src={window.instagramURL} alt="phone image" /> 
