@@ -34,8 +34,8 @@ class SignUpForm extends React.Component {
 
     render() {
         return (
-            <div className="auth-div">
-                <div className="main-div">
+            <div className="outer-div">
+                <div className="auth-div">
 
                     <div className="img-div">
                         <img className="" src={window.instagramURL} alt="phone image"/>
@@ -94,7 +94,7 @@ class SignUpForm extends React.Component {
 
                         <div className="option-div">
                             <p>Have an account?
-                                <a href="#/login"><span>Log In</span></a>
+                                <a href="#/login"><span>  Log In</span></a>
                             </p>
                         </div>
                     </div>

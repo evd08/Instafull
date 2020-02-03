@@ -88,8 +88,8 @@ class LogInForm extends React.Component {
                         </div>
 
                         <div className="option-div">
-                            <p>Don't have an account? 
-                                <a href="#/signup"><span>Sign Up</span></a>
+                            <p>Don't have an account?
+                                <a href="#/signup"><span> Sign Up</span></a>
                             </p>
                         </div>
 

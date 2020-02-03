@@ -989,7 +989,7 @@ function (_React$Component) {
         className: "option-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Don't have an account?", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/signup"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Sign Up")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Sign Up")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         target: "_blank",
@@ -2886,9 +2886,9 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "auth-div"
+        className: "outer-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "main-div"
+        className: "auth-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "img-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2940,7 +2940,7 @@ function (_React$Component) {
         className: "option-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Have an account?", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/login"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Log In")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "  Log In")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         target: "_blank",
