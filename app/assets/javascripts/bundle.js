@@ -499,14 +499,14 @@ var logout = function logout() {
 /*!*******************************************!*\
   !*** ./frontend/actions/users_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_USER, RECEIVE_USERS, RECEIVE_SESSION_ERRORS, SEARCH_USERS, fetchUsers, fetchUserByUsername, fetchUser, updateUser, fetchSearch */
+/*! exports provided: RECEIVE_USER, RECEIVE_USERS, RECEIVE_USER_ERRORS, SEARCH_USERS, fetchUsers, fetchUserByUsername, fetchUser, updateUser, fetchSearch */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USERS", function() { return RECEIVE_USERS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_ERRORS", function() { return RECEIVE_USER_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SEARCH_USERS", function() { return SEARCH_USERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserByUsername", function() { return fetchUserByUsername; });
@@ -517,7 +517,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_USER = 'RECEIVE_USER';
 var RECEIVE_USERS = 'RECEIVE_USERS';
-var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+var RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 var SEARCH_USERS = 'SEARCH_USERS';
 
 var receiveUsers = function receiveUsers(users) {
@@ -536,7 +536,7 @@ var receiveUser = function receiveUser(user) {
 
 var receiveErrors = function receiveErrors(errors) {
   return {
-    type: RECEIVE_SESSION_ERRORS,
+    type: RECEIVE_USER_ERRORS,
     errors: errors
   };
 };
@@ -559,6 +559,8 @@ var fetchUserByUsername = function fetchUserByUsername(username) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUserByUsername"](username).then(function (user) {
       return dispatch(receiveUser(user));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -2173,14 +2175,18 @@ function Post(props) {
     className: "option-button"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/#/".concat(props.post.username)
-  }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.caption)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), props.comments.map(function (comment) {
+  }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-body"
+  }, props.post.caption)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), props.comments.map(function (comment) {
     return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: comment.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "option-button"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/#/".concat(comment.username)
-    }, comment.username)), comment.body, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)) : null;
+    }, comment.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "comment-body"
+    }, comment.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)) : null;
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
     createComment: props.createComment,
     deleteComment: props.deleteComment,
@@ -2570,7 +2576,9 @@ function PostPreview(props) {
     className: "option-button"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/#/".concat(props.post.username)
-  }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.caption)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), props.comments.map(function (comment) {
+  }, props.post.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-body"
+  }, props.post.caption)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), props.comments.map(function (comment) {
     return props.post.id === comment.post_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "comment-div"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {

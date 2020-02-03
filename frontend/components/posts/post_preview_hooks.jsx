@@ -84,7 +84,7 @@ export default function PostPreview(props) {
                   {props.post.caption ? 
                   (<li>
                     <p className="option-button"><a href={`/#/${props.post.username}`}>{props.post.username}</a></p>
-                    <p>{props.post.caption}</p>
+                    <p className="comment-body">{props.post.caption}</p>
                   </li>) : (<div></div>)
                   }
                   {props.comments.map(comment =>
