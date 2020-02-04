@@ -13,10 +13,14 @@ class OtherUserShow extends React.Component {
             loading: true,
             currentUser: false,
             set: false,
+            photoFile: null,
+            picUrl: null,
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.setUserInfo = this.setUserInfo.bind(this);
+        this.handleFile = this.handleFile.bind(this);
+        this.handleProfilePic = this.handleProfilePic.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +41,27 @@ class OtherUserShow extends React.Component {
                         this.setState({ loading: false })
             })
         }
+    }
+
+    handleFile(e) {
+        const file = e.currentTarget.files[0];
+
+            this.setState({
+                photoFile: file,
+            },
+            this.handleProfilePic
+            );
+
+    }
+
+    handleProfilePic() {
+        const formData = new FormData();
+        formData.append('user[pic]', this.state.photoFile);
+        formData.append('user[id]', this.props.currentUser.id)
+        this.props.updateUser(formData)
+        window.location.reload(false)
+        // this.props.location.reload(false)
+            // .then(() => window.location.reload(false))
     }
 
     handleClick() {
@@ -79,6 +104,7 @@ class OtherUserShow extends React.Component {
     }
     
     render() {
+        // debugger
 
         let buttonClass = this.state.btn === 'Follow' ? "follow-button" : "edit-profile-button"
        
@@ -109,6 +135,7 @@ class OtherUserShow extends React.Component {
                     <div className="profile-pic-div">
                         <label htmlFor="file-input">
                             {preview}
+                            <input onChange={this.handleFile} type="file" id="file-input" className="hide" />
                         </label>
                     </div>
 

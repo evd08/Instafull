@@ -144,3 +144,22 @@
     padding-right: 3%;
     visibility: hidden;
 }
+
+.post-file {
+    border-radius: 4px;
+    position: relative;
+    width: 50%;
+    height: 28px; 
+    background-color: #3897f0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+
+    label {
+        cursor: pointer;
+    }
+}
+
+.post-file:hover {
+    background-color: #3079be;
+}

@@ -680,28 +680,42 @@ function CommentForm(props) {
       comment = _useState2[0],
       setComment = _useState2[1];
 
-  function update(e) {
-    setComment(e.target.value); // const lines = Math.floor(comment.length / 24);
-    // document.getElementById("comment-textbox").style.height = `${18*(lines+1)}px`;
-    // const commentStyle = document.getElementsByClassName("comment-text")[0].style;
-    // // /\d+/
-    // if (Number(commentStyle.minHeight.match(/[0-9]+/)) > 200) {
-    //   commentStyle.minHeight = `${440-(18*lines)}px`;
-    // }
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.getElementById('comment-textbox').addEventListener('keypress', submitOnEnter);
+  }, []);
+
+  function submitOnEnter(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      handleSubmit(event);
+    }
   }
 
-  function handleSubmit() {
-    props.createComment({
-      body: comment,
-      user_id: props.currentUserId,
-      post_id: props.postId
-    });
-    setComment('');
+  function update(e) {
+    setComment(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    console.log(e);
+    console.log(comment);
+    var txt = document.getElementById('comment-textbox').value;
+
+    if (txt === "") {
+      alert("Please type a comment");
+    } else {
+      props.createComment({
+        body: txt,
+        user_id: props.currentUserId,
+        post_id: props.postId
+      });
+      setComment('');
+    }
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "outer-comment-form"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit,
     className: "inner-comment-form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
     placeholder: "Add a comment...",
@@ -710,10 +724,16 @@ function CommentForm(props) {
     onChange: update,
     value: comment
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: handleSubmit,
+    type: "submit",
     className: "comment-post-button"
   }, "Post")));
-}
+} // const lines = Math.floor(comment.length / 24);
+// document.getElementById("comment-textbox").style.height = `${18*(lines+1)}px`;
+// const commentStyle = document.getElementsByClassName("comment-text")[0].style;
+// // /\d+/
+// if (Number(commentStyle.minHeight.match(/[0-9]+/)) > 200) {
+//   commentStyle.minHeight = `${440-(18*lines)}px`;
+// }
 
 /***/ }),
 
@@ -1489,9 +1509,8 @@ function (_React$Component) {
       }) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-preview-main-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "post-preview-div",
-        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-preview-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-preview-img-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1502,12 +1521,16 @@ function (_React$Component) {
         className: "upload-photo-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "upload"
-      }, "Upload a photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "justify-content": "center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Upload a photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "post-file"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        "for": "post-input"
+      }, " Choose File", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
-        onChange: this.handleFile
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onChange: this.handleFile,
+        className: "hide",
+        id: "post-input"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "add-comment-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "add-caption",
@@ -1518,7 +1541,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         className: "auth-button",
-        value: "Create a new post"
+        value: "Create a new post",
+        onClick: this.handleSubmit
       }))))));
     }
   }]);
@@ -1788,10 +1812,14 @@ function (_React$Component) {
       followerCount: '',
       loading: true,
       currentUser: false,
-      set: false
+      set: false,
+      photoFile: null,
+      picUrl: null
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.setUserInfo = _this.setUserInfo.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.handleProfilePic = _this.handleProfilePic.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1838,6 +1866,24 @@ function (_React$Component) {
           });
         });
       }
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var file = e.currentTarget.files[0];
+      this.setState({
+        photoFile: file
+      }, this.handleProfilePic);
+    }
+  }, {
+    key: "handleProfilePic",
+    value: function handleProfilePic() {
+      var formData = new FormData();
+      formData.append('user[pic]', this.state.photoFile);
+      formData.append('user[id]', this.props.currentUser.id);
+      this.props.updateUser(formData);
+      window.location.reload(false); // this.props.location.reload(false)
+      // .then(() => window.location.reload(false))
     }
   }, {
     key: "handleClick",
@@ -1920,6 +1966,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // debugger
       var buttonClass = this.state.btn === 'Follow' ? "follow-button" : "edit-profile-button";
 
       if (this.props.currentUser.username === this.props.username && !this.state.currentUser) {
@@ -1955,7 +2002,12 @@ function (_React$Component) {
         className: "profile-pic-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "file-input"
-      }, preview)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleFile,
+        type: "file",
+        id: "file-input",
+        className: "hide"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-username-div"
@@ -2188,7 +2240,7 @@ function Post(props) {
       className: "option-button"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/#/".concat(comment.username)
-    }, comment.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    }, comment.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "comment-body"
     }, comment.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)) : null;
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_form__WEBPACK_IMPORTED_MODULE_3__["default"], {

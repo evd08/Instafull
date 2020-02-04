@@ -72,7 +72,7 @@ class PostForm extends React.Component {
 
                 <div className="post-preview-main-div">
 
-                    <form className="post-preview-div" onSubmit={this.handleSubmit}>
+                    <div className="post-preview-div" >
                         <div className="post-preview-img-div">
                             <div className="post-preview-img">
                                 {preview}
@@ -82,7 +82,16 @@ class PostForm extends React.Component {
                         <div className="edit-div">
                             <div className="upload-photo-div">
                                 <p className="upload">Upload a photo</p>
-                                <div justify-content="center"><input type="file" onChange={this.handleFile} /></div>
+                                {/* <div justify-content="center"> */}
+                                
+                                <button className="post-file">
+                                    <label for="post-input"> Choose File
+                                        {/* <button className="follow-button">Choose File!</button> */}
+                                        <input type="file" onChange={this.handleFile} className="hide" id="post-input" />
+                                    </label>
+                                </button>
+                                
+                                {/* </div> */}
                             </div>
 
                             <div className="add-comment-div">
@@ -98,11 +107,12 @@ class PostForm extends React.Component {
                                     type="submit"
                                     className="auth-button"
                                     value="Create a new post"
+                                    onClick={this.handleSubmit}
                                 />
                             </div>
                         </div>
 
-                    </form>
+                    </div>
                 </div>
 
             </div>

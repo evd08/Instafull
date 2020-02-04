@@ -78,7 +78,7 @@ export default function Post(props) {
               props.post.id === comment.post_id ?
                 <li key={comment.id}>
                   <p className="option-button"><a href={`/#/${comment.username}`}>{comment.username}</a></p>
-                  <p className="comment-body">{comment.body}</p>
+                  <span className="comment-body">{comment.body}</span>
                   <br/>
                 </li>
               : null

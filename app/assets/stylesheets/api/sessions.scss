@@ -152,6 +152,11 @@
    cursor: pointer;
  }
 
+ .auth-button:hover {
+    background-color: #3079be;
+    border: 1px solid #3079be;
+ }
+
 .auth-form {
    display: flex;
    flex-direction: column;

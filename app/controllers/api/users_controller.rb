@@ -26,7 +26,6 @@ class Api::UsersController < ApplicationController
     end
 
     def update
-        debugger
         @user = User.find(params[:id])
         if user_params[:pic]
             @user.pic.attach(user_params[:pic])
@@ -39,7 +38,6 @@ class Api::UsersController < ApplicationController
     end
 
     def search
-        # username = 
         # debugger
         @users = User.where('username LIKE ?', "%#{params[:username]}%")
         # debugger

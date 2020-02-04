@@ -123,6 +123,10 @@
     font-weight: bold;
 }
 
+.follow-button:hover {
+    background-color: #3079be;
+}
+
 .delete-redBG-button {
     background-color: #ed4956;
 }
@@ -147,4 +151,9 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.hide {
+    opacity: 0;
+    // visibility: hidden;
 }
