@@ -1473,8 +1473,12 @@ function (_React$Component) {
         formData.append('post[photo]', this.state.photoFile);
       }
 
-      this.props.createPost(formData);
-      this.props.history.push('/');
+      if (this.state.photoFile === null) {
+        alert("Please attach a file!");
+      } else {
+        this.props.createPost(formData);
+        this.props.history.push('/');
+      }
     }
   }, {
     key: "render",

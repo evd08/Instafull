@@ -1,5 +1,8 @@
 json.extract! post, :id, :caption, :user_id
-json.photoUrl url_for(post.photo)
+# debugger
+if post.photo.attached?
+    json.photoUrl url_for(post.photo)
+end
 json.username post.user.username
 
 like = current_user.likes.select {|like| like.post_id == post.id}.first
