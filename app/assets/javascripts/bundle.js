@@ -681,10 +681,12 @@ function CommentForm(props) {
       setComment = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    document.getElementById('comment-textbox').addEventListener('keypress', submitOnEnter);
+    document.getElementById("comment-textbox-".concat(props.postId)).addEventListener('keypress', submitOnEnter);
   }, []);
 
   function submitOnEnter(event) {
+    debugger;
+
     if (event.keyCode === 13) {
       event.preventDefault();
       handleSubmit(event);
@@ -698,7 +700,7 @@ function CommentForm(props) {
   function handleSubmit(e) {
     console.log(e);
     console.log(comment);
-    var txt = document.getElementById('comment-textbox').value;
+    var txt = document.getElementById("comment-textbox-".concat(props.postId)).value;
 
     if (txt === "") {
       alert("Please type a comment");
@@ -720,7 +722,8 @@ function CommentForm(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
     placeholder: "Add a comment...",
     name: "",
-    id: "comment-textbox",
+    className: "comment-textbox",
+    id: "comment-textbox-".concat(props.postId),
     onChange: update,
     value: comment
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1329,11 +1332,17 @@ function searchbar(props) {
       result = _useState2[0],
       setResult = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      search = _useState4[0],
+      setSearch = _useState4[1];
+
   function handleUpdate(e) {
     if (e.currentTarget.value == "") {
       handleSearchbar();
     }
 
+    setSearch(e.currentTarget.value);
     props.fetchSearch({
       username: e.currentTarget.value
     }).then(function (res) {
@@ -1343,21 +1352,28 @@ function searchbar(props) {
 
   function handleSearchbar() {
     // list = null
-    document.getElementById('txtbox').value = "";
     document.querySelector('.searchList').style.visibility = "hidden";
+    document.getElementById('txtbox').value = "";
+    setResult("");
   }
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     window.addEventListener('click', function (e) {
-      if (result !== "" && !document.querySelector('.searchList').contains(e.target)) {
+      if (e.target.className !== 'searchList' && document.getElementById('txtbox').value !== "") {
         handleSearchbar();
       }
     });
-  });
-  var list = result ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }); // window.addEventListener('click', e => {
+  //   if ((e.target.className !== 'searchList') && result !== "") {
+  //     handleSearchBar()
+  //   }
+  // })
+
+  var list = search ? result.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "searchList"
   }, result.map(function (user) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      key: user.id,
       onClick: handleSearchbar,
       to: "/".concat(user.username)
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1377,7 +1393,26 @@ function searchbar(props) {
     }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "post-user-button"
     }, user.username)));
-  })) : null;
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "searchList"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    key: "Not Found"
+  }, "Not Found")) : null; // let list = result ?       
+  //   <ul className="searchList">
+  //     {result.map((user) => (
+  //       <Link key={user.id} onClick={handleSearchbar} to={`/${user.username}`}>
+  //         <li>
+  //           <div className="mini-profile-pic-div">
+  //             {user.picUrl ? <img className="profile-pic-img" src={user.picUrl} /> :
+  //                 <svg className="profile-pic-img" fill="gray" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z" /></svg>
+  //             }
+  //           </div>
+  //             <p className="post-user-button">{user.username}</p>
+  //         </li>
+  //       </Link>
+  //     ))}
+  //   </ul> : search.length > 0 ? <ul className="searchList"> <li>Not Found</li> </ul> : null
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "searchbar"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1977,11 +2012,12 @@ function (_React$Component) {
         }
       }
 
+      var clssnme = this.props.currentUser.username === this.props.username ? "profile-pic-img" : "other-user-dp";
       var preview = this.props.otherUser.picUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "profile-pic-img",
+        className: clssnme,
         src: this.props.otherUser.picUrl
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-        className: "profile-pic-img",
+        className: clssnme,
         fill: "gray",
         xmlns: "http://www.w3.org/2000/svg",
         width: "24",
@@ -2002,12 +2038,12 @@ function (_React$Component) {
         className: "profile-pic-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "file-input"
-      }, preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, preview, this.props.currentUser.username === this.props.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.handleFile,
         type: "file",
         id: "file-input",
         className: "hide"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-username-div"
