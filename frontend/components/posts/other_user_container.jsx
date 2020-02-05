@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.entities.users[state.session.id],
     username: ownProps.match.params.username,
-    posts: Object.values(state.entities.posts),
+    posts: Object.values(state.entities.posts).reverse(),
     otherUser: state.entities.otherUser,
 
     followerIds: Object.keys(state.entities.otherUser).length ? 
