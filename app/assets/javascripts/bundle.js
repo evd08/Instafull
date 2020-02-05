@@ -1679,7 +1679,9 @@ function EditPost(props) {
     className: "edit-post-div"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "edit-post-text"
-  }, "Update Post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, "Update Post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-post-img-div"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "edit-post-img",
     src: props.post.photoUrl,
     alt: "post"

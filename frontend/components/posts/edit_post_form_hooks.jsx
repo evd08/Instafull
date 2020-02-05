@@ -37,7 +37,7 @@ export default function EditPost(props) {
       <br/>
       <h3 className="edit-post-text">Update Post</h3>
       <br/>
-      <div>
+      <div className="edit-post-img-div">
         <img className="edit-post-img" src={props.post.photoUrl} alt="post"/>
       </div>
       <br/>
