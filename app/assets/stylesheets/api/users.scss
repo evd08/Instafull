@@ -38,6 +38,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding-top: 3%;
 
     label {
     position: relative;
@@ -95,7 +96,7 @@
   justify-content: space-evenly;
   position: relative;
   width: 100%;
-  padding-top: 5%;
+  // padding-top: 5%;
   text-align: center;
 
   button {

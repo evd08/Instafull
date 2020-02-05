@@ -22,6 +22,12 @@
   font-family: sans-serif;
 }
 
+.edit-post-update {
+  font-weight: bold;
+  font-family: sans-serif;
+  padding-top: 4%;
+}
+
 .edit-post-button {
   background-color: #3897f0;
   border: 1px solid #3897f0;
@@ -37,4 +43,10 @@
 .edit-post-button:hover {
   background-color: #3079be;
   border: 1px solid #3079be;
+}
+
+.edit-post-img {
+  vertical-align: middle;
+  width: 100%;
+  
 }

@@ -34,21 +34,23 @@ export default function EditPost(props) {
   
   return (
     <div className="edit-post-div">
+      <br/>
       <h3 className="edit-post-text">Update Post</h3>
       <br/>
       <div>
-        <img src={props.post.photoUrl} alt="post"/>
+        <img className="edit-post-img" src={props.post.photoUrl} alt="post"/>
       </div>
-      <br/><br/>
+      <br/>
       <h3 className="edit-post-text">Caption</h3>
       <br/>
       <textarea onChange={update} placeholder={caption} name="caption" id="" cols="30" rows="5"></textarea>
-      <br/><br/>
+      <br/>
       <div className="edit-option-button">
         <button onClick={handleCancel} className="edit-post-button">Cancel</button>
         <button onClick={handleDelete} className="redBG-button">Delete</button>
         <button onClick={handleSubmit} className="edit-post-button">Submit</button>
       </div>
+      <br/>
     </div>
   )
 }
