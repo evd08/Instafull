@@ -49,7 +49,7 @@ export default function searchbar(props) {
         </li>
       </Link>
     ))}
-  </ul> : <ul className="searchList"><li key="Not Found">Not Found</li></ul>: null
+  </ul> : <ul className="searchList"><li className="no-user-list" key="Not Found">No results found.</li></ul>: null
 
   // let list = result ?       
   //   <ul className="searchList">

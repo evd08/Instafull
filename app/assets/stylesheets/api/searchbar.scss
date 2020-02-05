@@ -25,3 +25,14 @@
   }
 }
 
+.no-user-list {
+  position: relative;
+  height: 3em;
+  width: 100%;
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-family: sans-serif;
+}
+

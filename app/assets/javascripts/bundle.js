@@ -1396,8 +1396,9 @@ function searchbar(props) {
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "searchList"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "no-user-list",
     key: "Not Found"
-  }, "Not Found")) : null; // let list = result ?       
+  }, "No results found.")) : null; // let list = result ?       
   //   <ul className="searchList">
   //     {result.map((user) => (
   //       <Link key={user.id} onClick={handleSearchbar} to={`/${user.username}`}>
