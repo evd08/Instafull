@@ -1,14 +1,20 @@
 # README
 
+# Background
+InstaPlaces, a clone of Instagram application, a photo sharing application where users can also search and follow other users, and comment and like other user’s posts. 
+
 # Technologies:
 
-* Ruby
-* Javascript
+* Ruby on Rails
+* PostgreSQL
+* SCSS
 * React
 * Redux
-* Rails
-* HTML
-* SCSS
+* AWS S3
+* Heroku
+
+# Features
+Secure user authentication using BCrypt. A demo user was created for anyone who wants to take a peek of what the app can do.
 
 # Application and code snippets
 
