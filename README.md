@@ -16,29 +16,9 @@ InstaPlaces, a clone of Instagram application, a photo sharing application where
 # Features
 Secure user authentication using BCrypt. A demo user was created for anyone who wants to take a peek of what the app can do.
 
-# Application and code snippets
+### CRUD (Create, Read, Update, Delete) Cycle
+Users can post a new photo with a caption and later on can edit that caption and they can also delete their own post and comments on their own post and on other user’s post. AWS S3 is being used to saved the posts.
 
-# Information about the project:
+### Search bar
+Implemented a search bar to search for other users to follow. Results are based on users input.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
