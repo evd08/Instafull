@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { login, signup, logout } from './actions/session_actions';
+// import { login, signup, logout } from './actions/session_actions';
 import configureStore from './store/store';
 import Root from './components/root';
-import {fetchSearch} from './util/user_api_util';
+// import {fetchSearch} from './util/user_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
     let root = document.getElementById('root')
@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         store = configureStore();
     }
 
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
-    window.login = login;
-    window.signup = signup;
-    window.logout = logout;
-    window.fetchSearch = fetchSearch;
+    // window.getState = store.getState;
+    // window.dispatch = store.dispatch;
+    // window.login = login;
+    // window.signup = signup;
+    // window.logout = logout;
+    // window.fetchSearch = fetchSearch;
     // console.log("working")
 
     ReactDOM.render(<Root store={store} />, root)

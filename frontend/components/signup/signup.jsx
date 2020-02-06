@@ -105,7 +105,6 @@ class SignUpForm extends React.Component {
                     <a target="_blank" href="https://evd08.github.io/">About Me</a>
                     <a target="_blank" href="https://github.com/evd08">Github</a>
                     <a target="_blank" href="https://www.linkedin.com/in/eunice-dayrit/">LinkedIn</a>
-                    {/* <a href="https://www.appacademy.io">App Academy</a> */}
                 </div>
             </div>
         )

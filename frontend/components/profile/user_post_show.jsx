@@ -18,7 +18,6 @@
 //     }
 
 //     componentDidMount() {
-//         // debugger
 //         this.props.fetchPosts(this.props.currentUser.id);
 //         this.props.fetchComments();
 //     }

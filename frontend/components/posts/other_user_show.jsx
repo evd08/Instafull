@@ -60,8 +60,6 @@ class OtherUserShow extends React.Component {
         formData.append('user[id]', this.props.currentUser.id)
         this.props.updateUser(formData)
         window.location.reload(false)
-        // this.props.location.reload(false)
-            // .then(() => window.location.reload(false))
     }
 
     handleClick() {
@@ -104,7 +102,6 @@ class OtherUserShow extends React.Component {
     }
     
     render() {
-        // debugger
 
         let buttonClass = this.state.btn === 'Follow' ? "follow-button" : "edit-profile-button"
        

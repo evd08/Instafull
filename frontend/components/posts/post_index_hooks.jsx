@@ -8,7 +8,6 @@
 //   const [loading, setLoad] = useState(true)
 
 //   useEffect(() => {
-//     // debugger
 //     // if (loading) {
 //       props.fetchFollows(props.currentUser.id)
 //       .then((res) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export default function MenuPost(props) {
 
@@ -20,15 +20,6 @@ export default function MenuPost(props) {
     }
   })
 
-  // useEffect(() => {
-  //   window.addEventListener('click', function (e) {
-  //     if (document.querySelector(`#menu-post-modal-${props.postId}-user-${props.userId}`).style.visibility = ("visible")
-  //       && !document.querySelector('.menu-post-div').contains(e.target)) 
-  //     {
-  //       handleCancel();
-  //     }
-  //   })
-  // }, [])
 
   let following = true
   if (document.querySelector(`#follow-user-${props.userId}`)) {

@@ -7,13 +7,9 @@ import {
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
     let nextState
-// debugger
     switch (action.type) {
         case RECEIVE_USERS:
-            // debugger
             return action.users;
-        // case RECEIVE_USER:
-        //     nextState = Object.assign({}, state, { [action.user.id]: action.user } )
         case RECEIVE_CURRENT_USER:
             nextState = Object.assign({}, state, { [action.user.id]: action.user } ) 
             return nextState

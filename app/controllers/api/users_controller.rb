@@ -11,10 +11,8 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        # @users = User.all
         if params[:username]
             @user = User.find_by(username: params[:username])
-            # debugger
             render "api/users/show"
         else
             render json: @user.errors.full_messages, status: 401
@@ -29,7 +27,6 @@ class Api::UsersController < ApplicationController
         @user = User.find(params[:id])
         if user_params[:pic]
             @user.pic.attach(user_params[:pic])
-            # @user.update_attribute(:pic, user_params[:pic])
         elsif @user && @user.update(user_params)
             render "api/users/show"
         else
@@ -38,9 +35,7 @@ class Api::UsersController < ApplicationController
     end
 
     def search
-        # debugger
         @users = User.where('username LIKE ?', "%#{params[:username]}%")
-        # debugger
         if @users
             # render :search
             render "api/users/search"

@@ -1,16 +1,16 @@
 import * as UserApiUtil from '../util/user_api_util';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
-export const RECEIVE_USERS = 'RECEIVE_USERS';
+// export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 export const SEARCH_USERS ='SEARCH_USERS';
 
-const receiveUsers = (users) => {
-    return {
-        type: RECEIVE_USERS,
-        users
-    };
-};
+// const receiveUsers = (users) => {
+//     return {
+//         type: RECEIVE_USERS,
+//         users
+//     };
+// };
 
 const receiveUser = (user) => {
     return {
@@ -33,10 +33,10 @@ const receiveResult = (users) => {
 
 
 
-export const fetchUsers = () => (dispatch) => {
-    return UserApiUtil.fetchUsers()
-        .then((users) => dispatch(receiveUsers(users)))
-};
+// export const fetchUsers = () => (dispatch) => {
+//     return UserApiUtil.fetchUsers()
+//         .then((users) => dispatch(receiveUsers(users)))
+// };
 
 export const fetchUserByUsername = (username) => (dispatch) => {
     return UserApiUtil.fetchUserByUsername(username)

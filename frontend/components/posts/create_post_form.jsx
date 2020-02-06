@@ -9,8 +9,6 @@ class PostForm extends React.Component {
             caption: this.props.post.caption,
             photoFile: null,
             photoUrl: null,
-            // posts: this.props.posts,
-            // post: this.props.post
         }
 
         this.handleFile = this.handleFile.bind(this);
@@ -18,10 +16,6 @@ class PostForm extends React.Component {
         this.handleCaption = this.handleCaption.bind(this);
     }
     
-    // componentDidMount() {
-    //     this.props.fetchPosts();
-    // }
-
     handleCaption(e) {
         this.setState({caption: e.currentTarget.value});
     }
@@ -82,16 +76,12 @@ class PostForm extends React.Component {
                         <div className="edit-div">
                             <div className="upload-photo-div">
                                 <p className="upload">Upload a photo</p>
-                                {/* <div justify-content="center"> */}
                                 
                                 <button className="post-file">
                                     <label for="post-input"> Choose File
-                                        {/* <button className="follow-button">Choose File!</button> */}
                                         <input type="file" onChange={this.handleFile} className="hide" id="post-input" />
                                     </label>
                                 </button>
-                                
-                                {/* </div> */}
                             </div>
 
                             <div className="add-comment-div">

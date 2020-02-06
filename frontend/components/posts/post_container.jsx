@@ -1,21 +1,18 @@
 import { connect } from 'react-redux';
-// import Post from './post';
 import Post from './post_hooks';
 import { createLike, deleteLike, fetchLikes } from '../../actions/likes_actions';
 import { createComment, deleteComment, fetchComments } from '../../actions/comments_actions';
 import { deleteFollow, createFollow } from '../../actions/follows_actions';
 
 const mapStateToProps = (state, ownProps) => {
-// debugger
     return {
         data: {
-            currentUserId: state.entities.users[state.session.id].id, //state.session.id ?same?
+            currentUserId: state.entities.users[state.session.id].id,
             post_id: ownProps.post.id
         },
         post: ownProps.post,
         currentUser: state.entities.users[state.session.id],
-        // likeId: state.entities.post.likeId
-        comments: Object.values(state.entities.comments)//[]
+        comments: Object.values(state.entities.comments)
     }
 }
 

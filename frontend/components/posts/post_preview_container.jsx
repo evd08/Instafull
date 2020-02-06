@@ -6,9 +6,7 @@ import { createComment, deleteComment, fetchComments } from '../../actions/comme
 import { fetchUserByUsername, fetchUser } from '../../actions/users_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger
     return {
-        // posts: Object.values(state.entities.posts), 
         post: state.entities.posts[ownProps.match.params.postId],
         currentUser: state.entities.users[state.session.id],
         user: state.entities.otherUser,

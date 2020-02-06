@@ -297,11 +297,7 @@ var createLike = function createLike(like) {
       return dispatch(receiveLike(like));
     });
   };
-}; // export const deleteLike = likeId => dispatch => {
-//     return LikeAPIUtil.deleteLike(likeId)
-//         .then(like => dispatch(removeLike(like)))
-// }
-
+};
 var deleteLike = function deleteLike(data) {
   return function (dispatch) {
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLike"](data).then(function (like) {
@@ -462,11 +458,7 @@ var receiveErrors = function receiveErrors(errors) {
     type: RECEIVE_SESSION_ERRORS,
     errors: errors
   };
-}; // export const signup = user => dispatch => (APIUtil.signup(user)
-//     .then(user => (dispatch(receiveCurrentUser(user))), 
-//         err => (dispatch(receiveErrors(err.responseJSON))))
-//     );
-
+};
 var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
@@ -499,33 +491,29 @@ var logout = function logout() {
 /*!*******************************************!*\
   !*** ./frontend/actions/users_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_USER, RECEIVE_USERS, RECEIVE_USER_ERRORS, SEARCH_USERS, fetchUsers, fetchUserByUsername, fetchUser, updateUser, fetchSearch */
+/*! exports provided: RECEIVE_USER, RECEIVE_USER_ERRORS, SEARCH_USERS, fetchUserByUsername, fetchUser, updateUser, fetchSearch */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USERS", function() { return RECEIVE_USERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_ERRORS", function() { return RECEIVE_USER_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SEARCH_USERS", function() { return SEARCH_USERS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserByUsername", function() { return fetchUserByUsername; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSearch", function() { return fetchSearch; });
 /* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
 
-var RECEIVE_USER = 'RECEIVE_USER';
-var RECEIVE_USERS = 'RECEIVE_USERS';
-var RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
-var SEARCH_USERS = 'SEARCH_USERS';
+var RECEIVE_USER = 'RECEIVE_USER'; // export const RECEIVE_USERS = 'RECEIVE_USERS';
 
-var receiveUsers = function receiveUsers(users) {
-  return {
-    type: RECEIVE_USERS,
-    users: users
-  };
-};
+var RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
+var SEARCH_USERS = 'SEARCH_USERS'; // const receiveUsers = (users) => {
+//     return {
+//         type: RECEIVE_USERS,
+//         users
+//     };
+// };
 
 var receiveUser = function receiveUser(user) {
   return {
@@ -546,15 +534,12 @@ var receiveResult = function receiveResult(users) {
     type: SEARCH_USERS,
     users: users
   };
-};
+}; // export const fetchUsers = () => (dispatch) => {
+//     return UserApiUtil.fetchUsers()
+//         .then((users) => dispatch(receiveUsers(users)))
+// };
 
-var fetchUsers = function fetchUsers() {
-  return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUsers"]().then(function (users) {
-      return dispatch(receiveUsers(users));
-    });
-  };
-};
+
 var fetchUserByUsername = function fetchUserByUsername(username) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUserByUsername"](username).then(function (user) {
@@ -685,8 +670,6 @@ function CommentForm(props) {
   }, []);
 
   function submitOnEnter(event) {
-    debugger;
-
     if (event.keyCode === 13) {
       event.preventDefault();
       handleSubmit(event);
@@ -730,13 +713,7 @@ function CommentForm(props) {
     type: "submit",
     className: "comment-post-button"
   }, "Post")));
-} // const lines = Math.floor(comment.length / 24);
-// document.getElementById("comment-textbox").style.height = `${18*(lines+1)}px`;
-// const commentStyle = document.getElementsByClassName("comment-text")[0].style;
-// // /\d+/
-// if (Number(commentStyle.minHeight.match(/[0-9]+/)) > 200) {
-//   commentStyle.minHeight = `${440-(18*lines)}px`;
-// }
+}
 
 /***/ }),
 
@@ -1106,16 +1083,7 @@ function MenuPost(props) {
     if (e.target.className === 'menu-post-modal' && e.target.style.visibility === 'visible') {
       handleCancel();
     }
-  }); // useEffect(() => {
-  //   window.addEventListener('click', function (e) {
-  //     if (document.querySelector(`#menu-post-modal-${props.postId}-user-${props.userId}`).style.visibility = ("visible")
-  //       && !document.querySelector('.menu-post-div').contains(e.target)) 
-  //     {
-  //       handleCancel();
-  //     }
-  //   })
-  // }, [])
-
+  });
   var following = true;
 
   if (document.querySelector("#follow-user-".concat(props.userId))) {
@@ -1276,12 +1244,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var mapStateToProps = function mapStateToProps(state) {
   return {
     currentUser: state.entities.users[state.session.id],
-    users: state.entities.users // user_id: state.session.id
-
+    users: state.entities.users
   };
 };
 
@@ -1289,9 +1255,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
-    },
-    fetchUsers: function fetchUsers() {
-      return dispatch(Object(_actions_users_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
     },
     fetchSearch: function fetchSearch(username) {
       return dispatch(Object(_actions_users_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSearch"])(username));
@@ -1347,11 +1310,14 @@ function searchbar(props) {
       username: e.currentTarget.value
     }).then(function (res) {
       setResult(Object.values(res.users));
-    }).then(document.querySelector('.searchList').style.visibility = "visible");
+    });
+
+    if (document.querySelector('.searchList')) {
+      document.querySelector('.searchList').style.visibility = "visible";
+    }
   }
 
   function handleSearchbar() {
-    // list = null
     document.querySelector('.searchList').style.visibility = "hidden";
     document.getElementById('txtbox').value = "";
     setResult("");
@@ -1363,12 +1329,7 @@ function searchbar(props) {
         handleSearchbar();
       }
     });
-  }); // window.addEventListener('click', e => {
-  //   if ((e.target.className !== 'searchList') && result !== "") {
-  //     handleSearchBar()
-  //   }
-  // })
-
+  });
   var list = search ? result.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "searchList"
   }, result.map(function (user) {
@@ -1462,18 +1423,13 @@ function (_React$Component) {
       currentUser: _this.props.post.currentUser,
       caption: _this.props.post.caption,
       photoFile: null,
-      photoUrl: null // posts: this.props.posts,
-      // post: this.props.post
-
+      photoUrl: null
     };
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleCaption = _this.handleCaption.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     this.props.fetchPosts();
-  // }
-
+  }
 
   _createClass(PostForm, [{
     key: "handleCaption",
@@ -1594,12 +1550,9 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     post: {
-      // user_id: state.session.id,
       currentUser: state.entities.users[state.session.id],
       caption: ''
-    } // posts: state.entities.posts,
-    // formType: 'Create Post'
-
+    }
   };
 };
 
@@ -1607,8 +1560,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createPost: function createPost(post) {
       return dispatch(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["createPost"])(post));
-    } // fetchPosts: () => dispatch(fetchPosts())
-
+    }
   };
 };
 
@@ -1906,8 +1858,7 @@ function (_React$Component) {
       formData.append('user[pic]', this.state.photoFile);
       formData.append('user[id]', this.props.currentUser.id);
       this.props.updateUser(formData);
-      window.location.reload(false); // this.props.location.reload(false)
-      // .then(() => window.location.reload(false))
+      window.location.reload(false);
     }
   }, {
     key: "handleClick",
@@ -1990,7 +1941,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
       var buttonClass = this.state.btn === 'Follow' ? "follow-button" : "edit-profile-button";
 
       if (this.props.currentUser.username === this.props.username && !this.state.currentUser) {
@@ -2096,7 +2046,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 /* harmony import */ var _actions_follows_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/follows_actions */ "./frontend/actions/follows_actions.js");
- // import Post from './post';
 
 
 
@@ -2104,18 +2053,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
   return {
     data: {
       currentUserId: state.entities.users[state.session.id].id,
-      //state.session.id ?same?
       post_id: ownProps.post.id
     },
     post: ownProps.post,
     currentUser: state.entities.users[state.session.id],
-    // likeId: state.entities.post.likeId
-    comments: Object.values(state.entities.comments) //[]
-
+    comments: Object.values(state.entities.comments)
   };
 };
 
@@ -2186,13 +2131,7 @@ function Post(props) {
     document.querySelectorAll("#follow-user-".concat(id)).forEach(function (el) {
       return el.style.visibility = 'hidden';
     });
-  } // window.addEventListener('click', function (e) {
-  //   if (!document.querySelector('.menu-post-modal').contains(e.target)) {
-  //     // document.querySelector(`#modal-bg-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("hidden")
-  //     // document.querySelector(`#menu-post-modal-${props.post.id}-user-${props.post.user_id}`).style.visibility = ("hidden")
-  //   }
-  // })
-
+  }
 
   var btn = props.post.username === props.currentUser.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleModal,
@@ -2412,18 +2351,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import { fetchUsers } from '../../actions/users_actions';
+
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     posts: Object.values(state.entities.posts).reverse(),
     currentUser: state.entities.users[state.session.id],
-    // followingIds: Object.values(state.entities.users[state.session.id].followed).map(({ followed_id }) => followed_id)
     followingIds: Object.values(state.entities.follows).length ? Object.values(state.entities.follows.followed).map(function (_ref) {
       var followed_id = _ref.followed_id;
       return followed_id;
-    }) : [] // users: Object.values(state.entities.users),
-
+    }) : []
   };
 };
 
@@ -2463,8 +2400,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchFollows: function fetchFollows(userId) {
       return dispatch(Object(_actions_follows_actions__WEBPACK_IMPORTED_MODULE_4__["fetchFollows"])(userId));
-    } // fetchUsers: () => dispatch(fetchUsers()),
-
+    }
   };
 };
 
@@ -2495,9 +2431,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
   return {
-    // posts: Object.values(state.entities.posts), 
     post: state.entities.posts[ownProps.match.params.postId],
     currentUser: state.entities.users[state.session.id],
     user: state.entities.otherUser,
@@ -3071,8 +3005,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     signup: function signup(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
-    } // openModal: modal => dispatch(openModal(modal))
-
+    }
   };
 };
 
@@ -3093,17 +3026,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
-/* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/user_api_util */ "./frontend/util/user_api_util.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+ // import { login, signup, logout } from './actions/session_actions';
 
 
-
-
+ // import {fetchSearch} from './util/user_api_util';
 
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
@@ -3118,20 +3049,20 @@ document.addEventListener('DOMContentLoaded', function () {
         id: window.currentUser.id
       }
     };
-    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(preloadedState);
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
     delete window.currentUser;
   } else {
-    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  }
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  } // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
+  // window.login = login;
+  // window.signup = signup;
+  // window.logout = logout;
+  // window.fetchSearch = fetchSearch;
+  // console.log("working")
 
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"];
-  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"];
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"];
-  window.fetchSearch = _util_user_api_util__WEBPACK_IMPORTED_MODULE_5__["fetchSearch"]; // console.log("working")
 
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
 });
@@ -3545,14 +3476,11 @@ var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState; // debugger
+  var nextState;
 
   switch (action.type) {
     case _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USERS"]:
-      // debugger
       return action.users;
-    // case RECEIVE_USER:
-    //     nextState = Object.assign({}, state, { [action.user.id]: action.user } )
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       nextState = Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
@@ -3578,17 +3506,15 @@ var usersReducer = function usersReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
+/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
 
-
+ // import logger from 'redux-logger';
 
 
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
@@ -3676,7 +3602,6 @@ var createFollow = function createFollow(follow) {
   });
 };
 var deleteFollow = function deleteFollow(data) {
-  // debugger
   return $.ajax({
     url: "api/follows/".concat(data.followed_id),
     method: 'DELETE'
@@ -3906,24 +3831,19 @@ __webpack_require__.r(__webpack_exports__);
 //     });
 // };
 var fetchUserByUsername = function fetchUserByUsername(username) {
-  // debugger
   return $.ajax({
     url: "api/users/",
     method: 'GET',
-    data: username // error: (err) => console.log(err)
-
+    data: username
   });
 };
 var fetchUser = function fetchUser(userId) {
-  // debugger
   return $.ajax({
     url: "api/users/".concat(userId),
-    method: 'GET' // error: (err) => console.log(err)
-
+    method: 'GET'
   });
 };
 var fetchSearch = function fetchSearch(username) {
-  // debugger
   return $.ajax({
     url: "api/search",
     method: 'GET',
@@ -3931,7 +3851,6 @@ var fetchSearch = function fetchSearch(username) {
   });
 };
 var updateUser = function updateUser(formData) {
-  // debugger
   return $.ajax({
     url: "api/users/".concat(formData.get("user[id]")),
     method: "PATCH",
@@ -41908,19 +41827,6 @@ if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/react.development.js */ "./node_modules/react/cjs/react.development.js");
 }
 
-
-/***/ }),
-
-/***/ "./node_modules/redux-logger/dist/redux-logger.js":
-/*!********************************************************!*\
-  !*** ./node_modules/redux-logger/dist/redux-logger.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {!function(e,t){ true?t(exports):undefined}(this,function(e){"use strict";function t(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}function r(e,t){Object.defineProperty(this,"kind",{value:e,enumerable:!0}),t&&t.length&&Object.defineProperty(this,"path",{value:t,enumerable:!0})}function n(e,t,r){n.super_.call(this,"E",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0}),Object.defineProperty(this,"rhs",{value:r,enumerable:!0})}function o(e,t){o.super_.call(this,"N",e),Object.defineProperty(this,"rhs",{value:t,enumerable:!0})}function i(e,t){i.super_.call(this,"D",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0})}function a(e,t,r){a.super_.call(this,"A",e),Object.defineProperty(this,"index",{value:t,enumerable:!0}),Object.defineProperty(this,"item",{value:r,enumerable:!0})}function f(e,t,r){var n=e.slice((r||t)+1||e.length);return e.length=t<0?e.length+t:t,e.push.apply(e,n),e}function u(e){var t="undefined"==typeof e?"undefined":N(e);return"object"!==t?t:e===Math?"math":null===e?"null":Array.isArray(e)?"array":"[object Date]"===Object.prototype.toString.call(e)?"date":"function"==typeof e.toString&&/^\/.*\//.test(e.toString())?"regexp":"object"}function l(e,t,r,c,s,d,p){s=s||[],p=p||[];var g=s.slice(0);if("undefined"!=typeof d){if(c){if("function"==typeof c&&c(g,d))return;if("object"===("undefined"==typeof c?"undefined":N(c))){if(c.prefilter&&c.prefilter(g,d))return;if(c.normalize){var h=c.normalize(g,d,e,t);h&&(e=h[0],t=h[1])}}}g.push(d)}"regexp"===u(e)&&"regexp"===u(t)&&(e=e.toString(),t=t.toString());var y="undefined"==typeof e?"undefined":N(e),v="undefined"==typeof t?"undefined":N(t),b="undefined"!==y||p&&p[p.length-1].lhs&&p[p.length-1].lhs.hasOwnProperty(d),m="undefined"!==v||p&&p[p.length-1].rhs&&p[p.length-1].rhs.hasOwnProperty(d);if(!b&&m)r(new o(g,t));else if(!m&&b)r(new i(g,e));else if(u(e)!==u(t))r(new n(g,e,t));else if("date"===u(e)&&e-t!==0)r(new n(g,e,t));else if("object"===y&&null!==e&&null!==t)if(p.filter(function(t){return t.lhs===e}).length)e!==t&&r(new n(g,e,t));else{if(p.push({lhs:e,rhs:t}),Array.isArray(e)){var w;e.length;for(w=0;w<e.length;w++)w>=t.length?r(new a(g,w,new i(void 0,e[w]))):l(e[w],t[w],r,c,g,w,p);for(;w<t.length;)r(new a(g,w,new o(void 0,t[w++])))}else{var x=Object.keys(e),S=Object.keys(t);x.forEach(function(n,o){var i=S.indexOf(n);i>=0?(l(e[n],t[n],r,c,g,n,p),S=f(S,i)):l(e[n],void 0,r,c,g,n,p)}),S.forEach(function(e){l(void 0,t[e],r,c,g,e,p)})}p.length=p.length-1}else e!==t&&("number"===y&&isNaN(e)&&isNaN(t)||r(new n(g,e,t)))}function c(e,t,r,n){return n=n||[],l(e,t,function(e){e&&n.push(e)},r),n.length?n:void 0}function s(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":s(o[r.path[n]],r.index,r.item);break;case"D":delete o[r.path[n]];break;case"E":case"N":o[r.path[n]]=r.rhs}}else switch(r.kind){case"A":s(e[t],r.index,r.item);break;case"D":e=f(e,t);break;case"E":case"N":e[t]=r.rhs}return e}function d(e,t,r){if(e&&t&&r&&r.kind){for(var n=e,o=-1,i=r.path?r.path.length-1:0;++o<i;)"undefined"==typeof n[r.path[o]]&&(n[r.path[o]]="number"==typeof r.path[o]?[]:{}),n=n[r.path[o]];switch(r.kind){case"A":s(r.path?n[r.path[o]]:n,r.index,r.item);break;case"D":delete n[r.path[o]];break;case"E":case"N":n[r.path[o]]=r.rhs}}}function p(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":p(o[r.path[n]],r.index,r.item);break;case"D":o[r.path[n]]=r.lhs;break;case"E":o[r.path[n]]=r.lhs;break;case"N":delete o[r.path[n]]}}else switch(r.kind){case"A":p(e[t],r.index,r.item);break;case"D":e[t]=r.lhs;break;case"E":e[t]=r.lhs;break;case"N":e=f(e,t)}return e}function g(e,t,r){if(e&&t&&r&&r.kind){var n,o,i=e;for(o=r.path.length-1,n=0;n<o;n++)"undefined"==typeof i[r.path[n]]&&(i[r.path[n]]={}),i=i[r.path[n]];switch(r.kind){case"A":p(i[r.path[n]],r.index,r.item);break;case"D":i[r.path[n]]=r.lhs;break;case"E":i[r.path[n]]=r.lhs;break;case"N":delete i[r.path[n]]}}}function h(e,t,r){if(e&&t){var n=function(n){r&&!r(e,t,n)||d(e,t,n)};l(e,t,n)}}function y(e){return"color: "+F[e].color+"; font-weight: bold"}function v(e){var t=e.kind,r=e.path,n=e.lhs,o=e.rhs,i=e.index,a=e.item;switch(t){case"E":return[r.join("."),n,"→",o];case"N":return[r.join("."),o];case"D":return[r.join(".")];case"A":return[r.join(".")+"["+i+"]",a];default:return[]}}function b(e,t,r,n){var o=c(e,t);try{n?r.groupCollapsed("diff"):r.group("diff")}catch(e){r.log("diff")}o?o.forEach(function(e){var t=e.kind,n=v(e);r.log.apply(r,["%c "+F[t].text,y(t)].concat(P(n)))}):r.log("—— no diff ——");try{r.groupEnd()}catch(e){r.log("—— diff end —— ")}}function m(e,t,r,n){switch("undefined"==typeof e?"undefined":N(e)){case"object":return"function"==typeof e[n]?e[n].apply(e,P(r)):e[n];case"function":return e(t);default:return e}}function w(e){var t=e.timestamp,r=e.duration;return function(e,n,o){var i=["action"];return i.push("%c"+String(e.type)),t&&i.push("%c@ "+n),r&&i.push("%c(in "+o.toFixed(2)+" ms)"),i.join(" ")}}function x(e,t){var r=t.logger,n=t.actionTransformer,o=t.titleFormatter,i=void 0===o?w(t):o,a=t.collapsed,f=t.colors,u=t.level,l=t.diff,c="undefined"==typeof t.titleFormatter;e.forEach(function(o,s){var d=o.started,p=o.startedTime,g=o.action,h=o.prevState,y=o.error,v=o.took,w=o.nextState,x=e[s+1];x&&(w=x.prevState,v=x.started-d);var S=n(g),k="function"==typeof a?a(function(){return w},g,o):a,j=D(p),E=f.title?"color: "+f.title(S)+";":"",A=["color: gray; font-weight: lighter;"];A.push(E),t.timestamp&&A.push("color: gray; font-weight: lighter;"),t.duration&&A.push("color: gray; font-weight: lighter;");var O=i(S,j,v);try{k?f.title&&c?r.groupCollapsed.apply(r,["%c "+O].concat(A)):r.groupCollapsed(O):f.title&&c?r.group.apply(r,["%c "+O].concat(A)):r.group(O)}catch(e){r.log(O)}var N=m(u,S,[h],"prevState"),P=m(u,S,[S],"action"),C=m(u,S,[y,h],"error"),F=m(u,S,[w],"nextState");if(N)if(f.prevState){var L="color: "+f.prevState(h)+"; font-weight: bold";r[N]("%c prev state",L,h)}else r[N]("prev state",h);if(P)if(f.action){var T="color: "+f.action(S)+"; font-weight: bold";r[P]("%c action    ",T,S)}else r[P]("action    ",S);if(y&&C)if(f.error){var M="color: "+f.error(y,h)+"; font-weight: bold;";r[C]("%c error     ",M,y)}else r[C]("error     ",y);if(F)if(f.nextState){var _="color: "+f.nextState(w)+"; font-weight: bold";r[F]("%c next state",_,w)}else r[F]("next state",w);l&&b(h,w,r,k);try{r.groupEnd()}catch(e){r.log("—— log end ——")}})}function S(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=Object.assign({},L,e),r=t.logger,n=t.stateTransformer,o=t.errorTransformer,i=t.predicate,a=t.logErrors,f=t.diffPredicate;if("undefined"==typeof r)return function(){return function(e){return function(t){return e(t)}}};if(e.getState&&e.dispatch)return console.error("[redux-logger] redux-logger not installed. Make sure to pass logger instance as middleware:\n// Logger with default options\nimport { logger } from 'redux-logger'\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n// Or you can create your own logger with custom options http://bit.ly/redux-logger-options\nimport createLogger from 'redux-logger'\nconst logger = createLogger({\n  // ...options\n});\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n"),function(){return function(e){return function(t){return e(t)}}};var u=[];return function(e){var r=e.getState;return function(e){return function(l){if("function"==typeof i&&!i(r,l))return e(l);var c={};u.push(c),c.started=O.now(),c.startedTime=new Date,c.prevState=n(r()),c.action=l;var s=void 0;if(a)try{s=e(l)}catch(e){c.error=o(e)}else s=e(l);c.took=O.now()-c.started,c.nextState=n(r());var d=t.diff&&"function"==typeof f?f(r,l):t.diff;if(x(u,Object.assign({},t,{diff:d})),u.length=0,c.error)throw c.error;return s}}}}var k,j,E=function(e,t){return new Array(t+1).join(e)},A=function(e,t){return E("0",t-e.toString().length)+e},D=function(e){return A(e.getHours(),2)+":"+A(e.getMinutes(),2)+":"+A(e.getSeconds(),2)+"."+A(e.getMilliseconds(),3)},O="undefined"!=typeof performance&&null!==performance&&"function"==typeof performance.now?performance:Date,N="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},P=function(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)},C=[];k="object"===("undefined"==typeof global?"undefined":N(global))&&global?global:"undefined"!=typeof window?window:{},j=k.DeepDiff,j&&C.push(function(){"undefined"!=typeof j&&k.DeepDiff===c&&(k.DeepDiff=j,j=void 0)}),t(n,r),t(o,r),t(i,r),t(a,r),Object.defineProperties(c,{diff:{value:c,enumerable:!0},observableDiff:{value:l,enumerable:!0},applyDiff:{value:h,enumerable:!0},applyChange:{value:d,enumerable:!0},revertChange:{value:g,enumerable:!0},isConflict:{value:function(){return"undefined"!=typeof j},enumerable:!0},noConflict:{value:function(){return C&&(C.forEach(function(e){e()}),C=null),c},enumerable:!0}});var F={E:{color:"#2196F3",text:"CHANGED:"},N:{color:"#4CAF50",text:"ADDED:"},D:{color:"#F44336",text:"DELETED:"},A:{color:"#2196F3",text:"ARRAY:"}},L={level:"log",logger:console,logErrors:!0,collapsed:void 0,predicate:void 0,duration:!1,timestamp:!0,stateTransformer:function(e){return e},actionTransformer:function(e){return e},errorTransformer:function(e){return e},colors:{title:function(){return"inherit"},prevState:function(){return"#9E9E9E"},action:function(){return"#03A9F4"},nextState:function(){return"#4CAF50"},error:function(){return"#F20404"}},diff:!1,diffPredicate:void 0,transformer:void 0},T=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.dispatch,r=e.getState;return"function"==typeof t||"function"==typeof r?S()({dispatch:t,getState:r}):void console.error("\n[redux-logger v3] BREAKING CHANGE\n[redux-logger v3] Since 3.0.0 redux-logger exports by default logger with default settings.\n[redux-logger v3] Change\n[redux-logger v3] import createLogger from 'redux-logger'\n[redux-logger v3] to\n[redux-logger v3] import { createLogger } from 'redux-logger'\n")};e.defaults=L,e.createLogger=S,e.logger=T,e.default=T,Object.defineProperty(e,"__esModule",{value:!0})});
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 

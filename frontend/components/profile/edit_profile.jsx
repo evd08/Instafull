@@ -51,17 +51,15 @@ export default function EditProfile(props) {
 
       <form className="edit-profile-form">
         <div className="edit-profile-form-div1">
-          {/* <div className="edit-profile-form-div2"> */}
-            <label>Name
-              <input type="text" placeholder={props.currentUser.name} onChange={updateName} />
-            </label>
-            <label>Username
-              <input type="text" placeholder={props.currentUser.username} onChange={updateUsername} />
-            </label>
-            <label>Email
-              <input type="text" placeholder={props.currentUser.email} onChange={updateEmail} />
-            </label>
-          {/* </div> */}
+          <label>Name
+            <input type="text" placeholder={props.currentUser.name} onChange={updateName} />
+          </label>
+          <label>Username
+            <input type="text" placeholder={props.currentUser.username} onChange={updateUsername} />
+          </label>
+          <label>Email
+            <input type="text" placeholder={props.currentUser.email} onChange={updateEmail} />
+          </label>
         </div>
         
         <div className="edit-option-button">

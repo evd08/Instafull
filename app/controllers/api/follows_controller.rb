@@ -23,7 +23,6 @@ class Api::FollowsController < ApplicationController
   end
 
   def index
-    # debugger
     @followed = Follow.where(follower_id: params[:userId])
     @followers = Follow.where(followed_id: params[:userId])
     @follows = @followed.or(@followers)
