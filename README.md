@@ -2,6 +2,8 @@
 # Background
 InstaPlaces, a clone of Instagram application, a photo sharing application where users can also search and follow other users, and comment and like other user’s posts. 
 
+[Live Link](insta-clone08.herokuapp.com)
+
 # Technologies:
 
 * Ruby on Rails
