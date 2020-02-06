@@ -1,4 +1,3 @@
-# README
 
 # Background
 InstaPlaces, a clone of Instagram application, a photo sharing application where users can also search and follow other users, and comment and like other user’s posts. 
@@ -19,6 +18,11 @@ Secure user authentication using BCrypt. A demo user was created for anyone who 
 ### CRUD (Create, Read, Update, Delete) Cycle
 Users can post a new photo with a caption and later on can edit that caption and they can also delete their own post and comments on their own post and on other user’s post. AWS S3 is being used to saved the posts.
 
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/53169926/73900068-6bfd6a00-4843-11ea-8d66-7175ab865352.gif)
+
+Liking, leaving a comment and deleting a post: 
+
+![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/53169926/73900075-6f90f100-4843-11ea-8fde-7add5d4b32c8.gif)
 
 #### User's profile page
 Only one component was being used for current user's profile and other users profile. A conditional statement was added to know if buttons and accesibility has to be given to the current user.
@@ -45,7 +49,12 @@ handleClick() {
 
 ### Search bar
 Implemented a search bar to search for other users to follow. Results are based on users input.
+It is possible to Unfollow users from the home page and follow them right after unfollowing. Deleting currennt user's comment can be deleted on post preview.
 
+![search](https://user-images.githubusercontent.com/53169926/73901479-c3053e00-4847-11ea-8b96-22982849fc1f.gif)
+
+
+This is a snippet of the searchbar react hooks component. "list" is a variable where the results are being saved if there is one and it will be showed "No results found." if there's none. list will only be shown if there is a user input in the search bar.
 ```javascript
 let list = search ? 
   (result.length > 0 ? 
