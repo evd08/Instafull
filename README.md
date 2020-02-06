@@ -4,6 +4,8 @@ InstaPlaces, a clone of Instagram application, a photo sharing application where
 
 [Live Link](http://insta-clone08.herokuapp.com/#/)
 
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/53169926/73900068-6bfd6a00-4843-11ea-8d66-7175ab865352.gif)
+
 # Technologies:
 
 * Ruby on Rails
@@ -19,8 +21,6 @@ Secure user authentication using BCrypt. A demo user was created for anyone who 
 
 ### CRUD (Create, Read, Update, Delete) Cycle
 Users can post a new photo with a caption and later on can edit that caption and they can also delete their own post and comments on their own post and on other user’s post. AWS S3 is being used to saved the posts.
-
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/53169926/73900068-6bfd6a00-4843-11ea-8d66-7175ab865352.gif)
 
 Liking, leaving a comment and deleting a post: 
 
