@@ -54,9 +54,9 @@ export default function EditProfile(props) {
           <label>Name
             <input type="text" placeholder={props.currentUser.name} onChange={updateName} />
           </label>
-          <label>Username
+          {/* <label>Username
             <input type="text" placeholder={props.currentUser.username} onChange={updateUsername} />
-          </label>
+          </label> */}
           <label>Email
             <input type="text" placeholder={props.currentUser.email} onChange={updateEmail} />
           </label>

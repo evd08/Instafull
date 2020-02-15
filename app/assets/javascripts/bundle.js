@@ -2738,10 +2738,6 @@ function EditProfile(props) {
     type: "text",
     placeholder: props.currentUser.name,
     onChange: updateName
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    placeholder: props.currentUser.username,
-    onChange: updateUsername
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     placeholder: props.currentUser.email,
