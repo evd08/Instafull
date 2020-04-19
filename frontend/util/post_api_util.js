@@ -1,8 +1,9 @@
 
-export const fetchPosts = (userId) => {
+export const fetchPosts = (userId, page) => {
     return $.ajax({
         url: `/api/users/${userId}/posts`,
-        method: 'GET'
+        method: 'GET',
+        data: {page}
     })
 }
 

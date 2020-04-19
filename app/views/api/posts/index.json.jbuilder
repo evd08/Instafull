@@ -4,3 +4,5 @@
          # "photo" comes from post model
     end
 end
+
+json.total @total

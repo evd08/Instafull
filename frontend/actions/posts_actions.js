@@ -22,8 +22,8 @@ export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 
-export const fetchPosts = (userId) => dispatch => {
-    return PostAPIUtil.fetchPosts(userId)
+export const fetchPosts = (userId, page) => dispatch => {
+    return PostAPIUtil.fetchPosts(userId, page)
         .then(posts => dispatch(receiveAllPosts(posts)))
 }
 

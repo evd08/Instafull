@@ -1,3 +1,5 @@
+// post index hooks version. Working! not updated on the infinite scroll
+
 // import React, { useEffect, useState } from 'react';
 // import PostContainer from './post_container';
 // import Navbar from '../navbar/navbar_container';

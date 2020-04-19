@@ -3,6 +3,7 @@ import Navbar from '../navbar/navbar_container';
 import { Link } from 'react-router-dom';
 import EditProfile from '../profile/edit_profile';
 import Loader from 'react-loader-spinner';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 class OtherUserShow extends React.Component {
     constructor(props){
@@ -15,17 +16,20 @@ class OtherUserShow extends React.Component {
             set: false,
             photoFile: null,
             picUrl: null,
+            page: 1,
+            morePosts: true,
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.setUserInfo = this.setUserInfo.bind(this);
         this.handleFile = this.handleFile.bind(this);
         this.handleProfilePic = this.handleProfilePic.bind(this);
+        this.fetchMorePosts = this.fetchMorePosts.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchUserByUsername({ username: this.props.username })
-            .then(() => this.props.fetchPosts(this.props.otherUser.id))
+            .then(() => this.props.fetchPosts(this.props.otherUser.id, this.state.page))
             .then(() => this.props.fetchComments())
             .then(() => this.setState({ loading: false }))
         this.setState({ set: false })
@@ -35,12 +39,28 @@ class OtherUserShow extends React.Component {
         if(prevProps.match.params.username !== this.props.match.params.username) {
             this.setState({ loading: true })
             this.props.fetchUserByUsername({ username: this.props.username })
-                .then(() => { this.props.fetchPosts(this.props.otherUser.id)
+                .then(() => { this.props.fetchPosts(this.props.otherUser.id, this.state.page)
 
                         this.setState({ followerCount: this.props.otherUser.followerCount })
                         this.setState({ loading: false })
             })
         }
+    }
+
+    fetchMorePosts() {
+        // debugger
+        console.log("THIS IS FETCHING MORE POSTS")
+        this.props.fetchPosts(this.props.otherUser.id, this.state.page + 1)
+            .then(res => {
+                // console.log("THIS IS THE RES", res)
+                // console.log("THIS IS THE TOTAL POSTS", this.props.total)
+                console.log("THIS IS THE LENGTH OF POSTS", Object.values(res.posts).length-1)
+                console.log("THIS IS THE PAGE NUMBER", this.state.page)
+                if (Object.values(res.posts).length - 1 === this.props.total) {
+                    this.setState({ morePosts: false })
+                }
+            })
+        this.setState({ page: this.state.page + 1 })
     }
 
     handleFile(e) {
@@ -51,7 +71,6 @@ class OtherUserShow extends React.Component {
             },
             this.handleProfilePic
             );
-
     }
 
     handleProfilePic() {
@@ -151,7 +170,7 @@ class OtherUserShow extends React.Component {
 
                         <div className="profile-right-div">
                             <div className="counts">
-                                <p><span>{this.props.posts.length}</span> posts</p>
+                                <p><span>{this.props.total}</span> posts</p>
                                 <p><span>{this.state.followerCount}</span> followers</p>
                                 <p><span>{this.props.otherUser.followingCount}</span> following</p>
                             </div>
@@ -162,17 +181,25 @@ class OtherUserShow extends React.Component {
 
                 <div className="profile-post-div">
                     <ul className="posts-ul">
-                        <div className="post-ul-div">
-                            {this.props.posts.map((post) => (
-                                <li key={post.id}>
-                                    <div className="users-post-div">
-                                        <Link to={`/posts/${post.id}/edit`}>
-                                            <img className="users-post-img" src={post.photoUrl} />
-                                        </Link>
-                                    </div>
-                                </li>
-                            ))}
-                        </div>
+                        <InfiniteScroll
+                            dataLength={this.props.posts.length}
+                            next={this.fetchMorePosts}
+                            hasMore={this.state.morePosts}
+                            loader={<Loader type="ThreeDots" color="#00BFFF" className="loading-more" />}
+                            endMessage={<h1>No more posts</h1>}
+                        >
+                            {<div className="post-ul-div">
+                                {this.props.posts.map((post) => (
+                                    <li key={post.id}>
+                                        <div className="users-post-div">
+                                            <Link to={`/posts/${post.id}/edit`}>
+                                                <img className="users-post-img" src={post.photoUrl} />
+                                            </Link>
+                                        </div>
+                                    </li>
+                                ))}
+                            </div>}
+                        </InfiniteScroll>
                     </ul>
                 </div>
 

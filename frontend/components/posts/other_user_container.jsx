@@ -10,7 +10,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.entities.users[state.session.id],
     username: ownProps.match.params.username,
-    posts: Object.values(state.entities.posts).reverse(),
+    posts: Object.values(state.entities.posts).slice(0,Object.values(state.entities.posts).length-1).reverse(),
+    total: Object.values(state.entities.posts)[Object.values(state.entities.posts).length-1],
     otherUser: state.entities.otherUser,
 
     followerIds: Object.keys(state.entities.otherUser).length ? 
@@ -24,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPosts: posts => dispatch(fetchPosts(posts)),
+    fetchPosts: (userId, page) => dispatch(fetchPosts(userId, page)),
     fetchPost: postId => dispatch(fetchPost(postId)),
     updateUser: user => dispatch(updateUser(user)),
     fetchComments: () => dispatch(fetchComments()),

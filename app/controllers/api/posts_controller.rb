@@ -2,9 +2,9 @@ class Api::PostsController < ApplicationController
 
     def index 
         user_ids = params[:user_id].split(",").map(&:to_i)
-        @posts = Post.where(user_id: user_ids)
-        # @posts = (@posts.sort_by &:updated_at).reverse()
-        # @posts = Post.where(username: params[:username])
+        num = params[:page].to_i * 6
+        @posts = Post.where(user_id: user_ids).order('created_at DESC').first(num)
+        @total = Post.where(user_id: user_ids).count()
     end
 
     def show 
