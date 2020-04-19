@@ -55,18 +55,18 @@
     object-fit: cover;
 }
 
-.profile-pic-img:hover {
+// .profile-pic-img:hover {
 
-}
+// }
 
 .profile-pic-div {
     width: 150px;
     height: 150px;
 }
 
-.profile-details {
+// .profile-details {
 
-}
+// }
 
 .profile-username-div {
     height: 50px;
@@ -159,17 +159,20 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
 }
 
 .loading-more {
     justify-content: center;
     align-items: center;
     height: 20vh;
-    overflow: hidden;
 }
 
 .hide {
     opacity: 0;
     // visibility: hidden;
+}
+
+.infinite-scroll {
+    height: auto;
+    overflow: hidden;
 }
