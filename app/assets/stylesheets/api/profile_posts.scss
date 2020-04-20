@@ -32,6 +32,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 900px;
+    overflow: hidden;
 }
 
 .posts-ul .users-post-div {
@@ -174,7 +175,7 @@
     // visibility: hidden;
 }
 
-.infinite-scroll {
-    height: auto;
-    overflow: hidden;
-}
+// .infinite-scroll {
+//     height: auto;
+//     overflow: hidden;
+// }
