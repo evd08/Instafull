@@ -34889,7 +34889,7 @@ var InfiniteScroll = /** @class */ (function (_super) {
     };
     InfiniteScroll.prototype.render = function () {
         var _this = this;
-        var style = __assign({ height: this.props.height || 'auto', overflow: 'hidden', WebkitOverflowScrolling: 'touch' }, this.props.style);
+        var style = __assign({ height: this.props.height || 'auto', overflow: 'auto', WebkitOverflowScrolling: 'touch' }, this.props.style);
         var hasChildren = this.props.hasChildren ||
             !!(this.props.children &&
                 this.props.children instanceof Array &&
@@ -34897,7 +34897,7 @@ var InfiniteScroll = /** @class */ (function (_super) {
         // because heighted infiniteScroll visualy breaks
         // on drag down as overflow becomes visible
         var outerDivStyle = this.props.pullDownToRefresh && this.props.height
-            ? { overflow: 'hidden' }
+            ? { overflow: 'auto' }
             : {};
         return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { style: outerDivStyle, className: "infinite-scroll-component__outerdiv" },
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "infinite-scroll-component " + (this.props.className || ''), ref: function (infScroll) { return (_this._infScroll = infScroll); }, style: style },
