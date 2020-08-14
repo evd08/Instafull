@@ -20,8 +20,8 @@ export default function CommentForm(props){
   }
   
   function handleSubmit(e) {
-    console.log(e)
-    console.log(comment);
+    // console.log(e)
+    // console.log(comment);
     let txt = document.getElementById(`comment-textbox-${props.postId}`).value
 
     if (txt === "") {

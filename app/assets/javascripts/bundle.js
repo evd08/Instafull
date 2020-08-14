@@ -681,8 +681,8 @@ function CommentForm(props) {
   }
 
   function handleSubmit(e) {
-    console.log(e);
-    console.log(comment);
+    // console.log(e);
+    // console.log(comment);
     var txt = document.getElementById("comment-textbox-".concat(props.postId)).value;
 
     if (txt === "") {
@@ -1859,8 +1859,8 @@ function (_React$Component) {
       this.props.fetchPosts(this.props.otherUser.id, this.state.page + 1).then(function (res) {
         // console.log("THIS IS THE RES", res)
         // console.log("THIS IS THE TOTAL POSTS", this.props.total)
-        console.log("THIS IS THE LENGTH OF POSTS", Object.values(res.posts).length - 1);
-        console.log("THIS IS THE PAGE NUMBER", _this4.state.page);
+        // console.log("THIS IS THE LENGTH OF POSTS", Object.values(res.posts).length - 1);
+        // console.log("THIS IS THE PAGE NUMBER", _this4.state.page);
 
         if (Object.values(res.posts).length - 1 === _this4.props.total) {
           _this4.setState({

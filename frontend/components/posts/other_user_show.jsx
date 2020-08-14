@@ -54,8 +54,8 @@ class OtherUserShow extends React.Component {
             .then(res => {
                 // console.log("THIS IS THE RES", res)
                 // console.log("THIS IS THE TOTAL POSTS", this.props.total)
-                console.log("THIS IS THE LENGTH OF POSTS", Object.values(res.posts).length-1)
-                console.log("THIS IS THE PAGE NUMBER", this.state.page)
+                // console.log("THIS IS THE LENGTH OF POSTS", Object.values(res.posts).length-1)
+                // console.log("THIS IS THE PAGE NUMBER", this.state.page)
                 if (Object.values(res.posts).length - 1 === this.props.total) {
                     this.setState({ morePosts: false })
                 }
