@@ -35,7 +35,7 @@ class PostIndex extends React.Component {
       .then((res) => {
         let ids = res.follows.followed.map(({ followed_id }) => followed_id)
         ids.push(this.props.currentUser.id)
-        console.log("THIS IS THE STATE PAGE", this.state.page)
+        // console.log("THIS IS THE STATE PAGE", this.state.page)
         this.props.fetchPosts(ids, this.state.page + 1)
           .then(res => {
             // console.log("THIS IS THE LENGTH", Object.values(res.posts).length-1)

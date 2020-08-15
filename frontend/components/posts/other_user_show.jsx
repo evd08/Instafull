@@ -48,14 +48,8 @@ class OtherUserShow extends React.Component {
     }
 
     fetchMorePosts() {
-        // debugger
-        console.log("THIS IS FETCHING MORE POSTS")
         this.props.fetchPosts(this.props.otherUser.id, this.state.page + 1)
             .then(res => {
-                // console.log("THIS IS THE RES", res)
-                // console.log("THIS IS THE TOTAL POSTS", this.props.total)
-                // console.log("THIS IS THE LENGTH OF POSTS", Object.values(res.posts).length-1)
-                // console.log("THIS IS THE PAGE NUMBER", this.state.page)
                 if (Object.values(res.posts).length - 1 === this.props.total) {
                     this.setState({ morePosts: false })
                 }

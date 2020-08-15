@@ -681,7 +681,7 @@ function CommentForm(props) {
   }
 
   function handleSubmit(e) {
-    // console.log(e);
+    // console.log(e)
     // console.log(comment);
     var txt = document.getElementById("comment-textbox-".concat(props.postId)).value;
 
@@ -1854,14 +1854,7 @@ function (_React$Component) {
     value: function fetchMorePosts() {
       var _this4 = this;
 
-      // debugger
-      console.log("THIS IS FETCHING MORE POSTS");
       this.props.fetchPosts(this.props.otherUser.id, this.state.page + 1).then(function (res) {
-        // console.log("THIS IS THE RES", res)
-        // console.log("THIS IS THE TOTAL POSTS", this.props.total)
-        // console.log("THIS IS THE LENGTH OF POSTS", Object.values(res.posts).length - 1);
-        // console.log("THIS IS THE PAGE NUMBER", _this4.state.page);
-
         if (Object.values(res.posts).length - 1 === _this4.props.total) {
           _this4.setState({
             morePosts: false
@@ -2357,8 +2350,7 @@ function (_React$Component) {
           var followed_id = _ref2.followed_id;
           return followed_id;
         });
-        ids.push(_this3.props.currentUser.id);
-        console.log("THIS IS THE STATE PAGE", _this3.state.page);
+        ids.push(_this3.props.currentUser.id); // console.log("THIS IS THE STATE PAGE", this.state.page)
 
         _this3.props.fetchPosts(ids, _this3.state.page + 1).then(function (res) {
           // console.log("THIS IS THE LENGTH", Object.values(res.posts).length-1)
