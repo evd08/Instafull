@@ -217,9 +217,14 @@
 //     object-fit: cover;
 // }
 
-// .infinite-scroll-component {
-//     overflow: hidden !important;
-// }
+.infinite-scroll-component {
+    overflow: hidden !important;
+    text-align: center;
+
+    h1 {
+        padding: 30px 0;
+    }
+}
 
 
 
