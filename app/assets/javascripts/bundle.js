@@ -1963,6 +1963,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // const el = document.documentElement;
       var buttonClass = this.state.btn === 'Follow' ? "follow-button" : "edit-profile-button";
 
       if (this.props.currentUser.username === this.props.username && !this.state.currentUser) {
@@ -2019,11 +2020,7 @@ function (_React$Component) {
         className: "counts"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.total), " posts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.followerCount), " followers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.otherUser.followingCount), " following")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "profile-name"
-      }, this.props.otherUser.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-post-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "posts-ul"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, this.props.otherUser.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_5__["default"], {
         dataLength: this.props.posts.length,
         next: this.fetchMorePosts,
         hasMore: this.state.morePosts,
@@ -2034,19 +2031,20 @@ function (_React$Component) {
         }),
         endMessage: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "No more posts")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-ul-div"
+        className: "three-col-container"
       }, this.props.posts.map(function (post) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: post.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "users-post-div"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "/posts/".concat(post.id, "/edit")
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "users-post-img",
-          src: post.photoUrl
-        }))));
-      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return (// <li key={post.id}>
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "users-post-container"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            to: "/posts/".concat(post.id, "/edit")
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+            className: "users-post-img",
+            src: post.photoUrl
+          }))) // </li>
+
+        );
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-bg"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "update-user-modal"
@@ -38841,7 +38839,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

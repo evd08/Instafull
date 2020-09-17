@@ -115,6 +115,7 @@ class OtherUserShow extends React.Component {
     }
     
     render() {
+        // const el = document.documentElement;
 
         let buttonClass = this.state.btn === 'Follow' ? "follow-button" : "edit-profile-button"
        
@@ -172,7 +173,32 @@ class OtherUserShow extends React.Component {
                         </div>
                     </div>
                 </div>
-                    {/* <div className="profile-post-div"> 
+                {/* <div className="profile-post-div"> 
+                    <InfiniteScroll
+                        dataLength={this.props.posts.length}
+                        next={this.fetchMorePosts}
+                        hasMore={this.state.morePosts}
+                        loader={<Loader type="ThreeDots" color="#00BFFF" className="loading-more" />}
+                        endMessage={<h1>No more posts</h1>}
+                    >
+                    {         
+                        <ul className="posts-ul">
+                            {this.props.posts.map((post) => (
+                                // <div className="post-ul-div">
+                                <li className="users-post-div" key={post.id}>
+                                            <Link to={`/posts/${post.id}/edit`}>
+                                                <img className="users-post-img" src={post.photoUrl} />
+                                            </Link>
+                                    </li>
+                                // </div>
+                            ))}
+                        </ul>
+                    }
+                    </InfiniteScroll>
+                </div> */}
+
+                {/* <div className="profile-post-div">
+                    <ul className="posts-ul">
                         <InfiniteScroll
                             dataLength={this.props.posts.length}
                             next={this.fetchMorePosts}
@@ -180,45 +206,41 @@ class OtherUserShow extends React.Component {
                             loader={<Loader type="ThreeDots" color="#00BFFF" className="loading-more" />}
                             endMessage={<h1>No more posts</h1>}
                         >
-                        {         
-                            <ul className="posts-ul">
+                            {<div className="post-ul-div">
                                 {this.props.posts.map((post) => (
-                                    // <div className="post-ul-div">
-                                    <li className="users-post-div" key={post.id}>
-                                                <Link to={`/posts/${post.id}/edit`}>
-                                                    <img className="users-post-img" src={post.photoUrl} />
-                                                </Link>
-                                        </li>
-                                    // </div>
+                                    <li key={post.id}>
+                                        <div className="users-post-div">
+                                            <Link to={`/posts/${post.id}/edit`}>
+                                                <img className="users-post-img" src={post.photoUrl} />
+                                            </Link>
+                                        </div>
+                                    </li>
                                 ))}
-                            </ul>
-                        }
+                            </div>}
                         </InfiniteScroll>
-                    </div> */}
+                    </ul>
+                </div> */}
 
-                    <div className="profile-post-div">
-                        <ul className="posts-ul">
-                            <InfiniteScroll
-                                dataLength={this.props.posts.length}
-                                next={this.fetchMorePosts}
-                                hasMore={this.state.morePosts}
-                                loader={<Loader type="ThreeDots" color="#00BFFF" className="loading-more" />}
-                                endMessage={<h1>No more posts</h1>}
-                            >
-                                {<div className="post-ul-div">
-                                    {this.props.posts.map((post) => (
-                                        <li key={post.id}>
-                                            <div className="users-post-div">
-                                                <Link to={`/posts/${post.id}/edit`}>
-                                                    <img className="users-post-img" src={post.photoUrl} />
-                                                </Link>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </div>}
-                            </InfiniteScroll>
-                        </ul>
-                    </div>
+                {/* third try */}
+                <InfiniteScroll
+                    dataLength={this.props.posts.length}
+                    next={this.fetchMorePosts}
+                    hasMore={this.state.morePosts}
+                    loader={<Loader type="ThreeDots" color="#00BFFF" className="loading-more" />}
+                    endMessage={<h1>No more posts</h1>}
+                >
+                    {<div className="three-col-container">
+                        {this.props.posts.map((post) => (
+                            // <li key={post.id}>
+                                <div className="users-post-container">
+                                    <Link to={`/posts/${post.id}/edit`}>
+                                        <img className="users-post-img" src={post.photoUrl} />
+                                    </Link>
+                                </div>
+                            // </li>
+                        ))}
+                    </div>}
+                </InfiniteScroll>
 
                 <div className="modal-bg">
                     <div className="update-user-modal">
