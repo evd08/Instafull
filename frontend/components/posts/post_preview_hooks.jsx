@@ -73,7 +73,9 @@ export default function PostPreview(props) {
                         {preview}
                       </a>
                     </div>
-                    <p className="post-user-button">{props.user.username}</p>
+                    <a href={`/#/${props.post.username}`}>
+                      <p className="post-user-button">{props.user.username}</p>
+                    </a>
                   </div>
                   <div className="option-button">{postMenu}</div>
                 </div>
