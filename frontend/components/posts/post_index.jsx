@@ -53,7 +53,6 @@ class PostIndex extends React.Component {
   }
 
   render(){
-    // debugger
       return this.state.loading ? (
         <Loader type="Bars" color="#00BFFF" className="loading" />
       ) : (
