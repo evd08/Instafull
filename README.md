@@ -8,12 +8,14 @@ InstaPlaces, a clone of Instagram application, a photo sharing application where
 
 # Technologies:
 
+* Ruby
 * Ruby on Rails
 * PostgreSQL
-* SCSS
-* React
-* Redux
 * AWS S3
+* Redux
+* React
+* React Hooks
+* SCSS
 * Heroku
 
 # Features
