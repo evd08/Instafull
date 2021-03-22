@@ -27,7 +27,7 @@ export default function MenuPost(props) {
         document.querySelector(`#follow-user-${props.userId}`).style.visibility === "" ? 
     following=true : following=false
   }
-  
+
   return following ? (
     <div className="menu-post-div">
       <button onClick={handleUnfollow}>Unfollow</button>
