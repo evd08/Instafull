@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.signup = signup;
     // window.logout = logout;
     // window.fetchSearch = fetchSearch;
-    // console.log("working")
 
     ReactDOM.render(<Root store={store} />, root)
 })

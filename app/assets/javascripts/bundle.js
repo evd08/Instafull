@@ -685,8 +685,6 @@ function CommentForm(props) {
   }
 
   function handleSubmit(e) {
-    // console.log(e)
-    // console.log(comment);
     var txt = document.getElementById("comment-textbox-".concat(props.postId)).value;
 
     if (txt === "") {
@@ -3187,7 +3185,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // window.signup = signup;
   // window.logout = logout;
   // window.fetchSearch = fetchSearch;
-  // console.log("working")
 
 
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
